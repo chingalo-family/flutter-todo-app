@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/models/todo_model.dart';
+import 'package:todo_app/pages/todo_list/todo_list.dart';
+import 'package:todo_app/pages/todo_summary/todo_summary.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -10,12 +13,24 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _counter = 1;
-  final int _multiplier = 10;
+  int _currentIndex = 0;
+  List todoList = <Todo>[];
 
-  void _incrementCounter() {
+  void _addTodo(){
+    var todo = new Todo();
+    var index = todoList.toList().length;
+    todo.title = 'Tile $index';
+    todo.description = 'Description $index';
+    todoList.add(todo);
+    todoList.toList().forEach((todoObj) {
+      print(todoObj.title);
+      print(todoObj.description);
+    });
+  }
+
+  void _onTapNavBarIcon(int index){
     setState(() {
-      _counter = this._counter * this._multiplier;
+      _currentIndex = index;
     });
   }
 
@@ -23,27 +38,29 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.title ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+      body: SafeArea(
+        child:  _currentIndex == 1 ?TodoList() : TodoSummary()
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: _onTapNavBarIcon,
+        showUnselectedLabels: false,
+        showSelectedLabels: true,
+        currentIndex: _currentIndex,
+        backgroundColor: Colors.blue,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.black,
+        items :[
+          BottomNavigationBarItem(icon:Icon(Icons.home),title: Text('Home')),
+          BottomNavigationBarItem(icon:Icon(Icons.format_list_numbered),title: Text('Todo'))
+        ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Multiply by $_multiplier',
+        onPressed: _addTodo,
         child: Icon(Icons.add),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked
     );
   }
 }

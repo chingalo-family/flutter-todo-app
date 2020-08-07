@@ -10,19 +10,9 @@ class TodoList extends StatefulWidget {
 }
 
 class _TodoListPageState extends State<TodoList> {
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'List of todos',
-            ),
-          ],
-        ),
-      ),
-    );
+    return Text('Todo List ');
   }
 }
