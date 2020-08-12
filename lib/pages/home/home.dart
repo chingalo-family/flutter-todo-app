@@ -53,9 +53,6 @@ class HomePage extends StatelessWidget{
         setCurrentPageTitle(todo.title);
     }
 
-
-
-
     return Scaffold(
         appBar: AppBar(
             backgroundColor: Colors.blue,

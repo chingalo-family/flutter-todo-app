@@ -16,10 +16,29 @@ class TodoListDetail extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Container(
-        margin: EdgeInsets.all(10),
-        height: height,
-        width: width,
-        child: Text('')
+      padding: EdgeInsets.only(top: 10,),
+      child: Card(
+        child: Container(
+          padding: EdgeInsets.all(10),
+          child: Column(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Text('Title : ', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14),),
+                  Text(currentTodo.title),
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Text('Description : ',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14)),
+                  Text(currentTodo.description, style: TextStyle(fontSize: 12),),
+                ],
+              ),
+
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
