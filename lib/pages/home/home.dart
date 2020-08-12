@@ -6,12 +6,12 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/models/page_model.dart';
 import 'package:todo_app/models/todo_model.dart';
 
-
 class HomePage extends StatelessWidget{
-
 
   @override
   Widget build(BuildContext context) {
+
+    final List<String> choices = <String>['menu1','menu2'];
 
     final pageSelector = context.watch<PageModel>();
     final todoSelector = context.watch<TodoModel>();
@@ -57,6 +57,20 @@ class HomePage extends StatelessWidget{
         appBar: AppBar(
             backgroundColor: Colors.blue,
             title: Text(currentPageTitle),
+          actions: <Widget>[
+            PopupMenuButton(
+              onSelected: (String choice){
+                print(choice);
+              },
+              itemBuilder: (BuildContext contents){
+                return choices.map((String choice){
+                  return PopupMenuItem(
+                  value: choice,
+                  child: Text(choice),
+              );
+              }).toList();
+          })
+          ],
         ),
         body: SafeArea(
             child:Container(
