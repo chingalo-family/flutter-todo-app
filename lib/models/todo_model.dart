@@ -14,14 +14,21 @@ class TodoModel extends ChangeNotifier{
 
   // initial state of todo_list
   final List<Todo> todoState = [];
+  Todo _currentTodo;
 
   // selector for state
   List<Todo> get todoList=> todoState.toList();
 
   int get todoCount=> todoState.toString().length;
 
+  Todo get currentTodo => _currentTodo ?? null;
 
-  // actions / reducers
+
+  // actions on reducers
+
+  void setCurrentTodo(Todo todo){
+    _currentTodo = new Todo(id:todo.id, title: todo.title, description: todo.description);
+  }
 
   void addTodo(Todo todo){
     todo.id = todo.id != null ? todo.id: todo.title;
