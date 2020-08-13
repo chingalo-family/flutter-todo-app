@@ -5,16 +5,29 @@ class TodoSummary extends StatelessWidget {
     Key key,
   }) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return Container(
-      margin: EdgeInsets.all(10),
-      height: height,
-        width: width,
-      child: Text('')
+      child: Column(
+        children: <Widget>[
+          Container(
+            child: Card(
+              child: ListTile(
+                title: Text('Summary total'),
+                subtitle: Text('Summary total to come'),
+              ),
+            ),
+          ),
+          Container(
+            child: Card(
+              child: ListTile(
+                title: Text('Summary Chart'),
+                subtitle: Text('Chart to come'),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
