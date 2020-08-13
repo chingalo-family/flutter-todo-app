@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/models/page_model.dart';
-import 'package:todo_app/models/todo_model.dart';
+import 'package:todo_app/app-state/page_model.dart';
+import 'package:todo_app/app-state/todo_model.dart';
 import 'package:todo_app/pages/home/home.dart';
 
 void main() {

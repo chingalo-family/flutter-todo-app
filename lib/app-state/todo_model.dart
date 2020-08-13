@@ -1,14 +1,6 @@
 import 'package:flutter/foundation.dart';
-
-class Todo {
-  String id, title, description;
-
-  Todo({
-    this.id,
-    this.title,
-    this.description,
-  });
-}
+import 'package:todo_app/models/todo.dart';
+import 'package:uuid/uuid.dart';
 
 class TodoModel extends ChangeNotifier {
   // initial state of todo_list
@@ -20,10 +12,15 @@ class TodoModel extends ChangeNotifier {
 
   int get todoCount => todoState.toString().length;
 
-  Todo get currentTodo => _currentTodo ?? null;
+  Todo get currentTodo =>
+      _currentTodo ?? new Todo(id: Uuid().v1(), title: '', description: '');
+
+  bool get isTodoReadyForSubmit =>
+      _currentTodo.id.isNotEmpty &&
+      _currentTodo.title.isNotEmpty &&
+      _currentTodo.description.isNotEmpty;
 
   // actions on reducers
-
   void setCurrentTodo(Todo todo) {
     _currentTodo =
         new Todo(id: todo.id, title: todo.title, description: todo.description);
@@ -31,7 +28,6 @@ class TodoModel extends ChangeNotifier {
   }
 
   void addTodo(Todo todo) {
-    todo.id = todo.id != null ? todo.id : todo.title;
     todoState.add(todo);
     notifyListeners();
   }

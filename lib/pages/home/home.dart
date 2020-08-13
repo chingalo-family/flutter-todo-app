@@ -1,28 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/models/page_model.dart';
-import 'package:todo_app/models/todo_model.dart';
+import 'package:todo_app/components/todo_form.dart';
+import 'package:todo_app/core/util_helpers.dart';
+import 'package:todo_app/app-state/page_model.dart';
 import 'package:todo_app/pages/todo_list/todo_list.dart';
-import 'package:todo_app/pages/todo_list_detail/todo_list_detail.dart';
 import 'package:todo_app/pages/todo_summary/todo_summary.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final todoModel = Provider.of<TodoModel>(context);
     final pageModel = Provider.of<PageModel>(context);
 
-    List<Todo> todoList = todoModel.todoList;
     int currentIndex = pageModel.currentIndex;
-    String currentSubPage = pageModel.currentSubPage;
     String currentPageTitle = pageModel.currentPageTitle;
 
     void setCurrentPageTitle(String name) {
       context.read<PageModel>().setCurrentPageTitle(name);
-    }
-
-    void setCurrentSubPage(String name) {
-      context.read<PageModel>().setCurrentSubPage(name);
     }
 
     void setCurrentPageTab(int index) {
@@ -30,19 +23,13 @@ class HomePage extends StatelessWidget {
           ? 'Todo App - Summary'
           : index == 1 ? 'Todo App - List' : 'Todo App';
       setCurrentPageTitle(name);
-      context.read<PageModel>().activateTable(index);
+      pageModel.activateTable(index);
     }
 
-    void addTodo() {
-      int total = todoList.length;
-      String id = '$total';
-      String title = 'title $total';
-      String description = 'description $total';
-      Todo todo = new Todo(id: id, title: title, description: description);
-      todoModel.addTodo(todo);
-      setCurrentSubPage('');
-      setCurrentPageTitle('Todo App - List');
-      setCurrentPageTab(1);
+    showAddTodoForm(BuildContext context) {
+      String title = 'Todo Form';
+      Widget content = Container(child: TodoForm());
+      return UtilHelpers.showAddTodoForm(context, title, content);
     }
 
     return Scaffold(
@@ -51,9 +38,7 @@ class HomePage extends StatelessWidget {
         ),
         body: SafeArea(
             child: Container(
-                child: currentSubPage == 'todoView'
-                    ? TodoListDetail()
-                    : currentIndex == 1 ? TodoList() : TodoSummary())),
+                child:  currentIndex == 1 ? TodoList() : TodoSummary())),
         bottomNavigationBar: BottomNavigationBar(
           onTap: (index) {
             return setCurrentPageTab(index);
@@ -76,11 +61,12 @@ class HomePage extends StatelessWidget {
         floatingActionButton: Visibility(
             child: FloatingActionButton(
               onPressed: () {
-                return addTodo();
+                //return addTodo();
+                showAddTodoForm(context);
               },
               child: Icon(Icons.add),
             ),
-            visible: currentSubPage == '' ? true : false),
+            visible:  true),
         floatingActionButtonLocation:
             FloatingActionButtonLocation.centerDocked);
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/models/todo_model.dart';
+import 'package:todo_app/app-state/todo_model.dart';
+import 'package:todo_app/models/todo.dart';
 import 'package:todo_app/pages/todo_list/components/todo_container.dart';
 
 class TodoList extends StatelessWidget {
