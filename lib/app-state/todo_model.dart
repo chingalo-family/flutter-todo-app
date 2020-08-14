@@ -13,7 +13,8 @@ class TodoModel extends ChangeNotifier {
   int get todoCount => todoState.toString().length;
 
   Todo get currentTodo =>
-      _currentTodo ?? new Todo(id: UtilHelpers.getUid(), title: '', description: '');
+      _currentTodo ??
+      new Todo(id: UtilHelpers.getUid(), title: '', description: '');
 
   // actions on reducers
   void setCurrentTodo(Todo todo) {
@@ -28,13 +29,9 @@ class TodoModel extends ChangeNotifier {
   }
 
   void addTodo(Todo todo) {
-    todoState = todoState.where((Todo d) => d.id != todo.id ).toList();
-   // todoState.add(todo);
+    todoState = todoState.where((Todo d) => d.id != todo.id).toList();
+    // todoState.add(todo);
     todoState.insert(0, todo);
     notifyListeners();
   }
-
-
-
-
 }

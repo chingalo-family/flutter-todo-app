@@ -14,15 +14,7 @@ class HomePage extends StatelessWidget {
     int currentIndex = pageModel.currentIndex;
     String currentPageTitle = pageModel.currentPageTitle;
 
-    void setCurrentPageTitle(String name) {
-      context.read<PageModel>().setCurrentPageTitle(name);
-    }
-
     void setCurrentPageTab(int index) {
-      String name = index == 0
-          ? 'Todo App - Summary'
-          : index == 1 ? 'Todo App - List' : 'Todo App';
-      setCurrentPageTitle(name);
       pageModel.activateTable(index);
     }
 
@@ -38,7 +30,7 @@ class HomePage extends StatelessWidget {
         ),
         body: SafeArea(
             child: Container(
-                child:  currentIndex == 1 ? TodoList() : TodoSummary())),
+                child: currentIndex == 1 ? TodoList() : TodoSummary())),
         bottomNavigationBar: BottomNavigationBar(
           onTap: (index) {
             return setCurrentPageTab(index);
@@ -66,7 +58,7 @@ class HomePage extends StatelessWidget {
               },
               child: Icon(Icons.add),
             ),
-            visible:  true),
+            visible: true),
         floatingActionButtonLocation:
             FloatingActionButtonLocation.centerDocked);
   }

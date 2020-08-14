@@ -3,7 +3,7 @@ class TodoField {
   final String label;
   final String inputType;
 
-  TodoField({this.id,this.label, this.inputType});
+  TodoField({this.id, this.label, this.inputType});
 
   @override
   String toString() {

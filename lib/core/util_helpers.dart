@@ -17,6 +17,6 @@ class UtilHelpers {
   }
 
   static String getUid() {
-    return Uuid().v1().replaceAll('-', '').substring(0,10);
+    return Uuid().v1().replaceAll('-', '').substring(0, 10);
   }
 }

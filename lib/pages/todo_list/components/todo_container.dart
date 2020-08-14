@@ -16,27 +16,27 @@ class TodoContainer extends StatelessWidget {
 
     return Card(
         child: ListTile(
-          onTap: () {
-            todoModel.setCurrentTodo(todo);
-            String title = 'Edit Todo Form';
-            Widget content = Container(child: TodoForm());
-            return UtilHelpers.showAddTodoForm(context, title, content);
-          },
-          title: Text(todo.title),
-          subtitle: Container(
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    'id : ${todo.id}',
-                    style: TextStyle(fontSize: 11),
-                  ),
-                  Text(
-                    'description : ${todo.description}',
-                    style: TextStyle(fontSize: 11),
-                  )
-                ]),
-          ),
-        ));
+      onTap: () {
+        todoModel.setCurrentTodo(todo);
+        String title = 'Edit Todo Form';
+        Widget content = Container(child: TodoForm());
+        return UtilHelpers.showAddTodoForm(context, title, content);
+      },
+      title: Text(todo.title),
+      subtitle: Container(
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                'id : ${todo.id}',
+                style: TextStyle(fontSize: 11),
+              ),
+              Text(
+                'description : ${todo.description}',
+                style: TextStyle(fontSize: 11),
+              )
+            ]),
+      ),
+    ));
   }
 }
