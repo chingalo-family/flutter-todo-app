@@ -61,17 +61,17 @@ class TodoForm extends StatelessWidget {
               margin: EdgeInsets.only(left: 5.0,right: 4.0),
               child: Column(
                 children: <Widget>[
+                  Text(currentTodo.id),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       MaterialButton(
-                        elevation:10.0,
+                        elevation:10,
                         color: Colors.red,
                         onPressed: onCancel,
                         child: Text('Cancel'),
                       ),
                       MaterialButton(
-                        elevation:10.0,
                         color: Colors.blue,
                         onPressed: onSaveTodo,
                         child: Text('Save'),

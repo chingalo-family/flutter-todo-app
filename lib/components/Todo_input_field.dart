@@ -21,12 +21,28 @@ class TodoInputField extends StatelessWidget {
         padding: EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 5),
         child: Column(
           children: <Widget>[
-            TextField(
+            TextFormField(
+                onTap: ()async{
+                  final date = await showDatePicker(
+                      context: context,
+                      firstDate: DateTime(1900),
+                      initialDate:  DateTime.now(),
+                      lastDate: DateTime(2100));
+                  final time = await showTimePicker(
+                    context: context,
+                    initialTime:
+                    TimeOfDay.fromDateTime(DateTime.now()),
+                  );
+                },
+                obscureText: false,
+                keyboardType: TextInputType.text,
                 onChanged: onInputValueChange,
                 controller: textController,
-                readOnly: false,
+                readOnly: true,
                 decoration: InputDecoration(
+                  border: InputBorder.none,
                   labelText: this.inputField.label,
+                    errorText:null,
                 ))
           ],
         ),
