@@ -28,11 +28,11 @@ class TodoContainer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    todo.description,
+                    'id : ${todo.id}',
                     style: TextStyle(fontSize: 11),
                   ),
                   Text(
-                    todo.description,
+                    'description : ${todo.description}',
                     style: TextStyle(fontSize: 11),
                   )
                 ]),

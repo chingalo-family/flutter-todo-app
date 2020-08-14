@@ -4,7 +4,7 @@ import 'package:uuid/uuid.dart';
 
 class TodoModel extends ChangeNotifier {
   // initial state of todo_list
-  final List<Todo> todoState = [];
+  List<Todo> todoState = [];
   Todo _currentTodo;
 
   // selector for state
@@ -15,11 +15,6 @@ class TodoModel extends ChangeNotifier {
   Todo get currentTodo =>
       _currentTodo ?? new Todo(id: Uuid().v1(), title: '', description: '');
 
-  bool get isTodoReadyForSubmit =>
-      _currentTodo.id.isNotEmpty &&
-      _currentTodo.title.isNotEmpty &&
-      _currentTodo.description.isNotEmpty;
-
   // actions on reducers
   void setCurrentTodo(Todo todo) {
     _currentTodo =
@@ -27,8 +22,19 @@ class TodoModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addTodo(Todo todo) {
-    todoState.add(todo);
+  void resetCurrentTodo() {
+    _currentTodo = null;
     notifyListeners();
   }
+
+  void addTodo(Todo todo) {
+    todoState = todoState.where((Todo d) => d.id != todo.id ).toList();
+   // todoState.add(todo);
+    todoState.insert(0, todo);
+    notifyListeners();
+  }
+
+
+
+
 }

@@ -3,14 +3,18 @@ import 'package:todo_app/models/todo_field.dart';
 
 class TodoInputField extends StatelessWidget {
 
-  TodoInputField({this.inputField, this.onInputValueChange});
+  TodoInputField({this.inputField, this.onInputValueChange,this.initialValue });
 
   final TodoField inputField;
+  final String initialValue ;
+
   final Function  onInputValueChange;
-  final TextEditingController textController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+
+    TextEditingController textController = new TextEditingController(text: initialValue);
+
     return Card(
       elevation: 5,
       child: Container(

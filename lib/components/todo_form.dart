@@ -17,20 +17,34 @@ class TodoForm extends StatelessWidget {
     final currentTodo = todoModel.currentTodo;
 
     void onCancel() {
+      todoModel.resetCurrentTodo();
       Navigator.of(context).pop();
     }
 
+    bool isTodoReadyForSubmit() {
+      return currentTodo != null && currentTodo.id.isNotEmpty && currentTodo.title.isNotEmpty;
+    }
+
     void onSaveTodo() {
-      print(currentTodo.toString());
+      bool isFormRead = isTodoReadyForSubmit();
+      if(isFormRead){
+        todoModel.addTodo(currentTodo);
+        onCancel();
+      }else{
+        print('Form not ready');
+      }
     }
 
     void onInputValueChange(TodoField inputField,  String value){
       if(inputField.id == 'title'){
         currentTodo.title = value;
       } else if(inputField.id == 'description'){
-        currentTodo.title = value;
+        currentTodo.description = value;
       }
-      todoModel.setCurrentTodo(currentTodo);
+    }
+
+    String getInitialValue(TodoField inputField){
+      return inputField.id == 'title' ? currentTodo.title : inputField.id == 'description'? currentTodo.description : '';
     }
 
 
@@ -40,7 +54,7 @@ class TodoForm extends StatelessWidget {
             Column(
               children: labels
                   .map((TodoField inputField) => TodoInputField(
-                inputField: inputField,onInputValueChange: (String value)=> onInputValueChange(inputField, value)
+                inputField: inputField,onInputValueChange: (String value)=> onInputValueChange(inputField, value), initialValue: getInitialValue(inputField)
               )).toList(),
             ),
             Container(
