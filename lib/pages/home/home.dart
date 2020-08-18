@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/components/button_floating_action.dart';
+import 'package:todo_app/components/buttton_navigation_buttons.dart';
 import 'package:todo_app/components/todo_form.dart';
 import 'package:todo_app/core/util_helpers.dart';
 import 'package:todo_app/app-state/page_model.dart';
@@ -14,16 +16,6 @@ class HomePage extends StatelessWidget {
     int currentIndex = pageModel.currentIndex;
     String currentPageTitle = pageModel.currentPageTitle;
 
-    void setCurrentPageTab(int index) {
-      pageModel.activateTable(index);
-    }
-
-    showAddTodoForm(BuildContext context) {
-      String title = 'Todo Form';
-      Widget content = Container(child: TodoForm());
-      return UtilHelpers.showAddTodoForm(context, title, content);
-    }
-
     return Scaffold(
         appBar: AppBar(
           title: Text(currentPageTitle),
@@ -31,35 +23,10 @@ class HomePage extends StatelessWidget {
         body: SafeArea(
             child: Container(
                 child: currentIndex == 1 ? TodoList() : TodoSummary())),
-        bottomNavigationBar: BottomNavigationBar(
-          onTap: (index) {
-            return setCurrentPageTab(index);
-          },
-          showUnselectedLabels: true,
-          showSelectedLabels: true,
-          currentIndex: currentIndex,
-          selectedFontSize: 13.0,
-          unselectedFontSize: 12.0,
-          iconSize: 20,
-          items: [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                title: Text('Home', style: TextStyle(fontSize: 12.0))),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.format_list_numbered),
-                title: Text('Todo', style: TextStyle(fontSize: 12.0)))
-          ],
-        ),
-        floatingActionButton: Visibility(
-            child: FloatingActionButton(
-              onPressed: () {
-                //return addTodo();
-                showAddTodoForm(context);
-              },
-              child: Icon(Icons.add),
-            ),
-            visible: true),
+        bottomNavigationBar: ButtonNavigationButton(),
+        floatingActionButton: ButtonFloatingAction(),
         floatingActionButtonLocation:
-            FloatingActionButtonLocation.centerDocked);
+            FloatingActionButtonLocation.centerDocked
+    );
   }
 }
