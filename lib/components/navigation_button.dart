@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/app-state/page_model.dart';
 
 
-class ButtonNavigationButton extends StatelessWidget{
+class NavigationButton extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {

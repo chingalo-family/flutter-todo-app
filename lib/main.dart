@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/app-state/page_model.dart';
 import 'package:todo_app/app-state/todo_model.dart';
 import 'package:todo_app/pages/home/home.dart';
+import 'package:todo_app/pages/launch/launch.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData.dark(),
-            home: HomePage() //HomePage(title: this.title),
+            home: LaunchPage() //HomePage(title: this.title),
             ));
   }
 }
