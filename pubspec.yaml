@@ -16,6 +16,8 @@ dependencies:
   uuid: 2.2.0
   flutter_svg: ^0.18.0
   google_fonts: ^1.1.0
+  sqflite:
+  path:
 
 dev_dependencies:
   flutter_test:
