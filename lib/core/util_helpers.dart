@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:uuid/uuid.dart';
 
 class UtilHelpers {
@@ -22,5 +23,9 @@ class UtilHelpers {
 
   static String getUid() {
     return Uuid().v1().replaceAll('-', '').substring(0, 10);
+  }
+
+  static TextStyle getFontStyles(double fontSize, Color color) {
+    return GoogleFonts.caveat(fontSize: fontSize ?? null, color: color ?? null);
   }
 }

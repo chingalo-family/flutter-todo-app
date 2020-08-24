@@ -22,18 +22,21 @@ class TodoContainer extends StatelessWidget {
         Widget content = Container(child: TodoForm());
         return UtilHelpers.showAddTodoForm(context, title, content);
       },
-      title: Text(todo.title),
+      title: Text(
+        todo.title,
+        style: UtilHelpers.getFontStyles(20.0, null),
+      ),
       subtitle: Container(
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
                 'id : ${todo.id}',
-                style: TextStyle(fontSize: 11),
+                style: UtilHelpers.getFontStyles(18.0, null),
               ),
               Text(
                 'description : ${todo.description}',
-                style: TextStyle(fontSize: 11),
+                style: UtilHelpers.getFontStyles(18.0, null),
               )
             ]),
       ),

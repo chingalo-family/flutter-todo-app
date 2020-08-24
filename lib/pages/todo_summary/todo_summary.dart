@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/core/util_helpers.dart';
 
 class TodoSummary extends StatelessWidget {
   TodoSummary({
@@ -13,16 +14,22 @@ class TodoSummary extends StatelessWidget {
           Container(
             child: Card(
               child: ListTile(
-                title: Text('Summary total'),
-                subtitle: Text('Summary total to come'),
+                title: Text(
+                  'Summary total',
+                  style: UtilHelpers.getFontStyles(20.0, null),
+                ),
+                subtitle: Text('Summary total to come',
+                    style: UtilHelpers.getFontStyles(18.0, null)),
               ),
             ),
           ),
           Container(
             child: Card(
               child: ListTile(
-                title: Text('Summary Chart'),
-                subtitle: Text('Chart to come'),
+                title: Text('Summary Chart',
+                    style: UtilHelpers.getFontStyles(20.0, null)),
+                subtitle: Text('Chart to come',
+                    style: UtilHelpers.getFontStyles(18.0, null)),
               ),
             ),
           )
