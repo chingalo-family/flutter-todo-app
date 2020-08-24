@@ -25,7 +25,13 @@ class UtilHelpers {
     return Uuid().v1().replaceAll('-', '').substring(0, 10);
   }
 
-  static TextStyle getFontStyles(double fontSize, Color color) {
-    return GoogleFonts.caveat(fontSize: fontSize ?? null, color: color ?? null);
+  static TextStyle getFontStyles(
+    double fontSize,
+    Color color,
+  ) {
+    return GoogleFonts.caveat(
+        fontSize: fontSize ?? null,
+        color: color ?? null,
+        fontWeight: FontWeight.normal);
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/components/button_floating_action.dart';
 import 'package:todo_app/components/navigation_button.dart';
