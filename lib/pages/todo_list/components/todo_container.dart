@@ -20,7 +20,7 @@ class TodoContainer extends StatelessWidget {
         todoModel.setCurrentTodo(todo);
         String title = 'Edit Todo Form';
         Widget content = Container(child: TodoForm());
-        return UtilHelpers.showAddTodoForm(context, title, content);
+        return UtilHelpers.showPopUpModal(context, title, content);
       },
       title: Text(
         todo.title,

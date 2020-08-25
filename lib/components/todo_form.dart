@@ -9,14 +9,14 @@ import 'Todo_input_field.dart';
 
 class TodoForm extends StatelessWidget {
   final List<TodoField> labels = [
-    TodoField(id: 'title', label: 'Title', inputType: ''),
-    TodoField(id: 'description', label: 'Description', inputType: '')
+    TodoField(id: 'title', label: 'Title', inputType: 'TEXT'),
+    TodoField(id: 'description', label: 'Description', inputType: 'LONG_TEXT')
   ];
 
   @override
   Widget build(BuildContext context) {
     final TodoModel todoModel = Provider.of<TodoModel>(context);
-    final PageModel pageModel = Provider.of<PageModel>(context);
+    final PageModel pageModel = Provider.of<PageModel>(context, listen: false);
     final currentTodo = todoModel.currentTodo;
 
     void onCancel() {
@@ -57,43 +57,44 @@ class TodoForm extends StatelessWidget {
     }
 
     return Container(
-        child: Column(
-      children: <Widget>[
-        Column(
-          children: labels
-              .map((TodoField inputField) => TodoInputField(
-                  inputField: inputField,
-                  onInputValueChange: (String value) =>
-                      onInputValueChange(inputField, value),
-                  initialValue: getInitialValue(inputField)))
-              .toList(),
-        ),
-        Container(
-          margin: EdgeInsets.only(left: 5.0, right: 4.0),
-          child: Column(
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  MaterialButton(
-                    elevation: 10,
-                    color: Colors.red,
-                    onPressed: onCancel,
-                    child: Text('Cancel',
-                        style: UtilHelpers.getFontStyles(20, null)),
-                  ),
-                  MaterialButton(
-                    color: Colors.blue,
-                    onPressed: onSaveTodo,
-                    child: Text('Save',
-                        style: UtilHelpers.getFontStyles(20, null)),
-                  )
-                ],
-              )
-            ],
+      child: Column(
+        children: <Widget>[
+          Column(
+            children: labels
+                .map((TodoField inputField) => TodoInputField(
+                    inputField: inputField,
+                    onInputValueChange: (String value) =>
+                        onInputValueChange(inputField, value),
+                    initialValue: getInitialValue(inputField)))
+                .toList(),
           ),
-        )
-      ],
-    ));
+          Container(
+            margin: EdgeInsets.only(left: 5.0, right: 4.0),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    MaterialButton(
+                      elevation: 10,
+                      color: Colors.red,
+                      onPressed: onCancel,
+                      child: Text('Cancel',
+                          style: UtilHelpers.getFontStyles(20, null)),
+                    ),
+                    MaterialButton(
+                      color: Colors.blue,
+                      onPressed: onSaveTodo,
+                      child: Text('Save',
+                          style: UtilHelpers.getFontStyles(20, null)),
+                    )
+                  ],
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
   }
 }

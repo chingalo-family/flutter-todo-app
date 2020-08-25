@@ -3,21 +3,27 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:uuid/uuid.dart';
 
 class UtilHelpers {
-  static showAddTodoForm(BuildContext context, String title, Widget content) {
-    Size size = MediaQuery.of(context).size;
-    double height = size.height * 0.5;
+  static showPopUpModal(BuildContext context, String title, Widget modal) {
     return showDialog(
         context: context,
-        builder: (context) {
-          return Container(
-              margin:
-                  EdgeInsets.symmetric(vertical: height / 2, horizontal: 50),
-              padding: EdgeInsets.all(20),
-              decoration: BoxDecoration(color: Theme.of(context).primaryColor),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [content],
-              ));
+        builder: (BuildContext context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)),
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.6,
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [modal],
+                  ),
+                ),
+              ),
+            ),
+          );
         });
   }
 
