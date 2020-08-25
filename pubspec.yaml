@@ -17,6 +17,7 @@ dependencies:
   flutter_svg: ^0.18.0
   google_fonts: ^1.1.0
   http: ^0.12.2
+  random_color: ^1.0.5
   sqflite:
   path:
 

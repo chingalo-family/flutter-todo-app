@@ -7,17 +7,18 @@ import 'package:todo_app/pages/todo_list/components/todo_container.dart';
 class TodoList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final todoModel = Provider.of<TodoModel>(context);
-
-    List<Todo> todoList = todoModel.todoList;
-
     return Container(
       margin: EdgeInsets.all(10),
-      child: ListView.builder(
-          itemCount: todoList.length,
-          itemBuilder: (BuildContext context, int index) {
-            return TodoContainer(todo: todoList[index]);
-          }),
+      child: Consumer<TodoModel>(
+        builder: (context, todoState, child) {
+          List<Todo> todoList = todoState.todoList;
+          return ListView.builder(
+              itemCount: todoList.length,
+              itemBuilder: (BuildContext context, int index) {
+                return TodoContainer(todo: todoList[index]);
+              });
+        },
+      ),
     );
   }
 }

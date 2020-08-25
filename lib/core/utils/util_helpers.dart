@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:uuid/uuid.dart';
+import 'package:random_color/random_color.dart';
 
 class UtilHelpers {
   static showPopUpModal(BuildContext context, String title, Widget modal) {
@@ -26,6 +27,11 @@ class UtilHelpers {
             ),
           );
         });
+  }
+
+  static Color getRamdomCalor() {
+    RandomColor _randomColor = RandomColor();
+    return _randomColor.randomColor();
   }
 
   static String getUid() {

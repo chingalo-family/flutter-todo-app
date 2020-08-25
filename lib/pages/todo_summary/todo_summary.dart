@@ -11,8 +11,12 @@ class TodoSummary extends StatelessWidget {
     return Container(
       child: Column(
         children: <Widget>[
-          Container(
-            child: Card(
+          Card(
+            child: Container(
+              decoration: BoxDecoration(
+                  border: Border(
+                      left: BorderSide(
+                          color: UtilHelpers.getRamdomCalor(), width: 5))),
               child: ListTile(
                 title: Text(
                   'Summary total',
@@ -23,8 +27,12 @@ class TodoSummary extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            child: Card(
+          Card(
+            child: Container(
+              decoration: BoxDecoration(
+                  border: Border(
+                      left: BorderSide(
+                          color: UtilHelpers.getRamdomCalor(), width: 5))),
               child: ListTile(
                 title: Text('Summary Chart',
                     style: UtilHelpers.getFontStyles(20.0, null)),
