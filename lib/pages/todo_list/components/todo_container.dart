@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/components/todo_form.dart';
-import 'package:todo_app/core/util_helpers.dart';
+import 'package:todo_app/core/utils/components/todo_form.dart';
+import 'package:todo_app/core/utils/util_helpers.dart';
 import 'package:todo_app/app-state/todo_model.dart';
 import 'package:todo_app/models/todo.dart';
 

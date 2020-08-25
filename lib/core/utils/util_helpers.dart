@@ -8,12 +8,13 @@ class UtilHelpers {
         context: context,
         builder: (BuildContext context) {
           return Dialog(
+            elevation: 10,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0)),
             child: Container(
               height: MediaQuery.of(context).size.height * 0.6,
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+                padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

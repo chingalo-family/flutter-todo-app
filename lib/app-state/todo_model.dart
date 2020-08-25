@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:todo_app/core/util_helpers.dart';
+import 'package:todo_app/core/utils/util_helpers.dart';
 import 'package:todo_app/models/todo.dart';
 import 'package:todo_app/offline-db/todo_provider.dart';
 
