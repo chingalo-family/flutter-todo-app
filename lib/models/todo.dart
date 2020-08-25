@@ -4,7 +4,7 @@ class Todo {
   String description;
 
   Todo({
-    this.id = '',
+    this.id,
     this.title,
     this.description,
   });

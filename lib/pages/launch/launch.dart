@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/app-state/todo_model.dart';
+import 'package:todo_app/http-provider/http_provider.dart';
 import 'package:todo_app/pages/home/home.dart';
 
 class LaunchPage extends StatefulWidget {
@@ -22,8 +23,11 @@ class _LaunchPageState extends State<LaunchPage> {
   Widget build(BuildContext context) {
     final TodoModel todoModel = Provider.of<TodoModel>(context, listen: false);
 
-    initiateData() {
+    initiateData() async {
       todoModel.initiateTodoList();
+      var user = await HttpProvider.getCurrentUser();
+      print(user.id);
+      print(user.name);
       Timer(
           Duration(seconds: 3),
           () => {
