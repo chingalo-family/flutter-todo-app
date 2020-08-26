@@ -4,8 +4,7 @@ import 'package:todo_app/core/providers/preference_provider.dart';
 class AppThemeState with ChangeNotifier {
   String _currentTheme;
 
-  String get currentTheme =>
-      _currentTheme ?? PreferenceProvider.getCurrentTheme();
+  String get currentTheme => _currentTheme ?? PreferenceProvider.darkTheme;
 
   void setCurrentTheme(String theme) async {
     _currentTheme = theme;

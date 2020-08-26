@@ -2,8 +2,10 @@ import 'dart:async';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/app-state/app_theme_state.dart';
 import 'package:todo_app/app-state/todo_state.dart';
 import 'package:todo_app/core/providers/http_provider.dart';
+import 'package:todo_app/core/providers/preference_provider.dart';
 import 'package:todo_app/pages/home/home.dart';
 
 class LaunchPage extends StatefulWidget {
@@ -22,9 +24,13 @@ class _LaunchPageState extends State<LaunchPage> {
   @override
   Widget build(BuildContext context) {
     final TodoState todoState = Provider.of<TodoState>(context, listen: false);
+    final AppThemeState appThemeState =
+        Provider.of<AppThemeState>(context, listen: false);
     initiateData() async {
       todoState.initiateTodoList();
       await HttpProvider.getCurrentUser();
+      String theme = await PreferenceProvider.getCurrentTheme();
+      appThemeState.setCurrentTheme(theme);
       Timer(
           Duration(seconds: 3),
           () => {

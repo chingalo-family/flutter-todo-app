@@ -9,6 +9,7 @@ class NavigationButton extends StatelessWidget {
   Widget build(BuildContext context) {
     List<NavMenuItem> menus = NavMenuItem.getNavMenuItems();
     final pageModel = Provider.of<PageState>(context, listen: false);
+
     void setCurrentPageTab(int index) {
       pageModel.activateTable(index);
     }
@@ -46,7 +47,7 @@ class NavigationButton extends StatelessWidget {
                         children: [
                           Icon(
                             menuItem.icon,
-                            size: 10,
+                            size: 18,
                             color: index == currentIndex
                                 ? ThemeData.dark().primaryColor
                                 : Colors.white,
