@@ -2,20 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/app-state/page_model.dart';
 import 'package:todo_app/core/utils/util_helpers.dart';
-
-class MenuItem {
-  String title;
-  IconData icon;
-  MenuItem({this.icon, this.title});
-}
+import 'package:todo_app/models/nav_menu_item.dart';
 
 class NavigationButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    List<MenuItem> menus = [
-      MenuItem(title: 'Home', icon: Icons.home),
-      MenuItem(title: 'Todo', icon: Icons.list),
-    ];
+    List<NavMenuItem> menus = NavMenuItem.getNavMenuItems();
     final pageModel = Provider.of<PageModel>(context, listen: false);
     void setCurrentPageTab(int index) {
       pageModel.activateTable(index);
@@ -30,7 +22,7 @@ class NavigationButton extends StatelessWidget {
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: menus.map((MenuItem menuItem) {
+            children: menus.map((NavMenuItem menuItem) {
               int index = menus.indexOf(menuItem);
               return GestureDetector(
                 onTap: () {

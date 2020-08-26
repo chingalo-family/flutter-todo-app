@@ -8,10 +8,7 @@ import 'package:todo_app/app-state/todo_model.dart';
 import 'Todo_input_field.dart';
 
 class TodoForm extends StatelessWidget {
-  final List<TodoField> labels = [
-    TodoField(id: 'title', label: 'Title', inputType: 'TEXT'),
-    TodoField(id: 'description', label: 'Description', inputType: 'LONG_TEXT')
-  ];
+  final List<TodoField> labels = TodoField.getTodoFormFields();
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +31,6 @@ class TodoForm extends StatelessWidget {
       bool isFormRead = isTodoReadyForSubmit();
       if (isFormRead) {
         todoModel.addTodo(currentTodo);
-        // dynamic change tabs
         pageModel.activateTable(1);
         onCancel();
       } else {
