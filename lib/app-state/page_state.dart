@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-class PageModel extends ChangeNotifier {
+class PageState extends ChangeNotifier {
   String _currentPageTitle;
   int _currentIndex;
 

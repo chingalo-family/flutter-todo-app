@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/core/components/todo_form.dart';
 import 'package:todo_app/core/utils/util_helpers.dart';
-import 'package:todo_app/app-state/todo_model.dart';
+import 'package:todo_app/app-state/todo_state.dart';
 import 'package:todo_app/models/todo.dart';
 
 class TodoContainer extends StatelessWidget {
@@ -12,7 +12,7 @@ class TodoContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final todoModel = Provider.of<TodoModel>(context, listen: false);
+    final todoState = Provider.of<TodoState>(context, listen: false);
     return Container(
       child: Card(
           color: ThemeData.dark().primaryColor,
@@ -23,7 +23,7 @@ class TodoContainer extends StatelessWidget {
                         color: UtilHelpers.getRamdomCalor(), width: 5))),
             child: ListTile(
               onTap: () {
-                todoModel.setCurrentTodo(todo);
+                todoState.setCurrentTodo(todo);
                 String title = 'Edit Todo Form';
                 Widget content = Container(child: TodoForm());
                 return UtilHelpers.showPopUpModal(context, title, content);

@@ -3,7 +3,7 @@ import 'package:todo_app/core/utils/util_helpers.dart';
 import 'package:todo_app/models/todo.dart';
 import 'package:todo_app/offline-db/todo_provider.dart';
 
-class TodoModel extends ChangeNotifier {
+class TodoState extends ChangeNotifier {
   // initial state of todo_list
   TodoProvider todoProvider = new TodoProvider();
   List<Todo> _todoList = [];

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/app-state/page_model.dart';
-import 'package:todo_app/app-state/todo_model.dart';
+import 'package:todo_app/app-state/app_theme_state.dart';
+import 'package:todo_app/app-state/page_state.dart';
+import 'package:todo_app/app-state/todo_state.dart';
 import 'package:todo_app/pages/launch/launch.dart';
 
 void main() {
@@ -16,11 +17,12 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider(
-            create: (_) => TodoModel(),
+            create: (_) => TodoState(),
           ),
           ChangeNotifierProvider(
-            create: (_) => PageModel(),
-          )
+            create: (_) => PageState(),
+          ),
+          ChangeNotifierProvider(create: (_) => AppThemeState())
         ],
         child: MaterialApp(
             debugShowCheckedModeBanner: false,

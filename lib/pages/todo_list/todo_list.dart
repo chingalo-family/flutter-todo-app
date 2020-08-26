@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/app-state/todo_model.dart';
+import 'package:todo_app/app-state/todo_state.dart';
 import 'package:todo_app/models/todo.dart';
 import 'package:todo_app/pages/todo_list/components/todo_container.dart';
 
@@ -9,7 +9,7 @@ class TodoList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(10),
-      child: Consumer<TodoModel>(
+      child: Consumer<TodoState>(
         builder: (context, todoState, child) {
           List<Todo> todoList = todoState.todoList;
           return ListView.builder(

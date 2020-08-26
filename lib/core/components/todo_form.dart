@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/app-state/page_model.dart';
+import 'package:todo_app/app-state/page_state.dart';
 import 'package:todo_app/core/utils/util_helpers.dart';
 import 'package:todo_app/models/todo_field.dart';
-import 'package:todo_app/app-state/todo_model.dart';
+import 'package:todo_app/app-state/todo_state.dart';
 
 import 'Todo_input_field.dart';
 
@@ -12,12 +12,12 @@ class TodoForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TodoModel todoModel = Provider.of<TodoModel>(context);
-    final PageModel pageModel = Provider.of<PageModel>(context, listen: false);
-    final currentTodo = todoModel.currentTodo;
+    final TodoState todoState = Provider.of<TodoState>(context);
+    final PageState pageModel = Provider.of<PageState>(context, listen: false);
+    final currentTodo = todoState.currentTodo;
 
     void onCancel() {
-      todoModel.resetCurrentTodo();
+      todoState.resetCurrentTodo();
       Navigator.of(context).pop();
     }
 
@@ -30,7 +30,7 @@ class TodoForm extends StatelessWidget {
     void onSaveTodo() {
       bool isFormRead = isTodoReadyForSubmit();
       if (isFormRead) {
-        todoModel.addTodo(currentTodo);
+        todoState.addTodo(currentTodo);
         pageModel.activateTable(1);
         onCancel();
       } else {
