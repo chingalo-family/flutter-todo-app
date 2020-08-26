@@ -14,7 +14,6 @@ class HttpProvider {
       url,
       headers: {HttpHeaders.authorizationHeader: "Basic $basicAuth"},
     );
-    print(response.statusCode);
     return response.statusCode == 200
         ? User.fromJson(json.decode(response.body))
         : new User(id: '', name: '');

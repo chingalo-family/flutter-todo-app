@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
         return Scaffold(
             appBar: AppBar(
               title: Text(currentPageTitle,
-                  style: UtilHelpers.getFontStyles(25.0, null)),
+                  style: UtilHelpers.getFontStyles(30.0, null)),
               actions: [AppPopUpMenu()],
             ),
             body: SafeArea(

@@ -28,9 +28,9 @@ class _LaunchPageState extends State<LaunchPage> {
         Provider.of<AppThemeState>(context, listen: false);
     initiateData() async {
       todoState.initiateTodoList();
-      await HttpProvider.getCurrentUser();
       String theme = await PreferenceProvider.getCurrentTheme();
       appThemeState.setCurrentTheme(theme);
+      await HttpProvider.getCurrentUser();
       Timer(
           Duration(seconds: 3),
           () => {

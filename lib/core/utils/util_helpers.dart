@@ -18,8 +18,6 @@ class UtilHelpers {
                 padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
                 child: SingleChildScrollView(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [modal],
                   ),
                 ),

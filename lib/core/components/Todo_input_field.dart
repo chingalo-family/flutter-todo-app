@@ -25,7 +25,7 @@ class TodoInputField extends StatelessWidget {
                 obscureText: false,
                 keyboardType: TextInputType.text,
                 onChanged: onInputValueChange,
-                maxLines: inputField.inputType == 'LONG_TEXT' ? 5 : 1,
+                maxLines: inputField.inputType == 'LONG_TEXT' ? 3 : 1,
                 controller: textController,
                 style: UtilHelpers.getFontStyles(20, null),
                 readOnly: false,

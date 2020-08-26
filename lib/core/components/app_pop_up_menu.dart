@@ -8,8 +8,6 @@ class AppPopUpMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AppThemeState appThemeState = Provider.of<AppThemeState>(context);
-
-    String currentTheme = appThemeState.currentTheme;
     List<AppPopUpMenuItem> menuItems = AppPopUpMenuItem.getPopUpMenuItems();
     menuItems = menuItems
         .where((AppPopUpMenuItem menuItem) =>
