@@ -6,9 +6,8 @@ class ButtonFloatingAction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     showAddTodoForm(BuildContext context) {
-      String title = 'Todo Form';
       Widget content = Container(child: TodoForm());
-      return UtilHelpers.showPopUpModal(context, title, content);
+      return UtilHelpers.showPopUpModal(context, content);
     }
 
     return FloatingActionButton(

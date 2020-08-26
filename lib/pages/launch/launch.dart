@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/app-state/app_theme_state.dart';
+import 'package:todo_app/app-state/page_state.dart';
 import 'package:todo_app/app-state/todo_state.dart';
 import 'package:todo_app/core/providers/preference_provider.dart';
 import 'package:todo_app/pages/home/home.dart';
@@ -28,6 +29,7 @@ class _LaunchPageState extends State<LaunchPage> {
       PreferenceProvider.getCurrentTheme().then((theme) {
         appThemeState.setCurrentTheme(theme);
         Provider.of<TodoState>(context, listen: false).initiateTodoList();
+        Provider.of<PageState>(context, listen: false).activateTable(0);
         Timer(
             Duration(seconds: 2),
             () => Navigator.pushReplacement(

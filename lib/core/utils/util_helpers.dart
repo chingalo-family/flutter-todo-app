@@ -4,7 +4,7 @@ import 'package:uuid/uuid.dart';
 import 'package:random_color/random_color.dart';
 
 class UtilHelpers {
-  static showPopUpModal(BuildContext context, String title, Widget modal) {
+  static showPopUpModal(BuildContext context, Widget modal) {
     return showDialog(
         context: context,
         builder: (BuildContext context) {

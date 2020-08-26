@@ -41,22 +41,17 @@ class TodoViewContainer extends StatelessWidget {
                 style: UtilHelpers.getFontStyles(20.0, null))),
         Visibility(
             visible: todo.tasks.length == 0,
-            child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 2),
-              decoration: BoxDecoration(
-                  border: Border(
-                      left: BorderSide(
-                          color: UtilHelpers.getRamdomCalor(), width: 5))),
-              child: Column(
-                children: [
-                  Card(
-                    child: ListTile(
-                      title: Text(
-                          'You have ${todo.tasks.length} tasks click (+) to add',
-                          style: UtilHelpers.getFontStyles(18.0, null)),
-                    ),
-                  ),
-                ],
+            child: Card(
+              child: Container(
+                decoration: BoxDecoration(
+                    border: Border(
+                        left: BorderSide(
+                            color: UtilHelpers.getRamdomCalor(), width: 5))),
+                child: ListTile(
+                  title: Text(
+                      'You have ${todo.tasks.length} tasks click (+) to add',
+                      style: UtilHelpers.getFontStyles(18.0, null)),
+                ),
               ),
             )),
         Card(

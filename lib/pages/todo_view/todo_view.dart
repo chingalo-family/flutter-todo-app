@@ -14,10 +14,20 @@ class TodoView extends StatelessWidget {
   Widget build(BuildContext context) {
     onEditTodoDetails() {
       Widget content = Container(child: TodoForm());
-      return UtilHelpers.showPopUpModal(context, '', content);
+      return UtilHelpers.showPopUpModal(context, content);
     }
 
-    addTodoTask(Todo todo) {}
+    addTodoTask(Todo todo) {
+      Widget content = Container(
+          child: Column(
+        children: [
+          Row(
+            children: [Text('Todo task')],
+          )
+        ],
+      ));
+      return UtilHelpers.showPopUpModal(context, content);
+    }
 
     return SafeArea(
       child: Consumer<TodoState>(
