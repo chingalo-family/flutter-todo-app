@@ -11,14 +11,12 @@ class ButtonFloatingAction extends StatelessWidget {
       return UtilHelpers.showPopUpModal(context, title, content);
     }
 
-    return Visibility(
-        child: FloatingActionButton(
-          onPressed: () {
-            //return addTodo();
-            showAddTodoForm(context);
-          },
-          child: Icon(Icons.add),
-        ),
-        visible: true);
+    return FloatingActionButton(
+      onPressed: () {
+        //return addTodo();
+        showAddTodoForm(context);
+      },
+      child: Icon(Icons.add),
+    );
   }
 }
