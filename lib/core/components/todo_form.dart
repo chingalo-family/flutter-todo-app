@@ -17,7 +17,6 @@ class TodoForm extends StatelessWidget {
     final currentTodo = todoState.currentTodo;
 
     void onCancel() {
-      todoState.resetCurrentTodo();
       Navigator.of(context).pop();
     }
 

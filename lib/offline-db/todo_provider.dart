@@ -19,6 +19,7 @@ class TodoProvider extends DbProvider {
       return _db;
     }
     _db = await init();
+    this._onCreate(_db, version);
     return _db;
   }
 
@@ -46,7 +47,7 @@ class TodoProvider extends DbProvider {
     return await dbClient.delete(tableName, where: '$id = ?', whereArgs: [id]);
   }
 
-  updateLogs(Todo todo) async {
+  updateTodo(Todo todo) async {
     var dbClient = await db;
     await dbClient.update(
       tableName,
@@ -64,7 +65,6 @@ class TodoProvider extends DbProvider {
         tableName,
         columns: [id, title, description],
       );
-
       if (maps.isNotEmpty) {
         for (Map map in maps) {
           todoList.add(Todo.fromMap(map));

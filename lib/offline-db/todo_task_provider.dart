@@ -19,6 +19,7 @@ class TodoTaskProvider extends DbProvider {
       return _db;
     }
     _db = await init();
+    this._onCreate(_db, version);
     return _db;
   }
 
@@ -45,7 +46,7 @@ class TodoTaskProvider extends DbProvider {
     return await dbClient.delete(tableName, where: '$id = ?', whereArgs: [id]);
   }
 
-  updateLogs(TodoTask todoTask) async {
+  updateTodoTask(TodoTask todoTask) async {
     var dbClient = await db;
     await dbClient.update(
       tableName,
@@ -55,7 +56,7 @@ class TodoTaskProvider extends DbProvider {
     );
   }
 
-  Future<List<TodoTask>> getTodos() async {
+  Future<List<TodoTask>> getTodoTasks() async {
     List<TodoTask> todoTaskList = [];
     try {
       var dbClient = await db;

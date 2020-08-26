@@ -2,12 +2,15 @@ class Todo {
   String id;
   String title;
   String description;
+  List<TodoTask> tasks;
 
   Todo({
     this.id,
     this.title,
     this.description,
-  });
+  }) {
+    this.tasks = [];
+  }
 
   Map toMap(Todo todo) {
     var data = Map<String, dynamic>();

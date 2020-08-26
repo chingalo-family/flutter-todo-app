@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/core/components/todo_form.dart';
 import 'package:todo_app/core/utils/util_helpers.dart';
 import 'package:todo_app/app-state/todo_state.dart';
 import 'package:todo_app/models/todo.dart';
+import 'package:todo_app/pages/todo_view/todo_view.dart';
 
 class TodoContainer extends StatelessWidget {
   TodoContainer({this.todo});
@@ -23,9 +23,11 @@ class TodoContainer extends StatelessWidget {
         child: ListTile(
           onTap: () {
             todoState.setCurrentTodo(todo);
-            String title = 'Edit Todo Form';
-            Widget content = Container(child: TodoForm());
-            return UtilHelpers.showPopUpModal(context, title, content);
+            Navigator.push(context, MaterialPageRoute(
+              builder: (context) {
+                return TodoView();
+              },
+            ));
           },
           title: Text(
             todo.title,
@@ -36,13 +38,13 @@ class TodoContainer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    'id : ${todo.id}',
+                    'description : ${todo.description}',
                     style: UtilHelpers.getFontStyles(18.0, null),
                   ),
                   Text(
-                    'description : ${todo.description}',
+                    'Tasks : ${todo.tasks.length}',
                     style: UtilHelpers.getFontStyles(18.0, null),
-                  )
+                  ),
                 ]),
           ),
         ),
