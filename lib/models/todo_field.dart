@@ -13,7 +13,13 @@ class TodoField {
   }
 
   static List<TodoField> getTodoTaskFormFields() {
-    return [];
+    return [
+      TodoField(id: 'title', label: 'Title', inputType: 'TEXT'),
+      TodoField(
+          id: 'isCompleted',
+          label: 'Is task Completed ?',
+          inputType: 'BOOLEAN'),
+    ];
   }
 
   @override

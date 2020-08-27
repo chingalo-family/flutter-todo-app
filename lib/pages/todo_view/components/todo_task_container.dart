@@ -37,18 +37,28 @@ class TodoTaskContainer extends StatelessWidget {
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              GestureDetector(
+              InkWell(
                 onTap: onEditTodoTask,
-                child: Icon(Icons.edit),
+                child: buildIcon(Icons.edit),
               ),
-              GestureDetector(
+              InkWell(
                 onTap: onDeleteTodoTask,
-                child: Icon(Icons.delete),
+                child: buildIcon(Icons.delete),
               )
             ],
           ),
         ),
       );
     });
+  }
+
+  Widget buildIcon(IconData icon) {
+    return Container(
+      padding: EdgeInsets.all(5),
+      child: Icon(
+        icon,
+        size: 20,
+      ),
+    );
   }
 }

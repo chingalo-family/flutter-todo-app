@@ -39,11 +39,13 @@ class TodoView extends StatelessWidget {
                     style: UtilHelpers.getFontStyles(30.0, null)),
                 actions: [AppPopUpMenu()],
               ),
-              body: Container(
-                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                child: TodoViewContainer(
-                  todo: todo,
-                  onEditTodoDetails: onEditTodoDetails,
+              body: SingleChildScrollView(
+                child: Container(
+                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  child: TodoViewContainer(
+                    todo: todo,
+                    onEditTodoDetails: onEditTodoDetails,
+                  ),
                 ),
               ),
               floatingActionButtonLocation:
