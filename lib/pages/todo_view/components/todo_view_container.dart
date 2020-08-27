@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_app/app-state/todo_state.dart';
+import 'package:todo_app/core/components/todo_task_form.dart';
 import 'package:todo_app/core/utils/util_helpers.dart';
 import 'package:todo_app/models/todo.dart';
 import 'package:todo_app/pages/todo_view/components/todo_task_container.dart';
@@ -13,6 +16,22 @@ class TodoViewContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TodoState todoState = Provider.of<TodoState>(context, listen: false);
+
+    onEditTodoTask(TodoTask todoTask) {
+      // todo get todo task and add on tasks
+      Widget content = Container(
+          child: TodoTaskForm(
+        todo: todo,
+        todoTask: todoTask,
+      ));
+      return UtilHelpers.showPopUpModal(context, content);
+    }
+
+    onDeleteTodoTask(todoTask) {
+      print(todoTask.id);
+    }
+
     return Column(
       children: <Widget>[
         Card(
@@ -62,8 +81,15 @@ class TodoViewContainer extends StatelessWidget {
                         color: UtilHelpers.getRamdomCalor(), width: 5))),
             child: Column(
               children: todo.tasks
-                  .map((TodoTask todoTask) =>
-                      TodoTaskContainer(todoTask: todoTask))
+                  .map((TodoTask todoTask) => TodoTaskContainer(
+                        todoTask: todoTask,
+                        onDeleteTodoTask: () {
+                          onDeleteTodoTask(todoTask);
+                        },
+                        onEditTodoTask: () {
+                          onEditTodoTask(todoTask);
+                        },
+                      ))
                   .toList(),
             ),
           ),

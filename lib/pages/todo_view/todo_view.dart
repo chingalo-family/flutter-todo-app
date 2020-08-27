@@ -18,7 +18,8 @@ class TodoView extends StatelessWidget {
       return UtilHelpers.showPopUpModal(context, content);
     }
 
-    addOrEditTodoTask(Todo todo, TodoTask todoTask) {
+    addTodoTask(Todo todo, TodoTask todoTask) {
+      // todo get todo task and add on tasks
       Widget content = Container(
           child: TodoTaskForm(
         todo: todo,
@@ -50,7 +51,7 @@ class TodoView extends StatelessWidget {
                 onPressed: () {
                   TodoTask todoTask = new TodoTask(
                       todoId: todo.id, title: '', isCompleted: false);
-                  addOrEditTodoTask(todo, todoTask);
+                  addTodoTask(todo, todoTask);
                 },
                 child: Icon(Icons.add),
               ));

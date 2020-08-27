@@ -16,8 +16,8 @@ class TodoTaskForm extends StatelessWidget {
     TodoState todoState = Provider.of<TodoState>(context, listen: false);
 
     onSave() {
-      todoTask.isCompleted = true;
-      todoTask.title = 'Task';
+      todoTask.isCompleted = !todoTask.isCompleted;
+      todoTask.title = 'Task title';
       todoState.addTodoTask(todoTask);
     }
 
@@ -25,8 +25,18 @@ class TodoTaskForm extends StatelessWidget {
       children: [
         Row(
           children: [
-            Text(todo.title, style: UtilHelpers.getFontStyles(18.0, null)),
-            Text(todoTask.id, style: UtilHelpers.getFontStyles(15.0, null))
+            Text(todoTask.id, style: UtilHelpers.getFontStyles(18.0, null)),
+          ],
+        ),
+        Row(
+          children: [
+            Text(todoTask.title, style: UtilHelpers.getFontStyles(18.0, null)),
+          ],
+        ),
+        Row(
+          children: [
+            Text('${todoTask.isCompleted}',
+                style: UtilHelpers.getFontStyles(18.0, null)),
           ],
         ),
         RaisedButton(
