@@ -6,6 +6,7 @@ import 'package:todo_app/core/components/todo_form.dart';
 import 'package:todo_app/core/components/todo_task_form.dart';
 import 'package:todo_app/core/utils/util_helpers.dart';
 import 'package:todo_app/models/todo.dart';
+import 'package:todo_app/pages/todo_view/components/delete_todo_confirmation.dart';
 import 'package:todo_app/pages/todo_view/components/todo_view_container.dart';
 
 class TodoView extends StatelessWidget {
@@ -18,11 +19,21 @@ class TodoView extends StatelessWidget {
       return UtilHelpers.showPopUpModal(context, content);
     }
 
-    addOrEditTodoTask(Todo todo, TodoTask todoTask) {
+    onDeleteTodoDetails(Todo todo) {
+      Widget content = Container(
+          child: DeleteTodoConfirmation(
+        todo: todo,
+      ));
+      return UtilHelpers.showPopUpModal(context, content);
+    }
+
+    addTodoTask(Todo todo, TodoTask todoTask) {
+      // todo get todo task and add on tasks
       Widget content = Container(
           child: TodoTaskForm(
         todo: todo,
         todoTask: todoTask,
+        isNewTask: true,
       ));
       return UtilHelpers.showPopUpModal(context, content);
     }
@@ -37,11 +48,14 @@ class TodoView extends StatelessWidget {
                     style: UtilHelpers.getFontStyles(30.0, null)),
                 actions: [AppPopUpMenu()],
               ),
-              body: Container(
-                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                child: TodoViewContainer(
-                  todo: todo,
-                  onEditTodoDetails: onEditTodoDetails,
+              body: SingleChildScrollView(
+                child: Container(
+                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  child: TodoViewContainer(
+                    todo: todo,
+                    onEditTodoDetails: onEditTodoDetails,
+                    onDeleteTodoDetails: () => onDeleteTodoDetails(todo),
+                  ),
                 ),
               ),
               floatingActionButtonLocation:
@@ -50,7 +64,7 @@ class TodoView extends StatelessWidget {
                 onPressed: () {
                   TodoTask todoTask = new TodoTask(
                       todoId: todo.id, title: '', isCompleted: false);
-                  addOrEditTodoTask(todo, todoTask);
+                  addTodoTask(todo, todoTask);
                 },
                 child: Icon(Icons.add),
               ));

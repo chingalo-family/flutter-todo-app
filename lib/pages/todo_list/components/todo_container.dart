@@ -13,6 +13,11 @@ class TodoContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final todoState = Provider.of<TodoState>(context, listen: false);
+    int completedTasks =
+        todo.tasks.where((TodoTask task) => task.isCompleted).length;
+    int inCompletedTasks =
+        todo.tasks.where((TodoTask task) => !task.isCompleted).length;
+
     return Container(
       child: Card(
           child: Container(
@@ -41,9 +46,19 @@ class TodoContainer extends StatelessWidget {
                     'description : ${todo.description}',
                     style: UtilHelpers.getFontStyles(18.0, null),
                   ),
-                  Text(
-                    'Tasks : ${todo.tasks.length}',
-                    style: UtilHelpers.getFontStyles(18.0, null),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Incomplete Tasks : $inCompletedTasks ',
+                        style: UtilHelpers.getFontStyles(18.0, null)
+                            .copyWith(color: Colors.redAccent),
+                      ),
+                      Text(
+                        'Complete Tasks : $completedTasks ',
+                        style: UtilHelpers.getFontStyles(18.0, null),
+                      ),
+                    ],
                   ),
                 ]),
           ),

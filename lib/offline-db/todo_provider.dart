@@ -36,25 +36,16 @@ class TodoProvider extends DbProvider {
     await db.execute(createTableQuery);
   }
 
-  addTodo(Todo todo) async {
+  addOrUpdateTodo(Todo todo) async {
     var dbClient = await db;
     await dbClient.insert(tableName, todo.toMap(todo),
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
-  deleteTodo(int id) async {
+  deleteTodo(String todoId) async {
     var dbClient = await db;
-    return await dbClient.delete(tableName, where: '$id = ?', whereArgs: [id]);
-  }
-
-  updateTodo(Todo todo) async {
-    var dbClient = await db;
-    await dbClient.update(
-      tableName,
-      todo.toMap(todo),
-      where: '$id = ?',
-      whereArgs: [todo.id],
-    );
+    return await dbClient
+        .delete(tableName, where: '$id = ?', whereArgs: [todoId]);
   }
 
   Future<List<Todo>> getTodos() async {
