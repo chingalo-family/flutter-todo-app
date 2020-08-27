@@ -57,10 +57,10 @@ class _BooleanInputFieldState extends State<BooleanInputField> {
                   child: Row(
                     children: [
                       Radio(
-                          value: true,
+                          value: false,
                           groupValue: _currentValue,
                           onChanged: setSelectedOption),
-                      Text('Yes')
+                      Text('No')
                     ],
                   ),
                 ),
@@ -68,13 +68,13 @@ class _BooleanInputFieldState extends State<BooleanInputField> {
                   child: Row(
                     children: [
                       Radio(
-                          value: false,
+                          value: true,
                           groupValue: _currentValue,
                           onChanged: setSelectedOption),
-                      Text('No')
+                      Text('Yes')
                     ],
                   ),
-                )
+                ),
               ],
             )
           ],
