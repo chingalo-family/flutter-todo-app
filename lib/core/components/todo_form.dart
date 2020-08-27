@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/app-state/page_state.dart';
 import 'package:todo_app/core/components/todo_input_field.dart';
 import 'package:todo_app/core/utils/util_helpers.dart';
+import 'package:todo_app/models/todo.dart';
 import 'package:todo_app/models/todo_field.dart';
 import 'package:todo_app/app-state/todo_state.dart';
 
@@ -13,7 +14,8 @@ class TodoForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final TodoState todoState = Provider.of<TodoState>(context);
     final PageState pageModel = Provider.of<PageState>(context, listen: false);
-    final currentTodo = todoState.currentTodo;
+    Todo currentTodo = todoState.currentTodo;
+    bool isNewTodo = currentTodo.id.isNotEmpty && currentTodo.title.isEmpty;
 
     void onCancel() {
       Navigator.of(context).pop();
@@ -29,8 +31,10 @@ class TodoForm extends StatelessWidget {
       bool isFormRead = isTodoReadyForSubmit();
       if (isFormRead) {
         todoState.addTodo(currentTodo);
-        todoState.resetCurrentTodo();
-        pageModel.activateTable(1);
+        if (isNewTodo) {
+          todoState.resetCurrentTodo();
+          pageModel.activateTable(1);
+        }
         onCancel();
       } else {
         print('Form not ready');

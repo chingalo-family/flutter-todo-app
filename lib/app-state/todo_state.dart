@@ -51,7 +51,6 @@ class TodoState extends ChangeNotifier {
 
   void addTodo(Todo todo) async {
     await todoProvider.addOrUpdateTodo(todo);
-    _currentTodo = null;
     initiateTodoList();
   }
 
