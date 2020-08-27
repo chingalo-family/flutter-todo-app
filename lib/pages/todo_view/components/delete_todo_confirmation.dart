@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/app-state/todo_state.dart';
 import 'package:todo_app/core/utils/util_helpers.dart';
 import 'package:todo_app/models/todo.dart';
-import 'package:todo_app/pages/home/home.dart';
 
 class DeleteTodoConfirmation extends StatelessWidget {
   const DeleteTodoConfirmation({
