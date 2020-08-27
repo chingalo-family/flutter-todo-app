@@ -52,15 +52,14 @@ class TodoTaskProvider extends DbProvider {
     List<TodoTask> todoTaskList = [];
     try {
       var dbClient = await db;
-      List<Map> maps = await dbClient.query(
-        tableName,
-        columns: [
-          id,
-          todoId,
-          title,
-          isCompleted,
-        ],
-      );
+      List<Map> maps = await dbClient.query(tableName,
+          columns: [
+            id,
+            todoId,
+            title,
+            isCompleted,
+          ],
+          orderBy: 'isCompleted');
       if (maps.isNotEmpty) {
         for (Map map in maps) {
           todoTaskList.add(TodoTask.fromMap(map));

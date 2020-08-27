@@ -32,6 +32,7 @@ class _BooleanInputFieldState extends State<BooleanInputField> {
     setState(() {
       _currentValue = value;
     });
+    widget.onInputValueChange(value);
   }
 
   @override

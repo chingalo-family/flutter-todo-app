@@ -31,6 +31,11 @@ class TodoState extends ChangeNotifier {
           .toList();
       return todo;
     }).toList();
+    if (_currentTodo != null && _currentTodo.id.isNotEmpty) {
+      int index =
+          _todoList.indexWhere((Todo todo) => todo.id == _currentTodo.id);
+      _currentTodo = _todoList[index];
+    }
     notifyListeners();
   }
 

@@ -46,10 +46,12 @@ class TodoTaskForm extends StatelessWidget {
       }
     }
 
-    void onInputValueChange(TodoField inputField, String value) {
+    void onInputValueChange(TodoField inputField, value) {
       if (inputField.id == 'title') {
         todoTask.title = value;
-      } else if (inputField.id == '') {}
+      } else if (inputField.id == 'isCompleted') {
+        todoTask.isCompleted = value;
+      }
     }
 
     String getInitialValue(TodoField inputField) {
@@ -66,7 +68,7 @@ class TodoTaskForm extends StatelessWidget {
                 ? BooleanInputField(
                     inputField: inputField,
                     initialValue: getInitialValue(inputField),
-                    onInputValueChange: (String value) =>
+                    onInputValueChange: (bool value) =>
                         onInputValueChange(inputField, value))
                 : TodoInputField(
                     inputField: inputField,
