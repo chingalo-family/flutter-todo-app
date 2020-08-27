@@ -51,14 +51,16 @@ class TodoState extends ChangeNotifier {
 
   void addTodo(Todo todo) async {
     await todoProvider.addOrUpdateTodo(todo);
+    _currentTodo = null;
     initiateTodoList();
   }
 
-  void deleteTodo(Todo todo) async {
+  Future deleteTodo(Todo todo) async {
+    await todoProvider.deleteTodo(todo.id);
     for (TodoTask todoTask in todo.tasks) {
       await todoTaskProvider.deleteTodoTask(todoTask.id);
     }
-    await todoProvider.deleteTodo(todo.id);
+    _currentTodo = null;
     initiateTodoList();
   }
 

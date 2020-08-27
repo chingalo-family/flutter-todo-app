@@ -29,6 +29,7 @@ class TodoForm extends StatelessWidget {
       bool isFormRead = isTodoReadyForSubmit();
       if (isFormRead) {
         todoState.addTodo(currentTodo);
+        todoState.resetCurrentTodo();
         pageModel.activateTable(1);
         onCancel();
       } else {

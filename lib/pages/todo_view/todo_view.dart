@@ -6,6 +6,7 @@ import 'package:todo_app/core/components/todo_form.dart';
 import 'package:todo_app/core/components/todo_task_form.dart';
 import 'package:todo_app/core/utils/util_helpers.dart';
 import 'package:todo_app/models/todo.dart';
+import 'package:todo_app/pages/todo_view/components/delete_todo_confirmation.dart';
 import 'package:todo_app/pages/todo_view/components/todo_view_container.dart';
 
 class TodoView extends StatelessWidget {
@@ -15,6 +16,14 @@ class TodoView extends StatelessWidget {
   Widget build(BuildContext context) {
     onEditTodoDetails() {
       Widget content = Container(child: TodoForm());
+      return UtilHelpers.showPopUpModal(context, content);
+    }
+
+    onDeleteTodoDetails(Todo todo) {
+      Widget content = Container(
+          child: DeleteTodoConfirmation(
+        todo: todo,
+      ));
       return UtilHelpers.showPopUpModal(context, content);
     }
 
@@ -45,6 +54,7 @@ class TodoView extends StatelessWidget {
                   child: TodoViewContainer(
                     todo: todo,
                     onEditTodoDetails: onEditTodoDetails,
+                    onDeleteTodoDetails: () => onDeleteTodoDetails(todo),
                   ),
                 ),
               ),

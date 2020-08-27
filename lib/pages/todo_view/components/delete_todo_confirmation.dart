@@ -3,14 +3,15 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/app-state/todo_state.dart';
 import 'package:todo_app/core/utils/util_helpers.dart';
 import 'package:todo_app/models/todo.dart';
+import 'package:todo_app/pages/home/home.dart';
 
-class DeleteTodoTaskConfirmation extends StatelessWidget {
-  const DeleteTodoTaskConfirmation(
-      {Key key, @required this.todo, @required this.todoTask})
-      : super(key: key);
+class DeleteTodoConfirmation extends StatelessWidget {
+  const DeleteTodoConfirmation({
+    Key key,
+    @required this.todo,
+  }) : super(key: key);
 
   final Todo todo;
-  final TodoTask todoTask;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class DeleteTodoTaskConfirmation extends StatelessWidget {
         Container(
           margin: EdgeInsets.only(bottom: 30),
           child: Text(
-              'You are about to delete " ${todoTask.title} " task in "${todo.title}",  are you sure?"',
+              'You are about to delete "${todo.title}" todo,  are you sure?"',
               style: UtilHelpers.getFontStyles(20, null)),
         ),
         Row(
@@ -51,11 +52,10 @@ class DeleteTodoTaskConfirmation extends StatelessWidget {
   }
 
   confirmationDeletion(BuildContext context) {
-    TodoState todoState = Provider.of<TodoState>(context, listen: false);
-    todoState.deleteTodoTask(todoTask);
-    List<TodoTask> tasks = todo.tasks;
-    todo.tasks =
-        tasks.where((TodoTask task) => task.id != todoTask.id).toList();
-    Navigator.of(context).pop();
+    Provider.of<TodoState>(context, listen: false)
+        .deleteTodo(todo)
+        .then((value) {
+      Navigator.of(context).popUntil((route) => route.isFirst);
+    });
   }
 }
