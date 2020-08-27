@@ -30,25 +30,41 @@ class TodoTaskContainer extends StatelessWidget {
                         ? ThemeData.dark().accentColor
                         : ThemeData().accentColor))),
         child: ListTile(
-          title:
-              Text(todoTask.title, style: UtilHelpers.getFontStyles(18, null)),
+          title: Text(todoTask.title,
+              style: UtilHelpers.getFontStyles(18, null).copyWith(
+                  decoration: todoTask.isCompleted
+                      ? TextDecoration.lineThrough
+                      : null)),
           subtitle: Text('Status $status',
-              style: UtilHelpers.getFontStyles(15, null)),
+              style: UtilHelpers.getFontStyles(15, null).copyWith(
+                  decoration: todoTask.isCompleted
+                      ? TextDecoration.lineThrough
+                      : null)),
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              GestureDetector(
+              InkWell(
                 onTap: onEditTodoTask,
-                child: Icon(Icons.edit),
+                child: buildIcon(Icons.edit),
               ),
-              GestureDetector(
+              InkWell(
                 onTap: onDeleteTodoTask,
-                child: Icon(Icons.delete),
+                child: buildIcon(Icons.delete),
               )
             ],
           ),
         ),
       );
     });
+  }
+
+  Widget buildIcon(IconData icon) {
+    return Container(
+      padding: EdgeInsets.all(5),
+      child: Icon(
+        icon,
+        size: 20,
+      ),
+    );
   }
 }
