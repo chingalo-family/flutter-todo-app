@@ -21,7 +21,6 @@ class TodoState extends ChangeNotifier {
       new Todo(id: UtilHelpers.getUid(), title: '', description: '');
 
   // actions on reducers
-
   void initiateTodoList() async {
     List<Todo> todos = await todoProvider.getTodos();
     List<TodoTask> todoTasks = await todoTaskProvider.getTodoTasks();
@@ -32,6 +31,11 @@ class TodoState extends ChangeNotifier {
           .toList();
       return todo;
     }).toList();
+    if (_currentTodo != null && _currentTodo.id.isNotEmpty) {
+      int index =
+          _todoList.indexWhere((Todo todo) => todo.id == _currentTodo.id);
+      _currentTodo = _todoList[index];
+    }
     notifyListeners();
   }
 
@@ -46,12 +50,27 @@ class TodoState extends ChangeNotifier {
   }
 
   void addTodo(Todo todo) async {
-    await todoProvider.addTodo(todo);
+    await todoProvider.addOrUpdateTodo(todo);
+    _currentTodo = null;
+    initiateTodoList();
+  }
+
+  Future deleteTodo(Todo todo) async {
+    await todoProvider.deleteTodo(todo.id);
+    for (TodoTask todoTask in todo.tasks) {
+      await todoTaskProvider.deleteTodoTask(todoTask.id);
+    }
+    _currentTodo = null;
     initiateTodoList();
   }
 
   void addTodoTask(TodoTask todoTask) async {
-    await todoTaskProvider.addTodoTask(todoTask);
+    await todoTaskProvider.addOrUpdateTodoTask(todoTask);
+    initiateTodoList();
+  }
+
+  void deleteTodoTask(TodoTask todoTask) async {
+    await todoTaskProvider.deleteTodoTask(todoTask.id);
     initiateTodoList();
   }
 }

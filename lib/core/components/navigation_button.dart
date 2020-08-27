@@ -32,7 +32,7 @@ class NavigationButton extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: menus.map((NavMenuItem menuItem) {
                   int index = menus.indexOf(menuItem);
-                  return GestureDetector(
+                  return InkWell(
                     onTap: () {
                       return setCurrentPageTab(index);
                     },

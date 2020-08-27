@@ -6,11 +6,19 @@ import 'package:todo_app/core/utils/util_helpers.dart';
 import 'package:todo_app/models/todo.dart';
 
 class TodoTaskContainer extends StatelessWidget {
-  const TodoTaskContainer({Key key, @required TodoTask todoTask})
+  const TodoTaskContainer(
+      {Key key,
+      @required this.todoTask,
+      this.onDeleteTodoTask,
+      this.onEditTodoTask})
       : super(key: key);
+  final TodoTask todoTask;
+  final VoidCallback onEditTodoTask;
+  final VoidCallback onDeleteTodoTask;
 
   @override
   Widget build(BuildContext context) {
+    String status = todoTask.isCompleted ? 'Completed' : 'Not completed';
     return Consumer<AppThemeState>(builder: (context, appThemeState, child) {
       String theme = appThemeState.currentTheme;
       return Container(
@@ -22,25 +30,41 @@ class TodoTaskContainer extends StatelessWidget {
                         ? ThemeData.dark().accentColor
                         : ThemeData().accentColor))),
         child: ListTile(
+          title: Text(todoTask.title,
+              style: UtilHelpers.getFontStyles(18, null).copyWith(
+                  decoration: todoTask.isCompleted
+                      ? TextDecoration.lineThrough
+                      : null)),
+          subtitle: Text('Status $status',
+              style: UtilHelpers.getFontStyles(15, null).copyWith(
+                  decoration: todoTask.isCompleted
+                      ? TextDecoration.lineThrough
+                      : null)),
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              GestureDetector(
-                onTap: () => {},
-                child: Icon(Icons.edit),
+              InkWell(
+                onTap: onEditTodoTask,
+                child: buildIcon(Icons.edit),
               ),
-              GestureDetector(
-                onTap: () => {},
-                child: Icon(Icons.delete),
+              InkWell(
+                onTap: onDeleteTodoTask,
+                child: buildIcon(Icons.delete),
               )
             ],
           ),
-          title:
-              Text('Summary Chart', style: UtilHelpers.getFontStyles(18, null)),
-          subtitle:
-              Text('Chart to come', style: UtilHelpers.getFontStyles(15, null)),
         ),
       );
     });
+  }
+
+  Widget buildIcon(IconData icon) {
+    return Container(
+      padding: EdgeInsets.all(5),
+      child: Icon(
+        icon,
+        size: 20,
+      ),
+    );
   }
 }
