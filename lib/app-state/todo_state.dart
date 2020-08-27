@@ -21,7 +21,6 @@ class TodoState extends ChangeNotifier {
       new Todo(id: UtilHelpers.getUid(), title: '', description: '');
 
   // actions on reducers
-
   void initiateTodoList() async {
     List<Todo> todos = await todoProvider.getTodos();
     List<TodoTask> todoTasks = await todoTaskProvider.getTodoTasks();
@@ -46,12 +45,25 @@ class TodoState extends ChangeNotifier {
   }
 
   void addTodo(Todo todo) async {
-    await todoProvider.addTodo(todo);
+    await todoProvider.addOrUpdateTodo(todo);
+    initiateTodoList();
+  }
+
+  void deleteTodo(Todo todo) async {
+    for (TodoTask todoTask in todo.tasks) {
+      await todoTaskProvider.deleteTodoTask(todoTask.id);
+    }
+    await todoProvider.deleteTodo(todo.id);
     initiateTodoList();
   }
 
   void addTodoTask(TodoTask todoTask) async {
-    await todoTaskProvider.addTodoTask(todoTask);
+    await todoTaskProvider.addOrUpdateTodoTask(todoTask);
+    initiateTodoList();
+  }
+
+  void deleteTodoTask(TodoTask todoTask) async {
+    await todoTaskProvider.deleteTodoTask(todoTask.id);
     initiateTodoList();
   }
 }
