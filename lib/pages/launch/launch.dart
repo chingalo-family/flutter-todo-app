@@ -1,6 +1,11 @@
 import 'dart:async';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_app/app-state/app_theme_state.dart';
+import 'package:todo_app/app-state/page_state.dart';
+import 'package:todo_app/app-state/todo_state.dart';
+import 'package:todo_app/core/providers/preference_provider.dart';
 import 'package:todo_app/pages/home/home.dart';
 
 class LaunchPage extends StatefulWidget {
@@ -14,12 +19,23 @@ class _LaunchPageState extends State<LaunchPage> {
   @override
   void initState() {
     super.initState();
-    Timer(
-        Duration(seconds: 3),
-        () => {
-              Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (context) => HomePage()))
-            });
+    setAppThemeAndInitialData(context);
+  }
+
+  setAppThemeAndInitialData(BuildContext context) async {
+    AppThemeState appThemeState =
+        Provider.of<AppThemeState>(context, listen: false);
+    Timer(Duration(seconds: 1), () {
+      PreferenceProvider.getCurrentTheme().then((theme) {
+        appThemeState.setCurrentTheme(theme);
+        Provider.of<TodoState>(context, listen: false).initiateTodoList();
+        Provider.of<PageState>(context, listen: false).activateTable(0);
+        Timer(
+            Duration(seconds: 2),
+            () => Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (_) => HomePage())));
+      });
+    });
   }
 
   @override
