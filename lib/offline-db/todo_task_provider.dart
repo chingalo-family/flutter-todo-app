@@ -38,7 +38,8 @@ class TodoTaskProvider extends DbProvider {
 
   addTodoTask(TodoTask todoTask) async {
     var dbClient = await db;
-    await dbClient.insert(tableName, todoTask.toMap(todoTask));
+    await dbClient.insert(tableName, todoTask.toMap(todoTask),
+        conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   deleteTodoTask(int id) async {

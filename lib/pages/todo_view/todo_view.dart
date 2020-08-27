@@ -24,6 +24,7 @@ class TodoView extends StatelessWidget {
           child: TodoTaskForm(
         todo: todo,
         todoTask: todoTask,
+        isNewTask: true,
       ));
       return UtilHelpers.showPopUpModal(context, content);
     }

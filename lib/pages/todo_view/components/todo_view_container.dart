@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:todo_app/app-state/todo_state.dart';
 import 'package:todo_app/core/components/todo_task_form.dart';
 import 'package:todo_app/core/utils/util_helpers.dart';
 import 'package:todo_app/models/todo.dart';
@@ -16,14 +14,12 @@ class TodoViewContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TodoState todoState = Provider.of<TodoState>(context, listen: false);
-
     onEditTodoTask(TodoTask todoTask) {
-      // todo get todo task and add on tasks
       Widget content = Container(
           child: TodoTaskForm(
         todo: todo,
         todoTask: todoTask,
+        isNewTask: false,
       ));
       return UtilHelpers.showPopUpModal(context, content);
     }

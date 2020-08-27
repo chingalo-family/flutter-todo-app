@@ -5,11 +5,16 @@ import 'package:todo_app/core/utils/util_helpers.dart';
 import 'package:todo_app/models/todo.dart';
 
 class TodoTaskForm extends StatelessWidget {
-  const TodoTaskForm({Key key, @required this.todo, @required this.todoTask})
+  const TodoTaskForm(
+      {Key key,
+      @required this.todo,
+      @required this.todoTask,
+      @required this.isNewTask})
       : super(key: key);
 
   final Todo todo;
   final TodoTask todoTask;
+  final bool isNewTask;
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +22,13 @@ class TodoTaskForm extends StatelessWidget {
 
     onSave() {
       todoTask.isCompleted = !todoTask.isCompleted;
-      todoTask.title = 'Task title';
+      todoTask.title = 'Task title-';
       todoState.addTodoTask(todoTask);
+      if (isNewTask) {
+        todo.tasks.add(todoTask);
+        todoState.setCurrentTodo(todo);
+      }
+      Navigator.pop(context);
     }
 
     return Column(
