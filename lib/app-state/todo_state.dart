@@ -36,8 +36,7 @@ class TodoState extends ChangeNotifier {
   }
 
   void setCurrentTodo(Todo todo) {
-    _currentTodo =
-        new Todo(id: todo.id, title: todo.title, description: todo.description);
+    _currentTodo = todo;
     notifyListeners();
   }
 

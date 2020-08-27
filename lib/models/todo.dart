@@ -1,3 +1,5 @@
+import 'package:todo_app/core/utils/util_helpers.dart';
+
 class Todo {
   String id;
   String title;
@@ -38,7 +40,9 @@ class TodoTask {
   String title;
   bool isCompleted;
 
-  TodoTask({this.id, this.todoId, this.title, this.isCompleted});
+  TodoTask({this.todoId, this.title, this.isCompleted}) {
+    this.id = UtilHelpers.getUid();
+  }
 
   Map toMap(TodoTask todoTask) {
     var data = Map<String, dynamic>();

@@ -13,7 +13,6 @@ class UtilHelpers {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0)),
             child: Container(
-              height: MediaQuery.of(context).size.height * 0.6,
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
                 child: SingleChildScrollView(

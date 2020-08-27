@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/app-state/todo_state.dart';
 import 'package:todo_app/core/components/app_pop_up_menu.dart';
 import 'package:todo_app/core/components/todo_form.dart';
+import 'package:todo_app/core/components/todo_task_form.dart';
 import 'package:todo_app/core/utils/util_helpers.dart';
 import 'package:todo_app/models/todo.dart';
 import 'package:todo_app/pages/todo_view/components/todo_view_container.dart';
@@ -17,14 +18,11 @@ class TodoView extends StatelessWidget {
       return UtilHelpers.showPopUpModal(context, content);
     }
 
-    addTodoTask(Todo todo) {
+    addOrEditTodoTask(Todo todo, TodoTask todoTask) {
       Widget content = Container(
-          child: Column(
-        children: [
-          Row(
-            children: [Text('Todo task')],
-          )
-        ],
+          child: TodoTaskForm(
+        todo: todo,
+        todoTask: todoTask,
       ));
       return UtilHelpers.showPopUpModal(context, content);
     }
@@ -49,7 +47,11 @@ class TodoView extends StatelessWidget {
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.miniCenterDocked,
               floatingActionButton: FloatingActionButton(
-                onPressed: () => {addTodoTask(todo)},
+                onPressed: () {
+                  TodoTask todoTask = new TodoTask(
+                      todoId: todo.id, title: '', isCompleted: false);
+                  addOrEditTodoTask(todo, todoTask);
+                },
                 child: Icon(Icons.add),
               ));
         },
