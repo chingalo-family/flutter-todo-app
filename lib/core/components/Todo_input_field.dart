@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/core/utils/util_helpers.dart';
 import 'package:todo_app/models/todo_field.dart';
 
 class TodoInputField extends StatelessWidget {
@@ -24,7 +25,9 @@ class TodoInputField extends StatelessWidget {
                 obscureText: false,
                 keyboardType: TextInputType.text,
                 onChanged: onInputValueChange,
+                maxLines: inputField.inputType == 'LONG_TEXT' ? null : 1,
                 controller: textController,
+                style: UtilHelpers.getFontStyles(20, null),
                 readOnly: false,
                 decoration: InputDecoration(
                   border: InputBorder.none,
