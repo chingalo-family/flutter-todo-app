@@ -47,7 +47,7 @@ class _BooleanInputFieldState extends State<BooleanInputField> {
               children: [
                 Text(
                   widget.inputField.label,
-                  style: UtilHelpers.getFontStyles(null, null),
+                  style: UtilHelpers.getFontStyles(18, null),
                 )
               ],
             ),

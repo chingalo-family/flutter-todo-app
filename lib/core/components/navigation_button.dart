@@ -37,9 +37,9 @@ class NavigationButton extends StatelessWidget {
                       return setCurrentPageTab(index);
                     },
                     child: Container(
-                      margin: EdgeInsets.only(top: 9),
+                      margin: EdgeInsets.only(top: 10),
                       padding:
-                          EdgeInsets.symmetric(vertical: 15, horizontal: 12),
+                          EdgeInsets.symmetric(vertical: 2, horizontal: 10),
                       decoration: BoxDecoration(
                           color: currentIndex == index
                               ? isDarkTheme
@@ -50,7 +50,7 @@ class NavigationButton extends StatelessWidget {
                               topLeft: Radius.circular(12),
                               topRight: Radius.circular(12))),
                       child: SizedBox(
-                          height: 50,
+                          height: 45,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             mainAxisSize: MainAxisSize.max,
