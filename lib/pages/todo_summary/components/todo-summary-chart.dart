@@ -11,6 +11,36 @@ class TodoSummaryChart extends StatelessWidget {
     Key key,
   }) : super(key: key);
 
+  List<charts.Series<TaskStatus, String>> getSeriesData(List<Todo> todoList) {
+    List<TodoTask> todoTask = [];
+    for (Todo todo in todoList) {
+      todoTask.addAll(todo.tasks);
+    }
+    int completedTasks =
+        todoTask.where((TodoTask task) => task.isCompleted).length;
+    int inCompletedTasks =
+        todoTask.where((TodoTask task) => !task.isCompleted).length;
+
+    List<charts.Series<TaskStatus, String>> _seriesPieData =
+        List<charts.Series<TaskStatus, String>>();
+    var piedata = [
+      new TaskStatus('Completed Tasks', completedTasks, Colors.blueAccent),
+      new TaskStatus('In completed Tasks', inCompletedTasks, Colors.redAccent),
+    ];
+    _seriesPieData.add(
+      charts.Series(
+        domainFn: (TaskStatus task, _) => task.status,
+        measureFn: (TaskStatus task, _) => task.value,
+        colorFn: (TaskStatus task, _) =>
+            charts.ColorUtil.fromDartColor(task.color),
+        id: 'task-status',
+        data: piedata,
+        labelAccessorFn: (TaskStatus row, _) => '${row.value}',
+      ),
+    );
+    return _seriesPieData;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -29,6 +59,10 @@ class TodoSummaryChart extends StatelessWidget {
                 todoTask.where((TodoTask task) => task.isCompleted).length;
             int inCompletedTasks =
                 todoTask.where((TodoTask task) => !task.isCompleted).length;
+
+            List<charts.Series<TaskStatus, String>> _seriesPieData =
+                getSeriesData(todoState.todoList);
+
             return Column(
               children: [
                 Container(
@@ -50,9 +84,21 @@ class TodoSummaryChart extends StatelessWidget {
                       ),
                       Container(
                         child: Text('Completed Task : $completedTasks',
-                            style: UtilHelpers.getFontStyles(18.0, null)),
+                            style: UtilHelpers.getFontStyles(18.0, null)
+                                .copyWith(color: Colors.blueAccent)),
                       ),
                     ],
+                  ),
+                ),
+                Container(
+                  height: 300,
+                  child: charts.PieChart(
+                    _seriesPieData,
+                    defaultRenderer: new charts.ArcRendererConfig(
+                        arcRendererDecorators: [
+                          new charts.ArcLabelDecorator(
+                              labelPosition: charts.ArcLabelPosition.outside)
+                        ]),
                   ),
                 )
               ],
@@ -62,4 +108,12 @@ class TodoSummaryChart extends StatelessWidget {
       ),
     );
   }
+}
+
+class TaskStatus {
+  final String status;
+  final int value;
+  final Color color;
+
+  TaskStatus(this.status, this.value, this.color);
 }
