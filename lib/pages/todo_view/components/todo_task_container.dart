@@ -30,16 +30,31 @@ class TodoTaskContainer extends StatelessWidget {
                         ? ThemeData.dark().accentColor
                         : ThemeData().accentColor))),
         child: ListTile(
-          title: Text(todoTask.title,
-              style: UtilHelpers.getFontStyles(18, null).copyWith(
-                  decoration: todoTask.isCompleted
-                      ? TextDecoration.lineThrough
-                      : null)),
-          subtitle: Text('Status $status',
-              style: UtilHelpers.getFontStyles(15, null).copyWith(
-                  decoration: todoTask.isCompleted
-                      ? TextDecoration.lineThrough
-                      : null)),
+          title: InkWell(
+            onTap: onEditTodoTask,
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Text(todoTask.title,
+                        style: UtilHelpers.getFontStyles(18, null).copyWith(
+                            decoration: todoTask.isCompleted
+                                ? TextDecoration.lineThrough
+                                : null))
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text('Status $status',
+                        style: UtilHelpers.getFontStyles(15, null).copyWith(
+                            decoration: todoTask.isCompleted
+                                ? TextDecoration.lineThrough
+                                : null))
+                  ],
+                ),
+              ],
+            ),
+          ),
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [

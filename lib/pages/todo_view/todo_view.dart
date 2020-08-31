@@ -59,7 +59,7 @@ class TodoView extends StatelessWidget {
                 ),
               ),
               floatingActionButtonLocation:
-                  FloatingActionButtonLocation.miniCenterDocked,
+                  FloatingActionButtonLocation.centerFloat,
               floatingActionButton: FloatingActionButton(
                 onPressed: () {
                   TodoTask todoTask = new TodoTask(

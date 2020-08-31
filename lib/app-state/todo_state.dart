@@ -8,6 +8,7 @@ class TodoState extends ChangeNotifier {
   // initial state of todo_list
   TodoProvider todoProvider = new TodoProvider();
   TodoTaskProvider todoTaskProvider = new TodoTaskProvider();
+
   List<Todo> _todoList = [];
   Todo _currentTodo;
 
