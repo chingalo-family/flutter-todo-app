@@ -8,13 +8,14 @@ class TodoState extends ChangeNotifier {
   // initial state of todo_list
   TodoProvider todoProvider = new TodoProvider();
   TodoTaskProvider todoTaskProvider = new TodoTaskProvider();
+
   List<Todo> _todoList = [];
   Todo _currentTodo;
 
   // selector for state
   List<Todo> get todoList => _todoList.toList();
 
-  int get todoCount => _todoList.toString().length;
+  int get todoCount => _todoList.toList().length;
 
   Todo get currentTodo =>
       _currentTodo ??
@@ -51,7 +52,6 @@ class TodoState extends ChangeNotifier {
 
   void addTodo(Todo todo) async {
     await todoProvider.addOrUpdateTodo(todo);
-    _currentTodo = null;
     initiateTodoList();
   }
 

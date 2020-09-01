@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 publish_to: "none"
 
-version: 1.0.2+1
+version: 1.0.2+2
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -19,6 +19,7 @@ dependencies:
   google_fonts: ^1.1.0
   http: ^0.12.2
   random_color: ^1.0.5
+  charts_flutter:
   sqflite:
   path:
 

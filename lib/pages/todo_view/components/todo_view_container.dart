@@ -59,12 +59,27 @@ class TodoViewContainer extends StatelessWidget {
             child: Column(
               children: [
                 ListTile(
-                    title: Text(
-                      todo.title,
-                      style: UtilHelpers.getFontStyles(20.0, null),
-                    ),
-                    subtitle: Text(todo.description,
-                        style: UtilHelpers.getFontStyles(18.0, null)),
+                    title: InkWell(
+                        onTap: onEditTodoDetails,
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  todo.title,
+                                  style: UtilHelpers.getFontStyles(20.0, null),
+                                )
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(todo.description,
+                                    style:
+                                        UtilHelpers.getFontStyles(18.0, null))
+                              ],
+                            )
+                          ],
+                        )),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [

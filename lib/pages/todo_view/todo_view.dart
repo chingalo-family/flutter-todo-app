@@ -45,7 +45,7 @@ class TodoView extends StatelessWidget {
           return Scaffold(
               appBar: AppBar(
                 title: Text(todo.title,
-                    style: UtilHelpers.getFontStyles(30.0, null)),
+                    style: UtilHelpers.getFontStyles(25.0, null)),
                 actions: [AppPopUpMenu()],
               ),
               body: SingleChildScrollView(
@@ -59,7 +59,7 @@ class TodoView extends StatelessWidget {
                 ),
               ),
               floatingActionButtonLocation:
-                  FloatingActionButtonLocation.miniCenterDocked,
+                  FloatingActionButtonLocation.centerFloat,
               floatingActionButton: FloatingActionButton(
                 onPressed: () {
                   TodoTask todoTask = new TodoTask(
