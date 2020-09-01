@@ -91,17 +91,13 @@ class TodoSummaryChart extends StatelessWidget {
                   ),
                 ),
                 Container(
+                  width: 200,
                   height:
                       inCompletedTasks > 0 && completedTasks > 0 ? 300 : null,
                   child: inCompletedTasks > 0 && completedTasks > 0
                       ? charts.PieChart(
                           _seriesPieData,
-                          defaultRenderer: new charts.ArcRendererConfig(
-                              arcRendererDecorators: [
-                                new charts.ArcLabelDecorator(
-                                    labelPosition:
-                                        charts.ArcLabelPosition.outside)
-                              ]),
+                          defaultRenderer: new charts.ArcRendererConfig(),
                         )
                       : Text(''),
                 )

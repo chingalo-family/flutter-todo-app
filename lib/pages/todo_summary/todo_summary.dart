@@ -11,6 +11,7 @@ class TodoSummary extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
+        padding: EdgeInsets.all(10),
         child: Column(
           children: <Widget>[
             TodoSummaryTotal(),
