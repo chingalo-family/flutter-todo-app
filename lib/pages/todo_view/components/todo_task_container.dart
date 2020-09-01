@@ -36,20 +36,22 @@ class TodoTaskContainer extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text(todoTask.title,
-                        style: UtilHelpers.getFontStyles(18, null).copyWith(
-                            decoration: todoTask.isCompleted
-                                ? TextDecoration.lineThrough
-                                : null))
+                    Expanded(
+                        child: Text(todoTask.title,
+                            style: UtilHelpers.getFontStyles(18, null).copyWith(
+                                decoration: todoTask.isCompleted
+                                    ? TextDecoration.lineThrough
+                                    : null)))
                   ],
                 ),
                 Row(
                   children: [
-                    Text('Status $status',
-                        style: UtilHelpers.getFontStyles(15, null).copyWith(
-                            decoration: todoTask.isCompleted
-                                ? TextDecoration.lineThrough
-                                : null))
+                    Expanded(
+                        child: Text('Status $status',
+                            style: UtilHelpers.getFontStyles(15, null).copyWith(
+                                decoration: todoTask.isCompleted
+                                    ? TextDecoration.lineThrough
+                                    : null)))
                   ],
                 ),
               ],

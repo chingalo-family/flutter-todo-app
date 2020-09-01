@@ -65,17 +65,19 @@ class TodoViewContainer extends StatelessWidget {
                           children: [
                             Row(
                               children: [
-                                Text(
+                                Expanded(
+                                    child: Text(
                                   todo.title,
                                   style: UtilHelpers.getFontStyles(20.0, null),
-                                )
+                                ))
                               ],
                             ),
                             Row(
                               children: [
-                                Text(todo.description,
-                                    style:
-                                        UtilHelpers.getFontStyles(18.0, null))
+                                Expanded(
+                                    child: Text(todo.description,
+                                        style: UtilHelpers.getFontStyles(
+                                            18.0, null)))
                               ],
                             )
                           ],
