@@ -78,7 +78,7 @@ class TodoTaskForm extends StatelessWidget {
           }).toList(),
         ),
         Container(
-          margin: EdgeInsets.only(left: 5.0, right: 4.0),
+          margin: EdgeInsets.only(left: 5.0, right: 4.0, top: 10),
           child: Column(
             children: <Widget>[
               Row(
