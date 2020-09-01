@@ -15,7 +15,7 @@ class TodoState extends ChangeNotifier {
   // selector for state
   List<Todo> get todoList => _todoList.toList();
 
-  int get todoCount => _todoList.toString().length;
+  int get todoCount => _todoList.toList().length;
 
   Todo get currentTodo =>
       _currentTodo ??
