@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/app-state/app_info_state.dart';
 import 'package:todo_app/app-state/app_theme_state.dart';
 import 'package:todo_app/app-state/page_state.dart';
 import 'package:todo_app/app-state/todo_state.dart';
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => PageState(),
         ),
-        ChangeNotifierProvider(create: (_) => AppThemeState())
+        ChangeNotifierProvider(create: (_) => AppThemeState()),
+        ChangeNotifierProvider(create: (_) => AppInfoState())
       ],
       child: Consumer<AppThemeState>(
           builder: (context, appThemeState, child) => MaterialApp(

@@ -4,7 +4,7 @@ import 'package:todo_app/models/todo.dart';
 import 'package:todo_app/offline-db/todo_provider.dart';
 import 'package:todo_app/offline-db/todo_task_provider.dart';
 
-class TodoState extends ChangeNotifier {
+class TodoState with ChangeNotifier {
   // initial state of todo_list
   TodoProvider todoProvider = new TodoProvider();
   TodoTaskProvider todoTaskProvider = new TodoTaskProvider();
