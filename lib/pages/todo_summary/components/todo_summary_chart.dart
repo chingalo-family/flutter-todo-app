@@ -93,7 +93,7 @@ class TodoSummaryChart extends StatelessWidget {
                 Container(
                   width: 200,
                   height:
-                      inCompletedTasks > 0 && completedTasks > 0 ? 300 : null,
+                      inCompletedTasks > 0 || completedTasks > 0 ? 300 : null,
                   child: inCompletedTasks > 0 && completedTasks > 0
                       ? charts.PieChart(
                           _seriesPieData,
