@@ -52,6 +52,7 @@ class TodoSummaryChart extends StatelessWidget {
         child: Consumer<TodoState>(
           builder: (context, todoState, child) {
             List<TodoTask> todoTask = [];
+            int totalTodos = todoState.todoCount;
             for (Todo todo in todoState.todoList) {
               todoTask.addAll(todo.tasks);
             }
@@ -59,10 +60,8 @@ class TodoSummaryChart extends StatelessWidget {
                 todoTask.where((TodoTask task) => task.isCompleted).length;
             int inCompletedTasks =
                 todoTask.where((TodoTask task) => !task.isCompleted).length;
-
             List<charts.Series<TaskStatus, String>> _seriesPieData =
                 getSeriesData(todoState.todoList);
-
             return Column(
               children: [
                 Container(
@@ -90,16 +89,15 @@ class TodoSummaryChart extends StatelessWidget {
                     ],
                   ),
                 ),
-                Container(
-                  width: 200,
-                  height:
-                      inCompletedTasks > 0 || completedTasks > 0 ? 300 : null,
-                  child: inCompletedTasks > 0 && completedTasks > 0
-                      ? charts.PieChart(
-                          _seriesPieData,
-                          defaultRenderer: new charts.ArcRendererConfig(),
-                        )
-                      : Text(''),
+                Visibility(
+                  visible: totalTodos > 0,
+                  child: Container(
+                      width: 200,
+                      height: 300,
+                      child: charts.PieChart(
+                        _seriesPieData,
+                        defaultRenderer: new charts.ArcRendererConfig(),
+                      )),
                 )
               ],
             );
