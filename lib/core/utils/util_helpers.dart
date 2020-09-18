@@ -39,7 +39,7 @@ class UtilHelpers {
     double fontSize,
     Color color,
   ) {
-    return GoogleFonts.caveat(
+    return GoogleFonts.roboto(
         fontSize: fontSize ?? null,
         color: color ?? null,
         fontWeight: FontWeight.normal);

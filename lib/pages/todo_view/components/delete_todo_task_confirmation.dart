@@ -25,7 +25,7 @@ class DeleteTodoTaskConfirmation extends StatelessWidget {
           margin: EdgeInsets.only(bottom: 30),
           child: Text(
               'You are about to delete " ${todoTask.title} " task in "${todo.title}",  are you sure?"',
-              style: UtilHelpers.getFontStyles(20, null)),
+              style: UtilHelpers.getFontStyles(14.0, null)),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -34,12 +34,12 @@ class DeleteTodoTaskConfirmation extends StatelessWidget {
                 onPressed: () => cancelConfirmationDeletion(context),
                 child: Text(
                   'Cancel',
-                  style: UtilHelpers.getFontStyles(18, Colors.redAccent),
+                  style: UtilHelpers.getFontStyles(12, Colors.redAccent),
                 )),
             FlatButton(
                 onPressed: () => confirmationDeletion(context),
                 child:
-                    Text('Delete', style: UtilHelpers.getFontStyles(18, null)))
+                    Text('Delete', style: UtilHelpers.getFontStyles(12, null)))
           ],
         )
       ],

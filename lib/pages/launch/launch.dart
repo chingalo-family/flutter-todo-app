@@ -6,7 +6,7 @@ import 'package:todo_app/app-state/app_info_state.dart';
 import 'package:todo_app/app-state/app_theme_state.dart';
 import 'package:todo_app/app-state/page_state.dart';
 import 'package:todo_app/app-state/todo_state.dart';
-import 'package:todo_app/core/providers/preference_provider.dart';
+import 'package:todo_app/core/services/preference_provider.dart';
 import 'package:todo_app/pages/home/home.dart';
 
 class LaunchPage extends StatefulWidget {
@@ -65,7 +65,7 @@ class _LaunchPageState extends State<LaunchPage> {
                             ),
                           ),
                           CircularProgressIndicator(
-                            strokeWidth: 2,
+                            strokeWidth: 4.0,
                             valueColor: new AlwaysStoppedAnimation(
                                 const Color(0xFF00BFA6)),
                           ),

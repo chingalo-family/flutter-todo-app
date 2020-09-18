@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/app-state/app_theme_state.dart';
 import 'package:todo_app/app-state/page_state.dart';
-import 'package:todo_app/core/providers/preference_provider.dart';
+import 'package:todo_app/core/services/preference_provider.dart';
 import 'package:todo_app/core/utils/util_helpers.dart';
 import 'package:todo_app/models/nav_menu_item.dart';
 
@@ -57,14 +57,14 @@ class NavigationButton extends StatelessWidget {
                             children: [
                               Icon(
                                 menuItem.icon,
-                                size: 18,
+                                size: 18.0,
                                 color: index == currentIndex
                                     ? ThemeData.dark().primaryColor
                                     : Colors.white,
                               ),
                               Text(menuItem.title,
                                   style: UtilHelpers.getFontStyles(
-                                      18,
+                                      14.0,
                                       index == currentIndex
                                           ? ThemeData.dark().primaryColor
                                           : Colors.white))

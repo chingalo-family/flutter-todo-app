@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/app-state/app_theme_state.dart';
-import 'package:todo_app/core/providers/preference_provider.dart';
+import 'package:todo_app/core/services/preference_provider.dart';
 import 'package:todo_app/core/utils/util_helpers.dart';
 import 'package:todo_app/models/todo.dart';
 
@@ -38,7 +38,7 @@ class TodoTaskContainer extends StatelessWidget {
                   children: [
                     Expanded(
                         child: Text(todoTask.title,
-                            style: UtilHelpers.getFontStyles(18, null).copyWith(
+                            style: UtilHelpers.getFontStyles(12, null).copyWith(
                                 decoration: todoTask.isCompleted
                                     ? TextDecoration.lineThrough
                                     : null)))

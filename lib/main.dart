@@ -4,7 +4,7 @@ import 'package:todo_app/app-state/app_info_state.dart';
 import 'package:todo_app/app-state/app_theme_state.dart';
 import 'package:todo_app/app-state/page_state.dart';
 import 'package:todo_app/app-state/todo_state.dart';
-import 'package:todo_app/core/providers/preference_provider.dart';
+import 'package:todo_app/core/services/preference_provider.dart';
 import 'package:todo_app/pages/launch/launch.dart';
 
 void main() {

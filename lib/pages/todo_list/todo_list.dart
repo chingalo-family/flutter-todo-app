@@ -24,7 +24,7 @@ class TodoList extends StatelessWidget {
                     child: ListTile(
                       title: Text(
                           'You have ${todoList.length} todo click (+) to add',
-                          style: UtilHelpers.getFontStyles(18.0, null)),
+                          style: UtilHelpers.getFontStyles(12.0, null)),
                     ),
                   ),
                 )

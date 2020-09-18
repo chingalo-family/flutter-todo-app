@@ -15,7 +15,7 @@ class About extends StatelessWidget {
       child: SafeArea(
           child: Scaffold(
         appBar: AppBar(
-          title: Text('About', style: UtilHelpers.getFontStyles(25.0, null)),
+          title: Text('About', style: UtilHelpers.getFontStyles(14.0, null)),
           actions: [
             AppPopUpMenu(
               currentPage: 'about',
@@ -46,7 +46,7 @@ class About extends StatelessWidget {
                               children: [
                                 Text(
                                   'App Name : ${appInfoState.currentAppName}',
-                                  style: UtilHelpers.getFontStyles(18.0, null),
+                                  style: UtilHelpers.getFontStyles(12.0, null),
                                 ),
                               ],
                             ),
@@ -57,7 +57,7 @@ class About extends StatelessWidget {
                               children: [
                                 Text(
                                   'App Version : ${appInfoState.currentAppVersion}',
-                                  style: UtilHelpers.getFontStyles(18.0, null),
+                                  style: UtilHelpers.getFontStyles(12.0, null),
                                 ),
                               ],
                             ),
@@ -68,7 +68,7 @@ class About extends StatelessWidget {
                               children: [
                                 Text(
                                   'App Id : ${appInfoState.currentAppId}',
-                                  style: UtilHelpers.getFontStyles(18.0, null),
+                                  style: UtilHelpers.getFontStyles(12.0, null),
                                 ),
                               ],
                             ),
@@ -79,7 +79,7 @@ class About extends StatelessWidget {
                               children: [
                                 Text(
                                   'Device version : ${appInfoState.currentPlatformVersion}',
-                                  style: UtilHelpers.getFontStyles(18.0, null),
+                                  style: UtilHelpers.getFontStyles(12.0, null),
                                 ),
                               ],
                             ),

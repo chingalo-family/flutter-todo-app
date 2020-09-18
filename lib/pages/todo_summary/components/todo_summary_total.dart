@@ -39,7 +39,7 @@ class TodoSummaryTotal extends StatelessWidget {
                 children: [
                   Text(
                     'Todo Summary',
-                    style: UtilHelpers.getFontStyles(20.0, null),
+                    style: UtilHelpers.getFontStyles(14.0, null),
                   )
                 ],
               ),
@@ -49,7 +49,7 @@ class TodoSummaryTotal extends StatelessWidget {
                     Row(
                       children: [
                         Text('Total Todos: $totalTodo',
-                            style: UtilHelpers.getFontStyles(20.0, null))
+                            style: UtilHelpers.getFontStyles(14.0, null))
                       ],
                     ),
                     Row(
@@ -58,12 +58,12 @@ class TodoSummaryTotal extends StatelessWidget {
                             child: Text(
                                 'With incompleted tasks : $todoWithInCompletedTasks',
                                 style: UtilHelpers.getFontStyles(
-                                    18.0, Colors.redAccent))),
+                                    14.0, Colors.redAccent))),
                         Expanded(
                             child: Text(
                                 'With completed tasks : $todoWithAllCompletedTasks',
                                 style: UtilHelpers.getFontStyles(
-                                    18.0, Colors.blueAccent)))
+                                    14.0, Colors.blueAccent)))
                       ],
                     )
                   ],

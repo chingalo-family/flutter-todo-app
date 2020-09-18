@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
+import 'package:todo_app/core/offline-db/todo_provider.dart';
+import 'package:todo_app/core/offline-db/todo_task_provider.dart';
 import 'package:todo_app/core/utils/util_helpers.dart';
 import 'package:todo_app/models/todo.dart';
-import 'package:todo_app/offline-db/todo_provider.dart';
-import 'package:todo_app/offline-db/todo_task_provider.dart';
 
 class TodoState with ChangeNotifier {
   // initial state of todo_list

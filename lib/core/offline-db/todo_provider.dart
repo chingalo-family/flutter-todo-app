@@ -1,40 +1,16 @@
 import 'dart:async';
-
-import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:todo_app/core/offline-db/db_provider.dart';
 import 'package:todo_app/models/todo.dart';
-import 'package:todo_app/offline-db/db_provider.dart';
 
 class TodoProvider extends DbProvider {
-  Database _db;
   String tableName = "todo";
 
   // columns
-  String id = 'id';
-  String title = 'title';
-  String description = 'description';
-
-  Future<Database> get db async {
-    if (_db != null) {
-      return _db;
-    }
-    _db = await init();
-    this._onCreate(_db, version);
-    return _db;
-  }
-
-  init() async {
-    var databasesPath = await getDatabasesPath();
-    String path = join(databasesPath, '$databaseName.db');
-    var db = await openDatabase(path, version: version, onCreate: _onCreate);
-    return db;
-  }
-
-  _onCreate(Database db, int version) async {
-    String createTableQuery =
-        "CREATE TABLE IF NOT EXISTS $tableName ($id TEXT PRIMARY KEY, $title TEXT, $description TEXT)";
-    await db.execute(createTableQuery);
-  }
+  final String id = 'id';
+  final String title = 'title';
+  final String description = 'description';
+  final String createdOn = 'createdOn';
 
   addOrUpdateTodo(Todo todo) async {
     var dbClient = await db;

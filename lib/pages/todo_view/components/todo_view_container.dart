@@ -68,7 +68,7 @@ class TodoViewContainer extends StatelessWidget {
                                 Expanded(
                                     child: Text(
                                   todo.title,
-                                  style: UtilHelpers.getFontStyles(20.0, null),
+                                  style: UtilHelpers.getFontStyles(14.0, null),
                                 ))
                               ],
                             ),
@@ -101,7 +101,7 @@ class TodoViewContainer extends StatelessWidget {
         ),
         Container(
             child: Text('Tasks List',
-                style: UtilHelpers.getFontStyles(20.0, null))),
+                style: UtilHelpers.getFontStyles(14.0, null))),
         Visibility(
             visible: todo.tasks.length == 0,
             child: Card(
@@ -113,7 +113,7 @@ class TodoViewContainer extends StatelessWidget {
                 child: ListTile(
                   title: Text(
                       'You have ${todo.tasks.length} tasks click (+) to add',
-                      style: UtilHelpers.getFontStyles(18.0, null)),
+                      style: UtilHelpers.getFontStyles(12.0, null)),
                 ),
               ),
             )),

@@ -69,7 +69,7 @@ class TodoSummaryChart extends StatelessWidget {
                     top: 10,
                   ),
                   child: Text('Status of Task',
-                      style: UtilHelpers.getFontStyles(20.0, null)),
+                      style: UtilHelpers.getFontStyles(14.0, null)),
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -78,19 +78,20 @@ class TodoSummaryChart extends StatelessWidget {
                     children: [
                       Container(
                         child: Text('Incompleted Task : $inCompletedTasks',
-                            style: UtilHelpers.getFontStyles(18.0, null)
+                            style: UtilHelpers.getFontStyles(12.0, null)
                                 .copyWith(color: Colors.redAccent)),
                       ),
                       Container(
                         child: Text('Completed Task : $completedTasks',
-                            style: UtilHelpers.getFontStyles(18.0, null)
+                            style: UtilHelpers.getFontStyles(12.0, null)
                                 .copyWith(color: Colors.blueAccent)),
                       ),
                     ],
                   ),
                 ),
                 Visibility(
-                  visible: totalTodos > 0,
+                  visible: totalTodos > 0 &&
+                      (completedTasks > 0 || inCompletedTasks > 0),
                   child: Container(
                       width: 200,
                       height: 300,

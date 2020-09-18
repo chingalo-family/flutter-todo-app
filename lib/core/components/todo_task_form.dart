@@ -89,13 +89,13 @@ class TodoTaskForm extends StatelessWidget {
                     color: Colors.red,
                     onPressed: onCancel,
                     child: Text('Cancel',
-                        style: UtilHelpers.getFontStyles(20, null)),
+                        style: UtilHelpers.getFontStyles(14.0, null)),
                   ),
                   MaterialButton(
                     color: Colors.blue,
                     onPressed: onSaveTodoTask,
                     child: Text('Save',
-                        style: UtilHelpers.getFontStyles(20, null)),
+                        style: UtilHelpers.getFontStyles(14.0, null)),
                   )
                 ],
               )

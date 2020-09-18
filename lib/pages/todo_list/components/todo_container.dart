@@ -36,7 +36,7 @@ class TodoContainer extends StatelessWidget {
           },
           title: Text(
             todo.title,
-            style: UtilHelpers.getFontStyles(20.0, null),
+            style: UtilHelpers.getFontStyles(14.0, null),
           ),
           subtitle: Container(
             child: Column(
@@ -44,19 +44,19 @@ class TodoContainer extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     'description : ${todo.description}',
-                    style: UtilHelpers.getFontStyles(18.0, null),
+                    style: UtilHelpers.getFontStyles(12.0, null),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         'Incomplete Tasks : $inCompletedTasks ',
-                        style: UtilHelpers.getFontStyles(18.0, null)
+                        style: UtilHelpers.getFontStyles(12.0, null)
                             .copyWith(color: Colors.redAccent),
                       ),
                       Text(
                         'Complete Tasks : $completedTasks ',
-                        style: UtilHelpers.getFontStyles(18.0, null),
+                        style: UtilHelpers.getFontStyles(12.0, null),
                       ),
                     ],
                   ),
