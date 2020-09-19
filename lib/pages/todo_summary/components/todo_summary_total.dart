@@ -56,12 +56,12 @@ class TodoSummaryTotal extends StatelessWidget {
                       children: [
                         Expanded(
                             child: Text(
-                                'With incompleted tasks : $todoWithInCompletedTasks',
+                                'Incompleted tasks : $todoWithInCompletedTasks',
                                 style: UtilHelpers.getFontStyles(
                                     14.0, Colors.redAccent))),
                         Expanded(
                             child: Text(
-                                'With completed tasks : $todoWithAllCompletedTasks',
+                                'Completed tasks : $todoWithAllCompletedTasks',
                                 style: UtilHelpers.getFontStyles(
                                     14.0, Colors.blueAccent)))
                       ],
