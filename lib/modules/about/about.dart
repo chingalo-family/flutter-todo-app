@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/app-state/app_info_state.dart';
-import 'package:todo_app/core/components/app_pop_up_menu.dart';
+import 'package:todo_app/app_state/app_info_state.dart';
+import 'package:todo_app/core/components_old/app_pop_up_menu.dart';
 import 'package:todo_app/core/utils/util_helpers.dart';
 
 class About extends StatelessWidget {

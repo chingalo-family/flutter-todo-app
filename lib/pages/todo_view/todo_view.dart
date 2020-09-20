@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/app-state/todo_state.dart';
-import 'package:todo_app/core/components/app_pop_up_menu.dart';
-import 'package:todo_app/core/components/todo_form.dart';
-import 'package:todo_app/core/components/todo_task_form.dart';
+import 'package:todo_app/app_state/todo_state.dart';
+import 'package:todo_app/core/components_old/app_pop_up_menu.dart';
+import 'package:todo_app/core/components_old/todo_form.dart';
+import 'package:todo_app/core/components_old/todo_task_form.dart';
 import 'package:todo_app/core/utils/util_helpers.dart';
 import 'package:todo_app/models/todo.dart';
 import 'package:todo_app/pages/todo_view/components/delete_todo_confirmation.dart';

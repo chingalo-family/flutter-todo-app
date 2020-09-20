@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/app-state/page_state.dart';
-import 'package:todo_app/core/components/app_pop_up_menu.dart';
-import 'package:todo_app/core/components/button_floating_action.dart';
-import 'package:todo_app/core/components/navigation_button.dart';
+import 'package:todo_app/app_state/page_state.dart';
+import 'package:todo_app/core/components_old/app_pop_up_menu.dart';
+import 'package:todo_app/core/components_old/button_floating_action.dart';
+import 'package:todo_app/core/components_old/navigation_button.dart';
 import 'package:todo_app/core/utils/util_helpers.dart';
 import 'package:todo_app/pages/todo_list/todo_list.dart';
 import 'package:todo_app/pages/todo_summary/todo_summary.dart';

@@ -2,21 +2,21 @@ import 'dart:async';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/app-state/app_info_state.dart';
-import 'package:todo_app/app-state/app_theme_state.dart';
-import 'package:todo_app/app-state/page_state.dart';
-import 'package:todo_app/app-state/todo_state.dart';
-import 'package:todo_app/core/services/preference_provider.dart';
+import 'package:todo_app/app_state/app_info_state.dart';
+import 'package:todo_app/app_state/app_theme_state.dart';
+import 'package:todo_app/app_state/page_state.dart';
+import 'package:todo_app/app_state/todo_state.dart';
+import 'package:todo_app/core/services/theme_service.dart';
 import 'package:todo_app/pages/home/home.dart';
 
-class LaunchPage extends StatefulWidget {
+class Splash extends StatefulWidget {
+  Splash({Key key}) : super(key: key);
+
   @override
-  State<StatefulWidget> createState() {
-    return _LaunchPageState();
-  }
+  _SplashState createState() => _SplashState();
 }
 
-class _LaunchPageState extends State<LaunchPage> {
+class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
@@ -27,7 +27,7 @@ class _LaunchPageState extends State<LaunchPage> {
     AppThemeState appThemeState =
         Provider.of<AppThemeState>(context, listen: false);
     Timer(Duration(seconds: 1), () {
-      PreferenceProvider.getCurrentTheme().then((theme) {
+      ThemeServices.getCurrentTheme().then((theme) {
         appThemeState.setCurrentTheme(theme);
         Provider.of<TodoState>(context, listen: false).initiateTodoList();
         Provider.of<PageState>(context, listen: false).activateTable(0);

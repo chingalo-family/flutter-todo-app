@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/app-state/app_theme_state.dart';
-import 'package:todo_app/app-state/page_state.dart';
-import 'package:todo_app/core/services/preference_provider.dart';
+import 'package:todo_app/app_state/app_theme_state.dart';
+import 'package:todo_app/app_state/page_state.dart';
+import 'package:todo_app/core/services/theme_service.dart';
 import 'package:todo_app/core/utils/util_helpers.dart';
 import 'package:todo_app/models/nav_menu_item.dart';
 
@@ -19,7 +19,7 @@ class NavigationButton extends StatelessWidget {
     return SafeArea(child: Consumer<AppThemeState>(
       builder: (context, appThemeState, child) {
         bool isDarkTheme =
-            appThemeState.currentTheme == PreferenceProvider.darkTheme;
+            appThemeState.currentTheme == ThemeServices.darkTheme;
         return Container(
           color: isDarkTheme
               ? ThemeData.dark().primaryColor

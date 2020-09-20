@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/app-state/app_theme_state.dart';
-import 'package:todo_app/core/services/preference_provider.dart';
+import 'package:todo_app/app_state/app_theme_state.dart';
+import 'package:todo_app/core/services/theme_service.dart';
 import 'package:todo_app/core/utils/util_helpers.dart';
 import 'package:todo_app/models/todo.dart';
 
@@ -26,7 +26,7 @@ class TodoTaskContainer extends StatelessWidget {
         decoration: BoxDecoration(
             border: Border(
                 bottom: BorderSide(
-                    color: theme == PreferenceProvider.darkTheme
+                    color: theme == ThemeServices.darkTheme
                         ? ThemeData.dark().accentColor
                         : ThemeData().accentColor))),
         child: ListTile(
