@@ -44,4 +44,9 @@ class DbProvider {
       await db.execute(query);
     }
   }
+
+  close() async {
+    var dbClient = await db;
+    dbClient.close();
+  }
 }

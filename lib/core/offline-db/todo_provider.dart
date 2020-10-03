@@ -42,9 +42,4 @@ class TodoProvider extends DbProvider {
     }
     return todoList;
   }
-
-  close() async {
-    var dbClient = await db;
-    dbClient.close();
-  }
 }
