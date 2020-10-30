@@ -36,7 +36,7 @@ class About extends StatelessWidget {
                           Container(
                             height: size.height * 0.2,
                             child: SvgPicture.asset(
-                              'images/logos/todo-logo.svg',
+                              'assets/logos/todo-logo.svg',
                               fit: BoxFit.contain,
                             ),
                           ),

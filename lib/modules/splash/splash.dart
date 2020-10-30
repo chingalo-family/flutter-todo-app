@@ -60,7 +60,7 @@ class _SplashState extends State<Splash> {
                             height: size.height * 0.4,
                             width: size.width * 0.3,
                             child: SvgPicture.asset(
-                              'images/logos/todo-logo.svg',
+                              'assets/logos/todo-logo.svg',
                               fit: BoxFit.contain,
                             ),
                           ),
