@@ -1,17 +1,35 @@
-import 'package:todo_app/core/utils/util_helpers.dart';
+import 'package:todo_app/models/todo_task.dart';
 
 class Todo {
   String id;
   String title;
   String description;
+  String createdOn;
+  String createdBy;
+  String dueDate;
+  String completedOn;
+  String completedBy;
+  bool isCompleted;
+  String assignedTo;
+  String groupId;
+
   List<TodoTask> tasks;
 
   Todo({
     this.id,
     this.title,
     this.description,
+    this.createdOn,
+    this.assignedTo,
+    this.completedBy,
+    this.completedOn,
+    this.createdBy,
+    this.isCompleted,
+    this.dueDate,
+    this.groupId,
   }) {
     this.tasks = [];
+    this.isCompleted = this.isCompleted ?? false;
   }
 
   Map toMap(Todo todo) {
@@ -19,6 +37,13 @@ class Todo {
     data['id'] = todo.id;
     data['title'] = todo.title;
     data['description'] = todo.description;
+    data['createdOn'] = todo.createdOn;
+    data['assignedTo'] = todo.assignedTo;
+    data['completedBy'] = todo.completedBy;
+    data['completedOn'] = todo.completedOn;
+    data['createdBy'] = todo.createdBy;
+    data['dueDate'] = todo.dueDate;
+    data['groupId'] = todo.groupId;
     return data;
   }
 
@@ -26,42 +51,17 @@ class Todo {
     this.id = mapData['id'];
     this.title = mapData['title'];
     this.description = mapData['description'];
+    this.createdOn = mapData['createdOn'] ?? '';
+    this.assignedTo = mapData['assignedTo'] ?? '';
+    this.completedBy = mapData['completedBy'] ?? '';
+    this.completedOn = mapData['completedOn'] ?? '';
+    this.completedBy = mapData['completedBy'] ?? '';
+    this.assignedTo = mapData['assignedTo'] ?? '';
+    this.groupId = mapData['groupId'] ?? '';
   }
 
   @override
   String toString() {
-    return 'id $id title $title description $description';
-  }
-}
-
-class TodoTask {
-  String id;
-  String todoId;
-  String title;
-  bool isCompleted;
-
-  TodoTask({this.todoId, this.title, this.isCompleted}) {
-    this.id = UtilHelpers.getUid();
-  }
-
-  Map toMap(TodoTask todoTask) {
-    var data = Map<String, dynamic>();
-    data['id'] = todoTask.id;
-    data['todoId'] = todoTask.todoId;
-    data['title'] = todoTask.title;
-    data['isCompleted'] = todoTask.isCompleted ? 1 : 0;
-    return data;
-  }
-
-  TodoTask.fromMap(Map<String, dynamic> mapData) {
-    this.id = mapData['id'];
-    this.todoId = mapData['todoId'];
-    this.title = mapData['title'];
-    this.isCompleted = '${mapData['isCompleted']}' == '1';
-  }
-
-  @override
-  String toString() {
-    return 'Todo task <$id : $title>';
+    return 'Todo <$id $title>';
   }
 }
