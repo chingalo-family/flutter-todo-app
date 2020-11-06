@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/app_state/app_info_state.dart';
 import 'package:todo_app/app_state/app_theme_state.dart';
-import 'package:todo_app/app_state/page_state.dart';
 import 'package:todo_app/app_state/todo_state.dart';
 import 'package:todo_app/core/services/theme_service.dart';
-import 'package:todo_app/pages/home/home.dart';
+import 'package:todo_app/modules/todo/todo_home.dart';
 
 class Splash extends StatefulWidget {
   Splash({Key key}) : super(key: key);
@@ -30,12 +29,11 @@ class _SplashState extends State<Splash> {
       ThemeServices.getCurrentTheme().then((theme) {
         appThemeState.setCurrentTheme(theme);
         Provider.of<TodoState>(context, listen: false).initiateTodoList();
-        Provider.of<PageState>(context, listen: false).activateTable(0);
         Provider.of<AppInfoState>(context, listen: false).setCurrentAppInfo();
         Timer(
             Duration(seconds: 2),
             () => Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (_) => HomePage())));
+                context, MaterialPageRoute(builder: (_) => TodoHome())));
       });
     });
   }
@@ -60,7 +58,7 @@ class _SplashState extends State<Splash> {
                             height: size.height * 0.4,
                             width: size.width * 0.3,
                             child: SvgPicture.asset(
-                              'images/logos/todo-logo.svg',
+                              'assets/logos/todo-logo.svg',
                               fit: BoxFit.contain,
                             ),
                           ),
