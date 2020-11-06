@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:todo_app/core/utils/util_helpers.dart';
 
 class User {
@@ -9,9 +10,9 @@ class User {
   String phoneNumber;
 
   User({
-    this.username,
+    @required this.username,
     this.emial,
-    this.fullName,
+    @required this.fullName,
     this.password,
     this.phoneNumber,
   }) {

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:todo_app/core/utils/util_helpers.dart';
 
 class UserGroup {
@@ -6,7 +7,7 @@ class UserGroup {
   String description;
 
   UserGroup({
-    this.name,
+    @required this.name,
     this.description,
   }) {
     this.id = UtilHelpers.getUid();
