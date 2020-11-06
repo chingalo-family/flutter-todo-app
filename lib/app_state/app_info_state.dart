@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-
 import 'package:get_version/get_version.dart';
 
 class AppInfoState with ChangeNotifier {
