@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/app_state/app_info_state.dart';
 import 'package:todo_app/app_state/app_theme_state.dart';
@@ -31,8 +32,16 @@ class MyApp extends StatelessWidget {
           builder: (context, appThemeState, child) => MaterialApp(
               debugShowCheckedModeBanner: false,
               theme: appThemeState.currentTheme == ThemeServices.darkTheme
-                  ? ThemeData.dark()
-                  : null,
+                  ? ThemeData.dark().copyWith(
+                      textTheme: GoogleFonts.robotoTextTheme(
+                        Theme.of(context).textTheme,
+                      ),
+                    )
+                  : ThemeData.light().copyWith(
+                      textTheme: GoogleFonts.robotoTextTheme(
+                        Theme.of(context).textTheme,
+                      ),
+                    ),
               home: Splash())),
     );
   }
