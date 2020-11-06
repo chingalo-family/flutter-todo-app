@@ -1,4 +1,4 @@
-import 'package:todo_app/core/utils/util_helpers.dart';
+import 'package:todo_app/core/utils/app_util.dart';
 
 class UserGroupMember {
   String id;
@@ -11,7 +11,7 @@ class UserGroupMember {
     this.groupId,
     this.userId,
   }) {
-    this.id = UtilHelpers.getUid();
+    this.id = AppUtil.getUid();
   }
 
   Map toMap(UserGroupMember userGroupMember) {

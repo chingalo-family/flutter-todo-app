@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/core/utils/util_helpers.dart';
+import 'package:todo_app/core/utils/app_util.dart';
 
 class User {
   String id;
@@ -16,7 +16,7 @@ class User {
     this.password,
     this.phoneNumber,
   }) {
-    this.id = UtilHelpers.getUid();
+    this.id = AppUtil.getUid();
   }
 
   Map toMap(User user) {

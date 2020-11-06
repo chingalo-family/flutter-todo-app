@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/core/utils/util_helpers.dart';
+import 'package:todo_app/core/utils/app_util.dart';
 
 class UserGroup {
   String id;
@@ -10,7 +10,7 @@ class UserGroup {
     @required this.name,
     this.description,
   }) {
-    this.id = UtilHelpers.getUid();
+    this.id = AppUtil.getUid();
     this.description = this.description ?? '';
   }
 

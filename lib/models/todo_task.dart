@@ -1,4 +1,4 @@
-import 'package:todo_app/core/utils/util_helpers.dart';
+import 'package:todo_app/core/utils/app_util.dart';
 
 class TodoTask {
   String id;
@@ -13,7 +13,7 @@ class TodoTask {
   String dueDate;
 
   TodoTask({this.todoId, this.title, this.isCompleted}) {
-    this.id = UtilHelpers.getUid();
+    this.id = AppUtil.getUid();
     this.isCompleted = this.isCompleted ?? false;
   }
 
