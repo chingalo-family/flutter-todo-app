@@ -1,14 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:todo_app/core/offline-db/todo_provider.dart';
 import 'package:todo_app/core/offline-db/todo_task_provider.dart';
-import 'package:todo_app/core/utils/util_helpers.dart';
+import 'package:todo_app/core/utils/app_util.dart';
 import 'package:todo_app/models/todo.dart';
 import 'package:todo_app/models/todo_task.dart';
 
 class TodoState with ChangeNotifier {
   // initial state of todo_list
-  TodoProvider todoProvider = new TodoProvider();
-  TodoTaskProvider todoTaskProvider = new TodoTaskProvider();
+  final TodoProvider todoProvider = new TodoProvider();
+  final TodoTaskProvider todoTaskProvider = new TodoTaskProvider();
 
   List<Todo> _todoList = [];
   Todo _currentTodo;
@@ -20,7 +20,7 @@ class TodoState with ChangeNotifier {
 
   Todo get currentTodo =>
       _currentTodo ??
-      new Todo(id: UtilHelpers.getUid(), title: '', description: '');
+      new Todo(id: AppUtil.getUid(), title: '', description: '');
 
   // actions on reducers
   void initiateTodoList() async {

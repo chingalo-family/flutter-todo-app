@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/app_state/app_info_state.dart';
 import 'package:todo_app/app_state/app_theme_state.dart';
-import 'package:todo_app/app_state/page_state.dart';
 import 'package:todo_app/app_state/todo_state.dart';
 import 'package:todo_app/app_state/user_group_state.dart';
 import 'package:todo_app/app_state/user_state.dart';
@@ -22,9 +21,6 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (_) => TodoState(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => PageState(),
         ),
         ChangeNotifierProvider(create: (_) => AppThemeState()),
         ChangeNotifierProvider(create: (_) => AppInfoState()),
