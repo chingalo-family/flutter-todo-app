@@ -1,16 +1,22 @@
 import 'dart:async';
 import 'package:sqflite/sqflite.dart';
 import 'package:todo_app/core/offline-db/db_provider.dart';
-import 'package:todo_app/models/todo.dart';
+import 'package:todo_app/models/todo_task.dart';
 
 class TodoTaskProvider extends DbProvider {
   String tableName = "todo_task";
 
   // columns
-  String id = 'id';
-  String title = 'title';
-  String todoId = 'todoId';
-  String isCompleted = 'isCompleted';
+  final String id = 'id';
+  final String title = 'title';
+  final String todoId = 'todoId';
+  final String isCompleted = 'isCompleted';
+  final String createdOn = 'createdOn';
+  final String dueDate = 'dueDate';
+  final String completedOn = 'completedOn';
+  final String completedBy = 'completedBy';
+  final String createdBy = 'createdBy';
+  final String assignedTo = 'assignedTo';
 
   addOrUpdateTodoTask(TodoTask todoTask) async {
     var dbClient = await db;
@@ -34,6 +40,12 @@ class TodoTaskProvider extends DbProvider {
             todoId,
             title,
             isCompleted,
+            createdOn,
+            createdBy,
+            dueDate,
+            completedOn,
+            completedBy,
+            assignedTo,
           ],
           orderBy: 'isCompleted');
       if (maps.isNotEmpty) {

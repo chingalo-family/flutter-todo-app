@@ -11,6 +11,12 @@ class TodoProvider extends DbProvider {
   final String title = 'title';
   final String description = 'description';
   final String createdOn = 'createdOn';
+  final String dueDate = 'dueDate';
+  final String completedOn = 'completedOn';
+  final String completedBy = 'completedBy';
+  final String createdBy = 'createdBy';
+  final String assignedTo = 'assignedTo';
+  final String groupId = 'groupId';
 
   addOrUpdateTodo(Todo todo) async {
     var dbClient = await db;
@@ -30,7 +36,18 @@ class TodoProvider extends DbProvider {
       var dbClient = await db;
       List<Map> maps = await dbClient.query(
         tableName,
-        columns: [id, title, description],
+        columns: [
+          id,
+          title,
+          description,
+          createdOn,
+          createdBy,
+          dueDate,
+          completedOn,
+          completedBy,
+          assignedTo,
+          groupId
+        ],
       );
       if (maps.isNotEmpty) {
         for (Map map in maps) {
