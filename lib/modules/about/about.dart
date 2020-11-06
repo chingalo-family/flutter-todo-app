@@ -15,6 +15,7 @@ class About extends StatelessWidget {
       child: SafeArea(
           child: Scaffold(
         appBar: AppBar(
+          elevation: 0.0,
           title: Text('About', style: UtilHelpers.getFontStyles(14.0, null)),
           actions: [
             AppPopUpMenu(

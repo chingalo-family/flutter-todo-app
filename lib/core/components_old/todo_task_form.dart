@@ -6,6 +6,7 @@ import 'package:todo_app/core/components_old/todo_input_field.dart';
 import 'package:todo_app/core/utils/util_helpers.dart';
 import 'package:todo_app/models/todo.dart';
 import 'package:todo_app/models/todo_field.dart';
+import 'package:todo_app/models/todo_task.dart';
 
 class TodoTaskForm extends StatelessWidget {
   const TodoTaskForm(
@@ -57,7 +58,9 @@ class TodoTaskForm extends StatelessWidget {
     String getInitialValue(TodoField inputField) {
       return inputField.id == 'title'
           ? todoTask.title
-          : inputField.id == 'isCompleted' ? '${todoTask.isCompleted}' : '';
+          : inputField.id == 'isCompleted'
+              ? '${todoTask.isCompleted}'
+              : '';
     }
 
     return Column(
