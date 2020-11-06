@@ -4,6 +4,8 @@ import 'package:todo_app/app_state/app_info_state.dart';
 import 'package:todo_app/app_state/app_theme_state.dart';
 import 'package:todo_app/app_state/page_state.dart';
 import 'package:todo_app/app_state/todo_state.dart';
+import 'package:todo_app/app_state/user_group_state.dart';
+import 'package:todo_app/app_state/user_state.dart';
 import 'package:todo_app/core/services/theme_service.dart';
 import 'package:todo_app/modules/splash/splash.dart';
 
@@ -25,7 +27,9 @@ class MyApp extends StatelessWidget {
           create: (_) => PageState(),
         ),
         ChangeNotifierProvider(create: (_) => AppThemeState()),
-        ChangeNotifierProvider(create: (_) => AppInfoState())
+        ChangeNotifierProvider(create: (_) => AppInfoState()),
+        ChangeNotifierProvider(create: (_) => UserState()),
+        ChangeNotifierProvider(create: (_) => UserGroupState()),
       ],
       child: Consumer<AppThemeState>(
           builder: (context, appThemeState, child) => MaterialApp(

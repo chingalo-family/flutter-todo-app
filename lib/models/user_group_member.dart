@@ -4,6 +4,8 @@ class UserGroupMember {
   String id;
   String groupId;
   String userId;
+  String username;
+  String fullName;
 
   UserGroupMember({
     this.groupId,
