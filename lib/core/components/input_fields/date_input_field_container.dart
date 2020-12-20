@@ -4,12 +4,12 @@ import 'package:todo_app/core/utils/app_util.dart';
 import 'package:todo_app/models/input_field.dart';
 
 class DateInputFieldContainer extends StatefulWidget {
-  const DateInputFieldContainer(
-      {Key key,
-      @required this.inputField,
-      @required this.onInputValueChange,
-      this.inputValue})
-      : super(key: key);
+  const DateInputFieldContainer({
+    Key key,
+    @required this.inputField,
+    @required this.onInputValueChange,
+    this.inputValue,
+  }) : super(key: key);
   final InputField inputField;
   final Function onInputValueChange;
   final String inputValue;

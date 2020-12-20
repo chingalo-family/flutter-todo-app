@@ -12,11 +12,14 @@ class MaterialCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-        type: MaterialType.card,
-        elevation: elevation,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(12.0)),
+      type: MaterialType.card,
+      elevation: elevation,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(12.0),
         ),
-        child: body);
+      ),
+      child: body,
+    );
   }
 }

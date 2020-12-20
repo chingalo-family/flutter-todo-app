@@ -26,46 +26,53 @@ class AppPopUpMenu extends StatelessWidget {
             .toList()
         : menuItems;
     return PopupMenuButton(
-        onSelected: (AppPopUpMenuItem menuItem) {
-          if (menuItem.id == 'about') {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => About(),
-            ));
-          } else {
-            Timer(Duration(milliseconds: 100), () {
+      onSelected: (AppPopUpMenuItem menuItem) {
+        if (menuItem.id == 'about') {
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => About(),
+          ));
+        } else {
+          Timer(
+            Duration(milliseconds: 100),
+            () {
               appThemeState.setCurrentTheme(menuItem.id);
-            });
-          }
-        },
-        elevation: 4,
-        itemBuilder: (BuildContext context) {
-          return menuItems
-              .map((AppPopUpMenuItem menuItem) => PopupMenuItem(
-                  value: menuItem,
-                  child: Row(
-                    children: [
-                      Consumer<AppThemeState>(
-                        builder: (context, appThemeState, child) {
-                          return Container(
-                            child: Icon(
-                              menuItem.icon,
-                              color: appThemeState.currentTheme == 'dark'
-                                  ? ThemeData.dark().accentColor
-                                  : ThemeData.light().accentColor,
-                            ),
-                          );
-                        },
+            },
+          );
+        }
+      },
+      elevation: 4,
+      itemBuilder: (BuildContext context) {
+        return menuItems
+            .map(
+              (AppPopUpMenuItem menuItem) => PopupMenuItem(
+                value: menuItem,
+                child: Row(
+                  children: [
+                    Consumer<AppThemeState>(
+                      builder: (context, appThemeState, child) {
+                        return Container(
+                          child: Icon(
+                            menuItem.icon,
+                            color: appThemeState.currentTheme == 'dark'
+                                ? ThemeData.dark().accentColor
+                                : ThemeData.light().accentColor,
+                          ),
+                        );
+                      },
+                    ),
+                    SizedBox(width: 5),
+                    Container(
+                      child: Text(
+                        menuItem.name,
+                        style: TextStyle().copyWith(),
                       ),
-                      SizedBox(width: 5),
-                      Container(
-                        child: Text(
-                          menuItem.name,
-                          style: TextStyle().copyWith(),
-                        ),
-                      ),
-                    ],
-                  )))
-              .toList();
-        });
+                    ),
+                  ],
+                ),
+              ),
+            )
+            .toList();
+      },
+    );
   }
 }
