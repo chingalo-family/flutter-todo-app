@@ -11,6 +11,14 @@ class TodoHome extends StatefulWidget {
 }
 
 class _TodoHomeState extends State<TodoHome> {
+  onAddTodo(BuildContext context) {
+    print("onOpenTodoListChartSummary");
+  }
+
+  onOpenTodoListChartSummary(BuildContext context) {
+    print("onOpenTodoListChartSummary");
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -23,6 +31,8 @@ class _TodoHomeState extends State<TodoHome> {
             isAboutPage: false,
             isAddTodoVisible: true,
             isViewChartVisible: true,
+            onAdd: () => onAddTodo(context),
+            onOpenChart: () => onOpenTodoListChartSummary(context),
           ),
         ),
         body: Container(child: Text('form')),

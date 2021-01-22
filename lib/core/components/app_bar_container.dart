@@ -9,6 +9,8 @@ class AppBarContainer extends StatelessWidget {
     this.isAddTodoVisible,
     this.elevation = 0.0,
     @required this.title,
+    this.onAdd,
+    this.onOpenChart,
   }) : super(key: key);
 
   final String title;
@@ -16,6 +18,9 @@ class AppBarContainer extends StatelessWidget {
   final bool isViewChartVisible;
   final bool isAddTodoVisible;
   final double elevation;
+
+  final VoidCallback onOpenChart;
+  final VoidCallback onAdd;
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +35,20 @@ class AppBarContainer extends StatelessWidget {
       actions: [
         Visibility(
           visible: isViewChartVisible,
-          child: Container(
-            child: Text("Chart"),
+          child: IconButton(
+            icon: Icon(
+              Icons.bar_chart,
+            ),
+            onPressed: onOpenChart,
           ),
         ),
         Visibility(
           visible: isAddTodoVisible,
-          child: Container(
-            child: Text("Add"),
+          child: IconButton(
+            icon: Icon(
+              Icons.add,
+            ),
+            onPressed: onAdd,
           ),
         ),
         Container(
