@@ -28,9 +28,11 @@ class AppPopUpMenu extends StatelessWidget {
     return PopupMenuButton(
       onSelected: (AppPopUpMenuItem menuItem) {
         if (menuItem.id == 'about') {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => About(),
-          ));
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => About(),
+            ),
+          );
         } else {
           Timer(
             Duration(milliseconds: 100),
@@ -40,7 +42,7 @@ class AppPopUpMenu extends StatelessWidget {
           );
         }
       },
-      elevation: 4,
+      elevation: 4.0,
       itemBuilder: (BuildContext context) {
         return menuItems
             .map(
@@ -60,7 +62,9 @@ class AppPopUpMenu extends StatelessWidget {
                         );
                       },
                     ),
-                    SizedBox(width: 5),
+                    SizedBox(
+                      width: 5.0,
+                    ),
                     Container(
                       child: Text(
                         menuItem.name,

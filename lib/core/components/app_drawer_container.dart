@@ -28,13 +28,24 @@ class AppDrawerContainer extends StatelessWidget {
               children: [
                 Container(
                   height: size.height * 0.2,
-                  child: Center(child: Text('JC')),
+                  child: Center(
+                    child: Text(
+                      'JC',
+                      style: TextStyle().copyWith(color: Colors.white),
+                    ),
+                  ),
                 ),
                 Container(
-                  child: Text('Detail for '),
+                  child: Text(
+                    'Detail for ',
+                    style: TextStyle().copyWith(color: Colors.white),
+                  ),
                 ),
                 Container(
-                  child: Text('Log in and log out btn'),
+                  child: Text(
+                    'Log in and log out btn',
+                    style: TextStyle().copyWith(color: Colors.white),
+                  ),
                 ),
               ],
             ),
