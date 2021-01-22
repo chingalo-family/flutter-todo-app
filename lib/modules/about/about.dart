@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/app_state/app_info_state.dart';
-import 'package:todo_app/core/components/app_pop_up_menu.dart';
+import 'package:todo_app/core/components/app_bar_container.dart';
+import 'package:todo_app/core/contants/app_contant.dart';
 
 class About extends StatelessWidget {
   const About({Key key}) : super(key: key);
@@ -13,29 +14,29 @@ class About extends StatelessWidget {
     return Container(
       child: SafeArea(
         child: Scaffold(
-          appBar: AppBar(
-            elevation: 0.0,
-            title: Text(
-              'About',
-              style: TextStyle().copyWith(
-                fontSize: 14.0,
-              ),
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(AppContant.appBarHeight),
+            child: AppBarContainer(
+              title: 'About',
+              isAboutPage: true,
+              isAddTodoVisible: false,
+              isViewChartVisible: false,
             ),
-            actions: [
-              AppPopUpMenu(
-                currentPage: 'about',
-              )
-            ],
           ),
           body: Consumer<AppInfoState>(
             builder: (context, appInfoState, child) {
               return Container(
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                padding: EdgeInsets.symmetric(
+                  vertical: 20,
+                  horizontal: 10,
+                ),
                 child: SingleChildScrollView(
                   child: Center(
                     child: Card(
                       child: Container(
-                        margin: EdgeInsets.symmetric(vertical: 20),
+                        margin: EdgeInsets.symmetric(
+                          vertical: 20,
+                        ),
                         child: Column(
                           children: [
                             Container(
@@ -65,22 +66,11 @@ class About extends StatelessWidget {
                                     MainAxisAlignment.spaceAround,
                                 children: [
                                   Text(
-                                      'App Version : ${appInfoState.currentAppVersion}',
-                                      style: TextStyle().copyWith(
-                                        fontSize: 12.0,
-                                      )),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Text('App Id : ${appInfoState.currentAppId}',
-                                      style: TextStyle().copyWith(
-                                        fontSize: 12.0,
-                                      )),
+                                    'App Version : ${appInfoState.currentAppVersion}',
+                                    style: TextStyle().copyWith(
+                                      fontSize: 12.0,
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -90,10 +80,25 @@ class About extends StatelessWidget {
                                     MainAxisAlignment.spaceAround,
                                 children: [
                                   Text(
-                                      'Device version : ${appInfoState.currentPlatformVersion}',
-                                      style: TextStyle().copyWith(
-                                        fontSize: 12.0,
-                                      )),
+                                    'App Id : ${appInfoState.currentAppId}',
+                                    style: TextStyle().copyWith(
+                                      fontSize: 12.0,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Text(
+                                    'Device version : ${appInfoState.currentPlatformVersion}',
+                                    style: TextStyle().copyWith(
+                                      fontSize: 12.0,
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
