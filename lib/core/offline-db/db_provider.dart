@@ -9,7 +9,7 @@ class DbProvider {
   final List<String> initialQuery = [
     "CREATE TABLE IF NOT EXISTS todo ( id TEXT PRIMARY KEY, title TEXT, description TEXT,createdOn TEXT,createdBy TEXT,dueDate TEXT,completedOn TEXT,completedBy TEXT,assignedTo TEXT,groupId TEXT)",
     "CREATE TABLE IF NOT EXISTS todo_task (id TEXT PRIMARY KEY, todoId INTEGER, title TEXT, isCompleted INTEGER, createdOn TEXT,createdBy TEXT,dueDate TEXT,completedOn TEXT,completedBy TEXT,assignedTo TEXT)",
-    "CREATE TABLE IF NOT EXISTS user (id TEXT PRIMARY KEY, username TEXT, fullName TEXT, password TEXT, emial TEXT, phoneNumber TEXT)",
+    "CREATE TABLE IF NOT EXISTS user (id TEXT PRIMARY KEY, username TEXT, fullName TEXT, password TEXT, emial TEXT, phoneNumber TEXT, isLogin TEXT)",
     "CREATE TABLE IF NOT EXISTS user_group (id TEXT PRIMARY KEY, name TEXT, description TEXT)",
     "CREATE TABLE IF NOT EXISTS user_group_member (id TEXT PRIMARY KEY, userId TEXT, groupId TEXT, fullName TEXT, username TEXT)"
   ];
