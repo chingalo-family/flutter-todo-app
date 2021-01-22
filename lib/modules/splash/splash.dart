@@ -31,9 +31,16 @@ class _SplashState extends State<Splash> {
         Provider.of<TodoState>(context, listen: false).initiateTodoList();
         Provider.of<AppInfoState>(context, listen: false).setCurrentAppInfo();
         Timer(
-            Duration(seconds: 2),
-            () => Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (_) => TodoHome())));
+          Duration(
+            seconds: 2,
+          ),
+          () => Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (_) => TodoHome(),
+            ),
+          ),
+        );
       });
     });
   }
@@ -65,7 +72,8 @@ class _SplashState extends State<Splash> {
                           CircularProgressIndicator(
                             strokeWidth: 4.0,
                             valueColor: new AlwaysStoppedAnimation(
-                                const Color(0xFF00BFA6)),
+                              const Color(0xFF00BFA6),
+                            ),
                           ),
                         ],
                       )
