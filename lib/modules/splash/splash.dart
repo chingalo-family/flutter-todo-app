@@ -6,7 +6,7 @@ import 'package:todo_app/app_state/app_info_state.dart';
 import 'package:todo_app/app_state/app_theme_state.dart';
 import 'package:todo_app/app_state/todo_state.dart';
 import 'package:todo_app/core/services/theme_service.dart';
-import 'package:todo_app/modules/todo/todo_home.dart';
+import 'package:todo_app/modules/todo/pages/todo_home/todo_home.dart';
 
 class Splash extends StatefulWidget {
   Splash({Key key}) : super(key: key);
