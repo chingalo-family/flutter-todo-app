@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/core/components/app_bar_container.dart';
 import 'package:todo_app/core/components/app_drawer_container.dart';
 import 'package:todo_app/core/contants/app_contant.dart';
+import 'package:todo_app/modules/todo/components/todo_list_container.dart';
 
 class TodoHome extends StatefulWidget {
   TodoHome({Key key}) : super(key: key);
@@ -12,11 +13,11 @@ class TodoHome extends StatefulWidget {
 
 class _TodoHomeState extends State<TodoHome> {
   onAddTodo(BuildContext context) {
-    print("onOpenTodoListChartSummary");
+    print("on add todo in list");
   }
 
   onOpenTodoListChartSummary(BuildContext context) {
-    print("onOpenTodoListChartSummary");
+    print("on opening todo list chart");
   }
 
   @override
@@ -35,7 +36,7 @@ class _TodoHomeState extends State<TodoHome> {
             onOpenChart: () => onOpenTodoListChartSummary(context),
           ),
         ),
-        body: Container(child: Text('form')),
+        body: TodoListContainer(),
       ),
     );
   }

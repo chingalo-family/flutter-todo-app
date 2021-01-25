@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:todo_app/core/offline-db/todo_provider.dart';
 import 'package:todo_app/core/offline-db/todo_task_provider.dart';
-import 'package:todo_app/core/utils/app_util.dart';
 import 'package:todo_app/models/todo.dart';
 import 'package:todo_app/models/todo_task.dart';
 
@@ -19,8 +18,7 @@ class TodoState with ChangeNotifier {
   int get todoCount => _todoList.toList().length;
 
   Todo get currentTodo =>
-      _currentTodo ??
-      new Todo(id: AppUtil.getUid(), title: '', description: '');
+      _currentTodo ?? new Todo(assignedTo: '', title: '', description: '');
 
   // actions on reducers
   void initiateTodoList() async {
