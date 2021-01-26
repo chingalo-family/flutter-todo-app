@@ -4,8 +4,9 @@ class MaterialCard extends StatelessWidget {
   const MaterialCard({
     Key key,
     @required this.body,
-    this.elevation = 1.0,
+    this.elevation = 1.5,
   }) : super(key: key);
+
   final Widget body;
   final double elevation;
 

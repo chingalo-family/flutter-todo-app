@@ -20,29 +20,29 @@ class MyApp extends StatelessWidget {
   MultiProvider buildApp() {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (_) => TodoState(),
-        ),
+        ChangeNotifierProvider(create: (_) => TodoState()),
         ChangeNotifierProvider(create: (_) => AppThemeState()),
         ChangeNotifierProvider(create: (_) => AppInfoState()),
         ChangeNotifierProvider(create: (_) => UserState()),
         ChangeNotifierProvider(create: (_) => UserGroupState()),
       ],
       child: Consumer<AppThemeState>(
-          builder: (context, appThemeState, child) => MaterialApp(
-              debugShowCheckedModeBanner: false,
-              theme: appThemeState.currentTheme == ThemeServices.darkTheme
-                  ? ThemeData.dark().copyWith(
-                      textTheme: GoogleFonts.robotoTextTheme(
-                        Theme.of(context).textTheme,
-                      ),
-                    )
-                  : ThemeData.light().copyWith(
-                      textTheme: GoogleFonts.robotoTextTheme(
-                        Theme.of(context).textTheme,
-                      ),
-                    ),
-              home: Splash())),
+        builder: (context, appThemeState, child) => MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: appThemeState.currentTheme == ThemeServices.darkTheme
+              ? ThemeData.dark().copyWith(
+                  textTheme: GoogleFonts.robotoTextTheme(
+                    Theme.of(context).textTheme,
+                  ),
+                )
+              : ThemeData.light().copyWith(
+                  textTheme: GoogleFonts.robotoTextTheme(
+                    Theme.of(context).textTheme,
+                  ),
+                ),
+          home: Splash(),
+        ),
+      ),
     );
   }
 }
