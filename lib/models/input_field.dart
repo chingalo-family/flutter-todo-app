@@ -40,8 +40,8 @@ class InputField {
     this.hasSubInputField = this.hasSubInputField ?? false;
     this.renderAsRadio = this.renderAsRadio ?? false;
     this.options = this.options ?? [];
-    this.inputColor = this.inputColor ?? Colors.black;
-    this.labelColor = this.labelColor ?? Color(0xFF1A3518);
+    this.inputColor = this.inputColor ?? null;
+    this.labelColor = this.labelColor ?? null;
     this.background = this.background ?? Colors.transparent;
   }
 

@@ -21,7 +21,7 @@ class About extends StatelessWidget {
             child: AppBarContainer(
               title: 'About',
               isAboutPage: true,
-              isAddTodoVisible: false,
+              isAddVisible: false,
               isViewChartVisible: false,
             ),
           ),
