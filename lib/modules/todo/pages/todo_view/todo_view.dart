@@ -38,10 +38,11 @@ class TodoView extends StatelessWidget {
               child: AppBarContainer(
                 title: currentTodo.title,
                 isAboutPage: false,
-                isAddVisible: false,
+                isAddVisible: true,
                 isViewChartVisible: true,
                 isDeleteVisible: true,
                 isEditVisible: true,
+                onAdd: () => onAddTodoTask(context, currentTodo),
                 onEdit: () => onAddTodoTask(context, currentTodo),
                 onDelete: () => onAddTodoTask(context, currentTodo),
                 onOpenChart: () => onOpenTodoChartSummary(context, currentTodo),
@@ -56,14 +57,6 @@ class TodoView extends StatelessWidget {
                 child: TodoViewContainer(
                   currentTodo: currentTodo,
                 ),
-              ),
-            ),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.miniEndFloat,
-            floatingActionButton: FloatingActionButton(
-              onPressed: () => onAddTodoTask(context, currentTodo),
-              child: Icon(
-                Icons.add,
               ),
             ),
           ),
