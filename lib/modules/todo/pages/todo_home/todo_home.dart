@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/core/components/app_bar_container.dart';
 import 'package:todo_app/core/components/app_drawer_container.dart';
-import 'package:todo_app/core/components/todo_list_filter.dart';
+import 'package:todo_app/modules/todo/components/todo_list_filter.dart';
 import 'package:todo_app/core/contants/app_contant.dart';
-import 'package:todo_app/modules/todo/components/todo_list_container.dart';
 
-class TodoHome extends StatefulWidget {
-  TodoHome({Key key}) : super(key: key);
+import 'components/todo_list_container.dart';
 
-  @override
-  _TodoHomeState createState() => _TodoHomeState();
-}
-
-class _TodoHomeState extends State<TodoHome> {
+class TodoHome extends StatelessWidget {
   onAddTodo(BuildContext context) {
     print("on add todo in list");
   }
