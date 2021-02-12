@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/core/components/app_bar_container.dart';
 import 'package:todo_app/core/components/app_drawer_container.dart';
+import 'package:todo_app/core/components/todo_list_filter.dart';
 import 'package:todo_app/core/contants/app_contant.dart';
 import 'package:todo_app/modules/todo/components/todo_list_container.dart';
 
@@ -36,7 +37,17 @@ class _TodoHomeState extends State<TodoHome> {
             onOpenChart: () => onOpenTodoListChartSummary(context),
           ),
         ),
-        body: TodoListContainer(),
+        body: Scaffold(
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(AppContant.todoListFilterHeight),
+            child: TodoListFilter(),
+          ),
+          body: SingleChildScrollView(
+            child: Container(
+              child: TodoListContainer(),
+            ),
+          ),
+        ),
       ),
     );
   }

@@ -68,7 +68,7 @@ class TodoList extends StatelessWidget {
                                 'Status : ${todo.isCompleted ? 'Completed' : 'Not completed'}',
                                 style: TextStyle().copyWith(
                                   color: todo.isCompleted
-                                      ? textColor
+                                      ? Colors.greenAccent
                                       : Colors.redAccent,
                                   fontSize: 12.0,
                                 ),
