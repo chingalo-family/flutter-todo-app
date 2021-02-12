@@ -60,6 +60,7 @@ class TodoList extends StatelessWidget {
                                 todo.description,
                                 style: TextStyle().copyWith(
                                   color: textColor,
+                                  fontSize: 14.0,
                                 ),
                               ),
                             ),
@@ -68,7 +69,7 @@ class TodoList extends StatelessWidget {
                                 'Status : ${todo.isCompleted ? 'Completed' : 'Not completed'}',
                                 style: TextStyle().copyWith(
                                   color: todo.isCompleted
-                                      ? Colors.greenAccent
+                                      ? Color(0xFF34C759)
                                       : Colors.redAccent,
                                   fontSize: 12.0,
                                 ),

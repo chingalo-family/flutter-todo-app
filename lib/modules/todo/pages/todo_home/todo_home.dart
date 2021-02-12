@@ -25,7 +25,7 @@ class TodoHome extends StatelessWidget {
           child: AppBarContainer(
             title: 'Todo List',
             isAboutPage: false,
-            isAddTodoVisible: true,
+            isAddVisible: true,
             isViewChartVisible: true,
             onAdd: () => onAddTodo(context),
             onOpenChart: () => onOpenTodoListChartSummary(context),
