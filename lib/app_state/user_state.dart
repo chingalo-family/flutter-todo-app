@@ -11,6 +11,7 @@ class UserState with ChangeNotifier {
 
   // selectors
   User get currrentUser => _currentUser;
+
   String get usernameIcon => _currentUser != null && _currentUser.isLogin
       ? _currentUser.fullName
           .split(" ")

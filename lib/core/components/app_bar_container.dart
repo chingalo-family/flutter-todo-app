@@ -6,21 +6,29 @@ class AppBarContainer extends StatelessWidget {
     Key key,
     this.isAboutPage,
     this.isViewChartVisible,
-    this.isAddTodoVisible,
+    this.isAddVisible,
     this.elevation = 0.0,
     @required this.title,
     this.onAdd,
     this.onOpenChart,
+    this.isEditVisible = false,
+    this.isDeleteVisible = false,
+    this.onEdit,
+    this.onDelete,
   }) : super(key: key);
 
   final String title;
   final bool isAboutPage;
   final bool isViewChartVisible;
-  final bool isAddTodoVisible;
+  final bool isAddVisible;
+  final bool isEditVisible;
+  final bool isDeleteVisible;
   final double elevation;
 
   final VoidCallback onOpenChart;
   final VoidCallback onAdd;
+  final VoidCallback onEdit;
+  final VoidCallback onDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +51,30 @@ class AppBarContainer extends StatelessWidget {
           ),
         ),
         Visibility(
-          visible: isAddTodoVisible,
+          visible: isAddVisible,
           child: IconButton(
             icon: Icon(
               Icons.add,
             ),
             onPressed: onAdd,
+          ),
+        ),
+        Visibility(
+          visible: isEditVisible,
+          child: IconButton(
+            icon: Icon(
+              Icons.edit,
+            ),
+            onPressed: onEdit,
+          ),
+        ),
+        Visibility(
+          visible: isDeleteVisible,
+          child: IconButton(
+            icon: Icon(
+              Icons.delete,
+            ),
+            onPressed: onDelete,
           ),
         ),
         Container(
