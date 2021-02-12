@@ -1,17 +1,20 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/app_state/app_theme_state.dart';
-import 'package:todo_app/app_state/todo_state.dart';
 import 'package:todo_app/core/contants/app_contant.dart';
 import 'package:todo_app/core/services/theme_service.dart';
 import 'package:todo_app/models/todo.dart';
 
+import 'todo_summary_container.dart';
+import 'todo_task_container.dart';
+
 class TodoViewContainer extends StatelessWidget {
   const TodoViewContainer({
     Key key,
+    @required this.currentTodo,
   }) : super(key: key);
+
+  final Todo currentTodo;
 
   @override
   Widget build(BuildContext context) {
@@ -23,19 +26,18 @@ class TodoViewContainer extends StatelessWidget {
               ? AppContant.darkTextColor
               : AppContant.ligthTextColor;
           return Container(
-            child: Consumer<TodoState>(
-              builder: (context, todoState, child) {
-                Todo currentTodo = todoState.currentTodo;
-                return Container(
-                  child: Text(
-                    currentTodo.toString(),
-                    style: TextStyle().copyWith(
-                      color: textColor,
-                      fontSize: 20.0,
-                    ),
-                  ),
-                );
-              },
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TodoSummaryContainer(
+                  currentTodo: currentTodo,
+                  textColor: textColor,
+                ),
+                TodoTaskContainer(
+                  currentTodo: currentTodo,
+                  textColor: textColor,
+                ),
+              ],
             ),
           );
         },
