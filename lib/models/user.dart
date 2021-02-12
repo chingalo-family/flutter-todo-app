@@ -8,6 +8,7 @@ class User {
   String password;
   String emial;
   String phoneNumber;
+  bool isLogin;
 
   User({
     @required this.username,
@@ -15,6 +16,7 @@ class User {
     @required this.fullName,
     this.password,
     this.phoneNumber,
+    this.isLogin = true,
   }) {
     this.id = AppUtil.getUid();
   }
@@ -27,6 +29,7 @@ class User {
     data['password'] = user.password;
     data['emial'] = user.emial;
     data['phoneNumber'] = user.phoneNumber;
+    data['isLogin'] = user.isLogin ? '1' : '0';
     return data;
   }
 
@@ -37,10 +40,11 @@ class User {
     this.password = mapData['password'];
     this.emial = mapData['emial'];
     this.phoneNumber = mapData['phoneNumber'];
+    this.isLogin = mapData['isLogin'] == "1";
   }
 
   @override
   String toString() {
-    return 'Group <$id : $username>';
+    return 'User <$id : $username>';
   }
 }

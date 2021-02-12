@@ -12,6 +12,7 @@ class UserProvider extends DbProvider {
   final String password = 'password';
   final String emial = 'emial';
   final String phoneNumber = 'phoneNumber';
+  final String isLogin = "isLogin";
 
   addOrUpdateUser(User user) async {
     var dbClient = await db;
@@ -37,6 +38,7 @@ class UserProvider extends DbProvider {
             password,
             emial,
             phoneNumber,
+            isLogin,
           ],
           orderBy: 'username');
       if (maps.isNotEmpty) {

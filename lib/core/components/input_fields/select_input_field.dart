@@ -5,15 +5,15 @@ import 'package:todo_app/core/components/input_fields/radio_input_field_containe
 import 'package:todo_app/models/input_field_option.dart';
 
 class SelectInputField extends StatefulWidget {
-  const SelectInputField(
-      {Key key,
-      this.color,
-      @required this.options,
-      @required this.selectedOption,
-      @required this.onInputValueChange,
-      @required this.isReadOnly,
-      this.renderAsRadio})
-      : super(key: key);
+  const SelectInputField({
+    Key key,
+    this.color,
+    @required this.options,
+    @required this.selectedOption,
+    @required this.onInputValueChange,
+    @required this.isReadOnly,
+    this.renderAsRadio,
+  }) : super(key: key);
 
   final Color color;
   final bool isReadOnly;
