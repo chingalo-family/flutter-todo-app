@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:todo_app/core/contants/app_contant.dart';
 import 'package:todo_app/core/utils/app_util.dart';
 import 'package:todo_app/models/todo_task.dart';
 
@@ -21,7 +22,7 @@ class Todo {
     @required this.title,
     @required this.description,
     this.createdOn,
-    @required this.assignedTo,
+    this.assignedTo,
     this.completedBy,
     this.completedOn,
     this.createdBy,
@@ -30,7 +31,8 @@ class Todo {
     this.groupId,
   }) {
     this.id = AppUtil.getUid();
-    this.groupId = this.groupId ?? "";
+    this.assignedTo = this.assignedTo ?? AppContant.defaultUserId;
+    this.groupId = this.groupId ?? AppContant.defaultUserGroupId;
     this.tasks = [];
     this.isCompleted = this.isCompleted ?? false;
   }
