@@ -10,9 +10,12 @@ class TodoList extends StatelessWidget {
   const TodoList({
     Key key,
     @required this.todo,
+    this.onSelectTodo,
   }) : super(key: key);
 
   final Todo todo;
+  final VoidCallback onSelectTodo;
+
   @override
   Widget build(BuildContext context) {
     return Consumer<AppThemeState>(
@@ -25,61 +28,64 @@ class TodoList extends StatelessWidget {
           margin: EdgeInsets.symmetric(
             vertical: 5.0,
           ),
-          child: MaterialCard(
-            body: Container(
-              padding: EdgeInsets.only(
-                left: 15.0,
-                right: 5.0,
-                top: 10.0,
-                bottom: 10.0,
-              ),
-              width: double.infinity,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            child: Text(
-                              todo.title,
-                              style: TextStyle().copyWith(
-                                fontSize: 18.0,
-                                color: textColor,
+          child: GestureDetector(
+            onTap: onSelectTodo,
+            child: MaterialCard(
+              body: Container(
+                padding: EdgeInsets.only(
+                  left: 15.0,
+                  right: 5.0,
+                  top: 10.0,
+                  bottom: 10.0,
+                ),
+                width: double.infinity,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              child: Text(
+                                todo.title,
+                                style: TextStyle().copyWith(
+                                  fontSize: 18.0,
+                                  color: textColor,
+                                ),
                               ),
                             ),
-                          ),
-                          Container(
-                            child: Text(
-                              todo.description,
-                              style: TextStyle().copyWith(
-                                color: textColor,
+                            Container(
+                              child: Text(
+                                todo.description,
+                                style: TextStyle().copyWith(
+                                  color: textColor,
+                                ),
                               ),
                             ),
-                          ),
-                          Container(
-                            child: Text(
-                              'Status : ${todo.isCompleted ? 'Completed' : 'Not completed'}',
-                              style: TextStyle().copyWith(
-                                color: todo.isCompleted
-                                    ? textColor
-                                    : Colors.redAccent,
-                                fontSize: 12.0,
+                            Container(
+                              child: Text(
+                                'Status : ${todo.isCompleted ? 'Completed' : 'Not completed'}',
+                                style: TextStyle().copyWith(
+                                  color: todo.isCompleted
+                                      ? textColor
+                                      : Colors.redAccent,
+                                  fontSize: 12.0,
+                                ),
                               ),
-                            ),
-                          )
-                        ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Container(
-                    child: Icon(
-                      Icons.chevron_right,
-                      color: textColor,
-                    ),
-                  )
-                ],
+                    Container(
+                      child: Icon(
+                        Icons.chevron_right,
+                        color: textColor,
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ),

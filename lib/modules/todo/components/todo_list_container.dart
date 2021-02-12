@@ -7,6 +7,10 @@ class TodoListContainer extends StatelessWidget {
     Key key,
   }) : super(key: key);
 
+  onSelectTodo(BuildContext context, Todo todo) {
+    print(todo);
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Todo> todos = [
@@ -26,6 +30,10 @@ class TodoListContainer extends StatelessWidget {
             .map(
               (Todo todo) => TodoList(
                 todo: todo,
+                onSelectTodo: () => onSelectTodo(
+                  context,
+                  todo,
+                ),
               ),
             )
             .toList(),
