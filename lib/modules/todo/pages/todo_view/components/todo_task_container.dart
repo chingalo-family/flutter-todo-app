@@ -15,12 +15,26 @@ class TodoTaskContainer extends StatelessWidget {
   final Color textColor;
   final Todo currentTodo;
 
-  onEditTodoTask(BuildContext context, TodoTask todoTask) {
+  onEditTodoTask(
+    BuildContext context,
+    TodoTask todoTask,
+  ) {
     print("On edit todo task $todoTask");
   }
 
-  onDeleteTodoTask(BuildContext context, TodoTask todoTask) {
+  onDeleteTodoTask(
+    BuildContext context,
+    TodoTask todoTask,
+  ) {
     print("On delete todo task $todoTask");
+  }
+
+  onUpdateTodoTaskStatus(
+    BuildContext context,
+    TodoTask todoTask,
+    bool isCompleted,
+  ) {
+    print("On update status $todoTask $isCompleted");
   }
 
   @override
@@ -47,17 +61,25 @@ class TodoTaskContainer extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: currentTodo.tasks
-                  .map((TodoTask todoTask) => Container(
-                        margin: EdgeInsets.symmetric(
-                          vertical: 5.0,
+                  .map(
+                    (TodoTask todoTask) => Container(
+                      margin: EdgeInsets.symmetric(
+                        vertical: 5.0,
+                      ),
+                      child: TodoTaskCard(
+                        textColor: textColor,
+                        todoTask: todoTask,
+                        onEdit: () => onEditTodoTask(context, todoTask),
+                        onDelete: () => onDeleteTodoTask(context, todoTask),
+                        onUpdateTodoTaskStatus: (bool isCompleted) =>
+                            onUpdateTodoTaskStatus(
+                          context,
+                          todoTask,
+                          isCompleted,
                         ),
-                        child: TodoTaskCard(
-                          textColor: textColor,
-                          todoTask: todoTask,
-                          onEdit: () => onEditTodoTask(context, todoTask),
-                          onDelete: () => onDeleteTodoTask(context, todoTask),
-                        ),
-                      ))
+                      ),
+                    ),
+                  )
                   .toList(),
             ),
           ),

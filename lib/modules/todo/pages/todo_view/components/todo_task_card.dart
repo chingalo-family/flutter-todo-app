@@ -11,6 +11,7 @@ class TodoTaskCard extends StatelessWidget {
     @required this.todoTask,
     this.onDelete,
     this.onEdit,
+    this.onUpdateTodoTaskStatus,
   }) : super(key: key);
 
   final Color textColor;
@@ -18,6 +19,7 @@ class TodoTaskCard extends StatelessWidget {
 
   final VoidCallback onDelete;
   final VoidCallback onEdit;
+  final Function onUpdateTodoTaskStatus;
 
   @override
   Widget build(BuildContext context) {
@@ -38,27 +40,57 @@ class TodoTaskCard extends StatelessWidget {
                     valueType: "TRUE_ONLY",
                   ),
                   inputValue: todoTask.isCompleted,
-                  onInputValueChange: (dynamic value) => {print(value)},
+                  onInputValueChange: (dynamic value) =>
+                      onUpdateTodoTaskStatus(value != ""),
                 ),
               ),
               Expanded(
                 child: Text(
                   todoTask.title,
                   style: TextStyle().copyWith(
+                    decoration: todoTask.isCompleted
+                        ? TextDecoration.lineThrough
+                        : null,
                     fontSize: 14.0,
                     color: textColor,
                   ),
                 ),
               ),
               Container(
-                child: Text('icon'),
+                child: InkWell(
+                  child: _buildIcon(
+                    Icons.edit,
+                    textColor,
+                  ),
+                  onTap: onEdit,
+                ),
               ),
               Container(
-                child: Text('icon'),
+                child: InkWell(
+                  child: _buildIcon(
+                    Icons.delete,
+                    textColor,
+                  ),
+                  onTap: onDelete,
+                ),
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildIcon(
+    IconData icon,
+    Color color,
+  ) {
+    return Container(
+      padding: EdgeInsets.all(5),
+      child: Icon(
+        icon,
+        color: color.withOpacity(0.6),
+        size: 20,
       ),
     );
   }
