@@ -32,6 +32,10 @@ class TodoView extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           child: Container(
+            margin: EdgeInsets.symmetric(
+              horizontal: 10.0,
+              vertical: 10.0,
+            ),
             child: TodoViewContainer(),
           ),
         ),

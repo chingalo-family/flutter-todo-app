@@ -17,8 +17,7 @@ class TodoState with ChangeNotifier {
 
   int get todoCount => _todoList.toList().length;
 
-  Todo get currentTodo =>
-      _currentTodo ?? new Todo(assignedTo: '', title: '', description: '');
+  Todo get currentTodo => _currentTodo ?? new Todo(title: '', description: '');
 
   // actions on reducers
   void initiateTodoList() async {

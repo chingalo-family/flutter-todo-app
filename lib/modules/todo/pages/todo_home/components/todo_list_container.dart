@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_app/app_state/todo_state.dart';
 import 'package:todo_app/models/todo.dart';
 import 'package:todo_app/modules/todo/pages/todo_view/todo_view.dart';
 
@@ -10,7 +12,7 @@ class TodoListContainer extends StatelessWidget {
   }) : super(key: key);
 
   onSelectTodo(BuildContext context, Todo todo) {
-    // @TODO add current todo into state
+    Provider.of<TodoState>(context, listen: false).setCurrentTodo(todo);
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => TodoView(),
