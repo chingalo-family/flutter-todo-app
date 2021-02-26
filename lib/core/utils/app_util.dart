@@ -121,12 +121,11 @@ class AppUtil {
                             InkWell(
                               onTap: () => Navigator.of(context).pop(),
                               child: Container(
-                                margin: EdgeInsets.all(10),
-                                height: 22,
-                                width: 22,
-                                child: SvgPicture.asset(
-                                  'assets/icons/close_icon.svg',
+                                margin: EdgeInsets.symmetric(
+                                  vertical: 5.0,
+                                  horizontal: 10.0,
                                 ),
+                                child: Icon(Icons.close, size: 18.0),
                               ),
                             )
                           ],
