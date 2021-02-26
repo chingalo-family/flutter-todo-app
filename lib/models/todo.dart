@@ -35,6 +35,7 @@ class Todo {
     this.groupId = this.groupId ?? AppContant.defaultUserGroupId;
     this.tasks = [];
     this.isCompleted = this.isCompleted ?? false;
+    this.createdOn = AppUtil.formattedDateTimeIntoString(DateTime.now());
   }
 
   Map toMap(Todo todo) {
