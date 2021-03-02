@@ -14,7 +14,7 @@ class UserGroup {
     this.description = this.description ?? '';
   }
 
-  Map toMap(UserGroup userGroup) {
+  Map toMap() {
     var data = Map<String, dynamic>();
     data['id'] = this.id;
     data['name'] = this.name;
@@ -22,7 +22,7 @@ class UserGroup {
     return data;
   }
 
-  UserGroup.fromMap(Map<String, dynamic> mapData) {
+  UserGroup.fromMap(Map mapData) {
     this.id = mapData['id'];
     this.name = mapData['name'];
     this.description = mapData['description'];
