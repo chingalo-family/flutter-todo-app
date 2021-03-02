@@ -38,7 +38,6 @@ class TodoFormContainer extends StatelessWidget {
           Provider.of<TodoFormState>(context, listen: false).formState;
       bool isMandatoryFieldsSet =
           AppUtil.hasAllMandarotyFieldsFilled(mandatoryFields, dataObject);
-
       if (isMandatoryFieldsSet) {
         Todo todo = Todo.fromMap(dataObject);
         todo.tasks = todoTasks;

@@ -10,43 +10,18 @@ import 'package:todo_app/models/form_section.dart';
 import 'package:todo_app/models/todo.dart';
 import 'package:todo_app/modules/todo/components/todo_list_filter.dart';
 import 'package:todo_app/core/contants/app_contant.dart';
+import 'package:todo_app/modules/todo/helpers/todo_form_state_helper.dart';
 import 'package:todo_app/modules/todo/models/todo_form.dart';
 import 'package:todo_app/modules/todo/components/todo_form_container.dart';
 
 import 'components/todo_list_container.dart';
 
 class TodoHome extends StatelessWidget {
-  updateFormState(
-    BuildContext context,
-    Todo todo,
-    bool isEditableMode,
-  ) {
-    Provider.of<TodoFormState>(context, listen: false).resetFormState();
-    Provider.of<TodoFormState>(context, listen: false)
-        .updateFormEditabilityState(isEditableMode: isEditableMode);
-    if (todo != null) {
-      Provider.of<TodoFormState>(context, listen: false)
-          .setFormFieldState('id', todo.id);
-      Provider.of<TodoFormState>(context, listen: false)
-          .setFormFieldState('title', todo.title);
-      Provider.of<TodoFormState>(context, listen: false)
-          .setFormFieldState('description', todo.description);
-      Provider.of<TodoFormState>(context, listen: false)
-          .setFormFieldState("assignedTo", todo.assignedTo);
-      Provider.of<TodoFormState>(context, listen: false)
-          .setFormFieldState("createdBy", todo.createdBy);
-      Provider.of<TodoFormState>(context, listen: false)
-          .setFormFieldState("createdOn", todo.createdOn);
-      Provider.of<TodoFormState>(context, listen: false)
-          .setFormFieldState("dueDate", todo.dueDate);
-      Provider.of<TodoFormState>(context, listen: false)
-          .setFormFieldState("groupId", todo.groupId);
-    }
-  }
-
+  //
   onAddTodo(BuildContext context) async {
+    // @todo Assign current user as default user
     Todo todo = new Todo(title: "", description: "");
-    updateFormState(context, todo, true);
+    TodoFormStateHelper.updateFormState(context, todo, true);
     String currentTheme =
         Provider.of<AppThemeState>(context, listen: false).currentTheme;
     Color textColor = currentTheme == ThemeServices.darkTheme

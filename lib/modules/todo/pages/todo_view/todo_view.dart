@@ -3,27 +3,49 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/app_state/app_theme_state.dart';
 import 'package:todo_app/app_state/todo_form_state.dart';
 import 'package:todo_app/app_state/todo_state.dart';
+import 'package:todo_app/app_state/todo_task_form_state.dart';
 import 'package:todo_app/core/components/app_bar_container.dart';
 import 'package:todo_app/core/contants/app_contant.dart';
 import 'package:todo_app/core/services/theme_service.dart';
 import 'package:todo_app/core/utils/app_util.dart';
 import 'package:todo_app/models/form_section.dart';
 import 'package:todo_app/models/todo.dart';
+import 'package:todo_app/models/todo_task.dart';
+import 'package:todo_app/modules/todo/helpers/todo_form_state_helper.dart';
+import 'package:todo_app/modules/todo/helpers/todo_task_form_state_helper.dart';
 import 'package:todo_app/modules/todo/models/todo_form.dart';
 import 'package:todo_app/modules/todo/components/todo_form_container.dart';
+import 'package:todo_app/modules/todo/models/todo_task_form.dart';
 import 'package:todo_app/modules/todo/pages/todo_view/components/delete_todo_confirmation.dart';
+import 'package:todo_app/modules/todo/pages/todo_view/components/todo_task_form_container.dart';
 
 import 'components/todo_view_container.dart';
 
 class TodoView extends StatelessWidget {
   const TodoView({Key key}) : super(key: key);
 
-  onAddTodoTask(BuildContext context, Todo currentTodo) {
-    print("on add todo tasks $currentTodo");
+  onAddTodoTask(BuildContext context, Todo currentTodo) async {
+    TodoTask todoTask =
+        TodoTask(todoId: currentTodo.id, title: "", isCompleted: false);
+    TodoTaskFormStateHelper.updateFormState(
+        context, todoTask, !todoTask.isCompleted);
+    String currentTheme =
+        Provider.of<AppThemeState>(context, listen: false).currentTheme;
+    Color textColor = currentTheme == ThemeServices.darkTheme
+        ? AppContant.darkTextColor
+        : AppContant.ligthTextColor;
+    final List<FormSection> todoFormSections =
+        TodoTaskForm.getFormSections(textColor);
+    Widget modal = TodoTaskFormContainer(
+      todoFormSections: todoFormSections,
+      currentTodo: currentTodo,
+    );
+    await AppUtil.showPopUpModal(context, modal, false);
   }
 
   onEditTodo(BuildContext context, Todo currentTodo) async {
-    updateTodoFormState(context, currentTodo, !currentTodo.isCompleted);
+    TodoFormStateHelper.updateFormState(
+        context, currentTodo, !currentTodo.isCompleted);
     String currentTheme =
         Provider.of<AppThemeState>(context, listen: false).currentTheme;
     Color textColor = currentTheme == ThemeServices.darkTheme
@@ -54,38 +76,6 @@ class TodoView extends StatelessWidget {
 
   onOpenTodoChartSummary(BuildContext context, Todo currentTodo) {
     print("on opening todo chart $currentTodo");
-  }
-
-  updateTodoFormState(
-    BuildContext context,
-    Todo todo,
-    bool isEditableMode,
-  ) {
-    Provider.of<TodoFormState>(context, listen: false).resetFormState();
-    Provider.of<TodoFormState>(context, listen: false)
-        .updateFormEditabilityState(isEditableMode: isEditableMode);
-    if (todo != null) {
-      Provider.of<TodoFormState>(context, listen: false)
-          .setFormFieldState('id', todo.id);
-      Provider.of<TodoFormState>(context, listen: false)
-          .setFormFieldState('title', todo.title);
-      Provider.of<TodoFormState>(context, listen: false)
-          .setFormFieldState('description', todo.description);
-      Provider.of<TodoFormState>(context, listen: false)
-          .setFormFieldState("assignedTo", todo.assignedTo);
-      Provider.of<TodoFormState>(context, listen: false)
-          .setFormFieldState("createdBy", todo.createdBy);
-      Provider.of<TodoFormState>(context, listen: false)
-          .setFormFieldState("createdOn", todo.createdOn);
-      Provider.of<TodoFormState>(context, listen: false)
-          .setFormFieldState("dueDate", todo.dueDate);
-      Provider.of<TodoFormState>(context, listen: false)
-          .setFormFieldState("groupId", todo.groupId);
-      Provider.of<TodoFormState>(context, listen: false)
-          .setFormFieldState("completedOn", todo.completedOn);
-      Provider.of<TodoFormState>(context, listen: false)
-          .setFormFieldState("completedBy", todo.completedBy);
-    }
   }
 
   @override
