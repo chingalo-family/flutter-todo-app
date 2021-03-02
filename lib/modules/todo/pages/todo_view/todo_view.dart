@@ -11,6 +11,7 @@ import 'package:todo_app/models/form_section.dart';
 import 'package:todo_app/models/todo.dart';
 import 'package:todo_app/modules/todo/models/todo_form.dart';
 import 'package:todo_app/modules/todo/components/todo_form_container.dart';
+import 'package:todo_app/modules/todo/pages/todo_view/components/delete_todo_confirmation.dart';
 
 import 'components/todo_view_container.dart';
 
@@ -37,9 +38,18 @@ class TodoView extends StatelessWidget {
     await AppUtil.showPopUpModal(context, modal, false);
   }
 
-  onDeleteTodo(BuildContext context, Todo currentTodo) {
-    print("On deleting");
-    //Navigator.of(context).pop();
+  onDeleteTodo(BuildContext context, Todo currentTodo) async {
+    Widget modal = DeleteTodoConfirmation(
+      currentTodo: currentTodo,
+    );
+    bool hasTodoDeleted = await AppUtil.showPopUpModal(context, modal, false);
+    try {
+      if (hasTodoDeleted) {
+        Navigator.of(context).pop();
+      }
+    } catch (error) {
+      print(error.toString());
+    }
   }
 
   onOpenTodoChartSummary(BuildContext context, Todo currentTodo) {
