@@ -26,18 +26,40 @@ class TodoFormContainer extends StatelessWidget {
         .setFormFieldState(id, value);
   }
 
-  onSaveTodoForm(BuildContext context, User currentUser) {
-    //Todo checking if title has been added
-    Map dataObject =
-        Provider.of<TodoFormState>(context, listen: false).formState;
-    Todo todo = Todo.fromMap(dataObject);
-    todo.tasks = todoTasks;
-    Provider.of<TodoState>(context, listen: false).addTodo(todo);
-    AppUtil.showToastMessage(
-      message: "Todo has been save successfully",
-      position: ToastGravity.SNACKBAR,
-    );
-    Navigator.of(context).pop();
+  onSaveTodoForm(
+    BuildContext context,
+    User currentUser,
+    Map mandatoryFieldObject,
+  ) {
+    try {
+      List mandatoryFields = mandatoryFieldObject.keys.toList();
+      Map dataObject =
+          Provider.of<TodoFormState>(context, listen: false).formState;
+      bool isMandatoryFieldsSet =
+          AppUtil.hasAllMandarotyFieldsFilled(mandatoryFields, dataObject);
+
+      if (isMandatoryFieldsSet) {
+        Todo todo = Todo.fromMap(dataObject);
+        todo.tasks = todoTasks;
+        Provider.of<TodoState>(context, listen: false).addTodo(todo);
+        AppUtil.showToastMessage(
+          message: "Todo has been save successfully",
+          position: ToastGravity.SNACKBAR,
+        );
+        Navigator.of(context).pop();
+      } else {
+        AppUtil.showToastMessage(
+          message: "Please fill all mandatory fields",
+          position: ToastGravity.TOP,
+        );
+      }
+    } catch (error) {
+      String errorMessage = error.toString();
+      AppUtil.showToastMessage(
+        message: "Errror on saving Todo : $errorMessage",
+        position: ToastGravity.TOP,
+      );
+    }
   }
 
   @override
@@ -94,6 +116,7 @@ class TodoFormContainer extends StatelessWidget {
                                 onPressed: () => onSaveTodoForm(
                                   context,
                                   currentUser,
+                                  mandatoryFieldObject,
                                 ),
                                 child: Text(
                                   'Save',
