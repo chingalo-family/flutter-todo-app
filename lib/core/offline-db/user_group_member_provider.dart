@@ -14,7 +14,7 @@ class UserGroupMemberProvider extends DbProvider {
 
   addOrUpdateTodoTask(UserGroupMember userGroupMember) async {
     var dbClient = await db;
-    await dbClient.insert(tableName, userGroupMember.toMap(userGroupMember),
+    await dbClient.insert(tableName, userGroupMember.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
