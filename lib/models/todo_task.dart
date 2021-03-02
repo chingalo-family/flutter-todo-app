@@ -38,9 +38,10 @@ class TodoTask {
     return data;
   }
 
-  TodoTask.fromMap(Map<String, dynamic> mapData) {
+  TodoTask.fromMap(Map mapData) {
     this.id = mapData['id'];
     this.todoId = mapData['todoId'];
+    this.title = mapData['title'];
     this.createdOn = mapData['createdOn'] ?? '';
     this.assignedTo = mapData['assignedTo'] ?? '';
     this.completedBy = mapData['completedBy'] ?? '';
