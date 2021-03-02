@@ -56,6 +56,6 @@ class TodoTaskProvider extends DbProvider {
     } catch (e) {
       print(e);
     }
-    return todoTaskList;
+    return todoTaskList.reversed.toList();
   }
 }

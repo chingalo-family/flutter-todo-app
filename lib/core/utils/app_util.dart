@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -14,9 +13,10 @@ class AppUtil {
     bool hasFilled = true;
     List fieldIds = dataObject.keys.toList();
     for (var mandatoryField in mandatoryFields) {
-      if (fieldIds.indexOf(mandatoryField) == -1 &&
-          '${dataObject[mandatoryField]}'.trim() != '') {
+      if (fieldIds.indexOf(mandatoryField) == -1) {
         hasFilled = false;
+      } else {
+        hasFilled = '${dataObject[mandatoryField]}'.trim() != '';
       }
     }
     return hasFilled;
