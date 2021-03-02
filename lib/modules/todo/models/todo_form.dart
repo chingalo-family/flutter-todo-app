@@ -6,7 +6,7 @@ class TodoForm {
   static List<FormSection> getFormSections(Color textColor) {
     return [
       FormSection(
-        name: "Todo Form",
+        name: "",
         color: textColor,
         inputFields: [
           InputField(
