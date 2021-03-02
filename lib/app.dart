@@ -3,7 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/app_state/app_info_state.dart';
 import 'package:todo_app/app_state/app_theme_state.dart';
+import 'package:todo_app/app_state/todo_form_state.dart';
 import 'package:todo_app/app_state/todo_state.dart';
+import 'package:todo_app/app_state/todo_task_form_state.dart';
 import 'package:todo_app/app_state/user_group_state.dart';
 import 'package:todo_app/app_state/user_state.dart';
 import 'package:todo_app/core/services/theme_service.dart';
@@ -21,6 +23,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => TodoState()),
+        ChangeNotifierProvider(create: (_) => TodoTaskFormState()),
+        ChangeNotifierProvider(create: (_) => TodoFormState()),
         ChangeNotifierProvider(create: (_) => AppThemeState()),
         ChangeNotifierProvider(create: (_) => AppInfoState()),
         ChangeNotifierProvider(create: (_) => UserState()),
