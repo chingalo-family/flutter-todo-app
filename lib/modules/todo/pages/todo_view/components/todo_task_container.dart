@@ -1,9 +1,18 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_app/app_state/app_theme_state.dart';
+import 'package:todo_app/core/contants/app_contant.dart';
+import 'package:todo_app/core/services/theme_service.dart';
+import 'package:todo_app/core/utils/app_util.dart';
+import 'package:todo_app/models/form_section.dart';
 import 'package:todo_app/models/todo.dart';
 import 'package:todo_app/models/todo_task.dart';
+import 'package:todo_app/modules/todo/helpers/todo_task_form_state_helper.dart';
+import 'package:todo_app/modules/todo/models/todo_task_form.dart';
 import 'package:todo_app/modules/todo/pages/todo_view/components/todo_task_card.dart';
+import 'package:todo_app/modules/todo/pages/todo_view/components/todo_task_form_container.dart';
 
 class TodoTaskContainer extends StatelessWidget {
   const TodoTaskContainer({
@@ -18,8 +27,20 @@ class TodoTaskContainer extends StatelessWidget {
   onEditTodoTask(
     BuildContext context,
     TodoTask todoTask,
-  ) {
-    print("On edit todo task $todoTask");
+  ) async {
+    TodoTaskFormStateHelper.updateFormState(
+        context, todoTask, !todoTask.isCompleted);
+    String currentTheme =
+        Provider.of<AppThemeState>(context, listen: false).currentTheme;
+    Color textColor = currentTheme == ThemeServices.darkTheme
+        ? AppContant.darkTextColor
+        : AppContant.ligthTextColor;
+    final List<FormSection> todoTaskFormSections =
+        TodoTaskForm.getFormSections(textColor);
+    Widget modal = TodoTaskFormContainer(
+      todoTaskFormSections: todoTaskFormSections,
+    );
+    await AppUtil.showPopUpModal(context, modal, false);
   }
 
   onDeleteTodoTask(
@@ -34,7 +55,7 @@ class TodoTaskContainer extends StatelessWidget {
     TodoTask todoTask,
     bool isCompleted,
   ) {
-    print("On update status $todoTask $isCompleted");
+    todoTask.isCompleted = isCompleted;
   }
 
   @override

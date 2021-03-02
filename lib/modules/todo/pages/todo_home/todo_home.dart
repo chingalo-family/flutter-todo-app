@@ -18,12 +18,13 @@ import 'package:todo_app/modules/todo/components/todo_form_container.dart';
 import 'components/todo_list_container.dart';
 
 class TodoHome extends StatelessWidget {
-  //
   onAddTodo(
     BuildContext context,
     User currentUser,
   ) async {
     Todo todo = new Todo(title: "", description: "");
+    todo.assignedTo = currentUser.id;
+    todo.createdBy = currentUser.fullName;
     TodoFormStateHelper.updateFormState(context, todo, true);
     String currentTheme =
         Provider.of<AppThemeState>(context, listen: false).currentTheme;

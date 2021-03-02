@@ -33,6 +33,8 @@ class TodoView extends StatelessWidget {
   ) async {
     TodoTask todoTask =
         TodoTask(todoId: currentTodo.id, title: "", isCompleted: false);
+    todoTask.assignedTo = currentUser.id;
+    todoTask.createdBy = currentUser.fullName;
     TodoTaskFormStateHelper.updateFormState(
         context, todoTask, !todoTask.isCompleted);
     String currentTheme =
