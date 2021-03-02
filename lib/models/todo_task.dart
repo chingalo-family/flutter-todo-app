@@ -49,7 +49,8 @@ class TodoTask {
     this.completedBy = mapData['completedBy'] ?? '';
     this.assignedTo = mapData['assignedTo'] ?? '';
     this.dueDate = mapData['dueDate'] ?? '';
-    this.isCompleted = '${mapData['isCompleted']}' == '1';
+    this.isCompleted = '${mapData['isCompleted']}' == '1' ||
+        '${mapData['isCompleted']}' == 'true';
   }
 
   @override
