@@ -10,7 +10,7 @@ import 'package:todo_app/core/utils/app_util.dart';
 import 'package:todo_app/models/form_section.dart';
 import 'package:todo_app/models/todo.dart';
 import 'package:todo_app/modules/todo/models/todo_form.dart';
-import 'package:todo_app/modules/todo/pages/todo_home/components/todo_form_container.dart';
+import 'package:todo_app/modules/todo/components/todo_form_container.dart';
 
 import 'components/todo_view_container.dart';
 

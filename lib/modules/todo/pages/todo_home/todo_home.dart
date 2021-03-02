@@ -11,7 +11,7 @@ import 'package:todo_app/models/todo.dart';
 import 'package:todo_app/modules/todo/components/todo_list_filter.dart';
 import 'package:todo_app/core/contants/app_contant.dart';
 import 'package:todo_app/modules/todo/models/todo_form.dart';
-import 'package:todo_app/modules/todo/pages/todo_home/components/todo_form_container.dart';
+import 'package:todo_app/modules/todo/components/todo_form_container.dart';
 
 import 'components/todo_list_container.dart';
 
