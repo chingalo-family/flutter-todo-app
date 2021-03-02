@@ -82,43 +82,46 @@ class TodoFormContainer extends StatelessWidget {
                       onInputValueChange(context, id, value),
                 ),
               ),
-              Container(
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        margin: EdgeInsets.symmetric(horizontal: 5.0),
-                        child: Center(
-                          child: FlatButton(
-                            onPressed: () => Navigator.of(context).pop(),
-                            child: Text(
-                              'Cancel',
-                              style: TextStyle().copyWith(
-                                color: Colors.redAccent,
+              Visibility(
+                visible: todoFormState.isEditableMode,
+                child: Container(
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          margin: EdgeInsets.symmetric(horizontal: 5.0),
+                          child: Center(
+                            child: FlatButton(
+                              onPressed: () => Navigator.of(context).pop(),
+                              child: Text(
+                                'Cancel',
+                                style: TextStyle().copyWith(
+                                  color: Colors.redAccent,
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        margin: EdgeInsets.symmetric(horizontal: 5.0),
-                        child: Center(
-                          child: FlatButton(
-                            onPressed: () => onSaveTodoForm(
-                              context,
-                              mandatoryFieldObject,
-                            ),
-                            child: Text(
-                              'Save',
-                              style: TextStyle().copyWith(),
+                      Expanded(
+                        child: Container(
+                          margin: EdgeInsets.symmetric(horizontal: 5.0),
+                          child: Center(
+                            child: FlatButton(
+                              onPressed: () => onSaveTodoForm(
+                                context,
+                                mandatoryFieldObject,
+                              ),
+                              child: Text(
+                                'Save',
+                                style: TextStyle().copyWith(),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],
