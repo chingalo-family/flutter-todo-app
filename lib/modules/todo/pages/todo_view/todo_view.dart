@@ -51,8 +51,12 @@ class TodoView extends StatelessWidget {
   }
 
   onEditTodo(BuildContext context, Todo currentTodo) async {
+    bool isEditableMode = true;
     TodoFormStateHelper.updateFormState(
-        context, currentTodo, !currentTodo.isCompleted);
+      context,
+      currentTodo,
+      isEditableMode,
+    );
     String currentTheme =
         Provider.of<AppThemeState>(context, listen: false).currentTheme;
     Color textColor = currentTheme == ThemeServices.darkTheme
@@ -119,6 +123,7 @@ class TodoView extends StatelessWidget {
                     ),
                     child: TodoViewContainer(
                       currentTodo: currentTodo,
+                      onTapCurrentTodo: () => onEditTodo(context, currentTodo),
                     ),
                   ),
                 ),

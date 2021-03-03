@@ -12,9 +12,11 @@ class TodoViewContainer extends StatelessWidget {
   const TodoViewContainer({
     Key key,
     @required this.currentTodo,
+    this.onTapCurrentTodo,
   }) : super(key: key);
 
   final Todo currentTodo;
+  final VoidCallback onTapCurrentTodo;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +34,7 @@ class TodoViewContainer extends StatelessWidget {
                 TodoSummaryContainer(
                   currentTodo: currentTodo,
                   textColor: textColor,
+                  onTapCurrentTodo: onTapCurrentTodo,
                 ),
                 TodoTaskContainer(
                   currentTodo: currentTodo,
