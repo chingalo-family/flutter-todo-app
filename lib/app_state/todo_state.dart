@@ -67,7 +67,7 @@ class TodoState with ChangeNotifier {
     initiateTodoList();
   }
 
-  void deleteTodoTask(TodoTask todoTask) async {
+  Future deleteTodoTask(TodoTask todoTask) async {
     await todoTaskProvider.deleteTodoTask(todoTask.id);
     initiateTodoList();
   }

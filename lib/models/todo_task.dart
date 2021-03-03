@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:todo_app/core/utils/app_util.dart';
 
 class TodoTask {
@@ -12,9 +13,14 @@ class TodoTask {
   String assignedTo;
   String dueDate;
 
-  TodoTask({this.todoId, this.title, this.isCompleted}) {
+  TodoTask({
+    @required this.todoId,
+    @required this.title,
+    @required this.isCompleted,
+  }) {
     this.id = AppUtil.getUid();
     this.isCompleted = this.isCompleted ?? false;
+    this.createdOn = AppUtil.formattedDateTimeIntoString(DateTime.now());
   }
 
   Map toMap(TodoTask todoTask) {
@@ -32,9 +38,10 @@ class TodoTask {
     return data;
   }
 
-  TodoTask.fromMap(Map<String, dynamic> mapData) {
+  TodoTask.fromMap(Map mapData) {
     this.id = mapData['id'];
     this.todoId = mapData['todoId'];
+    this.title = mapData['title'];
     this.createdOn = mapData['createdOn'] ?? '';
     this.assignedTo = mapData['assignedTo'] ?? '';
     this.completedBy = mapData['completedBy'] ?? '';
@@ -42,7 +49,8 @@ class TodoTask {
     this.completedBy = mapData['completedBy'] ?? '';
     this.assignedTo = mapData['assignedTo'] ?? '';
     this.dueDate = mapData['dueDate'] ?? '';
-    this.isCompleted = '${mapData['isCompleted']}' == '1';
+    this.isCompleted = '${mapData['isCompleted']}' == '1' ||
+        '${mapData['isCompleted']}' == 'true';
   }
 
   @override

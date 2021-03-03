@@ -14,7 +14,7 @@ class UserGroupMember {
     this.id = AppUtil.getUid();
   }
 
-  Map toMap(UserGroupMember userGroupMember) {
+  Map toMap() {
     var data = Map<String, dynamic>();
     data['id'] = this.id;
     data['groupId'] = this.groupId;
@@ -24,7 +24,7 @@ class UserGroupMember {
     return data;
   }
 
-  UserGroupMember.fromMap(Map<String, dynamic> mapData) {
+  UserGroupMember.fromMap(Map mapData) {
     this.id = mapData['id'];
     this.groupId = mapData['groupId'];
     this.userId = mapData['userId'];

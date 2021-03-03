@@ -21,7 +21,6 @@ class DateInputFieldContainer extends StatefulWidget {
 
 class _DateInputFieldContainerState extends State<DateInputFieldContainer> {
   TextEditingController dateController;
-  Color valueColor = Color(0xFF182E35);
   String _date;
 
   @override
@@ -65,7 +64,9 @@ class _DateInputFieldContainerState extends State<DateInputFieldContainer> {
           Expanded(
               child: TextFormField(
                   controller: dateController,
-                  style: TextStyle().copyWith(color: valueColor),
+                  style: TextStyle().copyWith(
+                    color: widget.inputField.inputColor,
+                  ),
                   onTap: () => onOpenDateSelection(context),
                   readOnly: true,
                   textInputAction: TextInputAction.done,

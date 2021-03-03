@@ -21,7 +21,6 @@ class NumericalInputFieldContainer extends StatefulWidget {
 
 class _NumericalInputFieldContainerState
     extends State<NumericalInputFieldContainer> {
-  Color valueColor = Color(0xFF182E35);
   TextEditingController numericalController;
   String _value;
 
@@ -56,7 +55,9 @@ class _NumericalInputFieldContainerState
                       : numericalController,
                   keyboardType: TextInputType.number,
                   onChanged: onValueChange,
-                  style: TextStyle().copyWith(color: valueColor),
+                  style: TextStyle().copyWith(
+                    color: widget.inputField.inputColor,
+                  ),
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                     border: InputBorder.none,

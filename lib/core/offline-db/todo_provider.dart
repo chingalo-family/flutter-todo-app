@@ -20,7 +20,7 @@ class TodoProvider extends DbProvider {
 
   addOrUpdateTodo(Todo todo) async {
     var dbClient = await db;
-    await dbClient.insert(tableName, todo.toMap(todo),
+    await dbClient.insert(tableName, todo.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
@@ -57,6 +57,6 @@ class TodoProvider extends DbProvider {
     } catch (e) {
       print(e);
     }
-    return todoList;
+    return todoList.reversed.toList();
   }
 }

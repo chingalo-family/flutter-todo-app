@@ -31,7 +31,12 @@ class InputFieldContainer extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(color: inputField.background),
       padding: inputField.background != Colors.transparent
-          ? EdgeInsets.only(top: 10.0, bottom: 0.0, left: 10.0, right: 10.0)
+          ? EdgeInsets.only(
+              top: 10.0,
+              bottom: 0.0,
+              left: 10.0,
+              right: 10.0,
+            )
           : EdgeInsets.all(0),
       child: Container(
         padding: EdgeInsets.symmetric(
@@ -44,59 +49,72 @@ class InputFieldContainer extends StatelessWidget {
               child: Row(
                 children: [
                   Expanded(
-                      child: RichText(
-                          text: TextSpan(
-                              text: inputField.name,
-                              style: TextStyle(
-                                  color: inputField.labelColor,
-                                  fontSize: 13.0,
-                                  fontWeight: FontWeight.normal),
-                              children: [
-                        TextSpan(
+                    child: RichText(
+                      text: TextSpan(
+                        text: inputField.name,
+                        style: TextStyle(
+                          color: inputField.labelColor,
+                          fontSize: 13.0,
+                          fontWeight: FontWeight.normal,
+                        ),
+                        children: [
+                          TextSpan(
                             text: mandatoryFieldObject != null &&
                                     mandatoryFieldObject[inputField.id] == true
                                 ? ' *'
                                 : '',
                             style: TextStyle(
-                                color: Colors.redAccent, fontSize: 12.0))
-                      ])))
+                              color: Colors.redAccent,
+                              fontSize: 12.0,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
             Visibility(
-                visible: inputField.description != '',
-                child: Container(
-                  padding: EdgeInsets.only(top: 10.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                          child: Text(
-                        inputField.description,
-                        style: TextStyle().copyWith(
-                            color: inputField.labelColor,
-                            fontSize: 12.0,
-                            fontStyle: FontStyle.italic,
-                            fontWeight: FontWeight.normal),
-                      ))
-                    ],
-                  ),
-                )),
-            Visibility(
-                visible: inputField.hasSubInputField &&
-                    inputField.subInputField != null,
+              visible: inputField.description != '',
+              child: Container(
+                padding: EdgeInsets.only(
+                  top: 10.0,
+                ),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                      child: Container(
-                          child: isEditableMode
-                              ? _getInputField(inputField)
-                              : _getInputFieldLabel(inputField)),
+                      child: Text(
+                        inputField.description,
+                        style: TextStyle().copyWith(
+                          color: inputField.labelColor,
+                          fontSize: 12.0,
+                          fontStyle: FontStyle.italic,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Visibility(
+              visible: inputField.hasSubInputField &&
+                  inputField.subInputField != null,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Container(
+                      child: isEditableMode
+                          ? _getInputField(inputField)
+                          : _getInputFieldLabel(inputField),
                     ),
-                    Visibility(
-                      visible: inputField.subInputField != null,
-                      child: Expanded(
-                          child: Row(
+                  ),
+                  Visibility(
+                    visible: inputField.subInputField != null,
+                    child: Expanded(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Container(
@@ -107,23 +125,30 @@ class InputFieldContainer extends StatelessWidget {
                           Container(
                             child: isEditableMode
                                 ? _getInputField(inputField.subInputField)
-                                : _getInputFieldLabel(inputField.subInputField),
+                                : _getInputFieldLabel(
+                                    inputField.subInputField,
+                                  ),
                           ),
                         ],
-                      )),
+                      ),
                     ),
-                  ],
-                )),
+                  ),
+                ],
+              ),
+            ),
             Visibility(
               visible: !inputField.hasSubInputField,
               child: Container(
-                  child: isEditableMode
-                      ? _getInputField(inputField)
-                      : _getInputFieldLabel(inputField)),
+                child: isEditableMode
+                    ? _getInputField(inputField)
+                    : _getInputFieldLabel(inputField),
+              ),
             ),
             LineSeperator(
-                color: inputField.inputColor.withOpacity(0.3) ??
-                    Colors.transparent)
+              color: inputField.inputColor != null
+                  ? inputField.inputColor.withOpacity(0.3)
+                  : Colors.transparent,
+            ),
           ],
         ),
       ),
@@ -156,8 +181,10 @@ class InputFieldContainer extends StatelessWidget {
           : Row(
               children: [
                 Container(
-                  margin:
-                      EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+                  margin: EdgeInsets.symmetric(
+                    vertical: 15.0,
+                    horizontal: 10.0,
+                  ),
                   child: Text(
                     value.toString(),
                     style: TextStyle().copyWith(
@@ -193,7 +220,8 @@ class InputFieldContainer extends StatelessWidget {
                       onInputValueChange: (dynamic value) =>
                           this.onInputValueChange(inputField.id, value),
                       options: inputField.options,
-                      selectedOption: dataObject[inputField.id])
+                      selectedOption: dataObject[inputField.id],
+                    )
                   : inputField.valueType == 'TEXT' ||
                           inputField.valueType == 'LONG_TEXT'
                       ? TextInputFieldContainer(
@@ -232,8 +260,10 @@ class InputFieldContainer extends StatelessWidget {
                                       : inputField.valueType == 'DATE'
                                           ? DateInputFieldContainer(
                                               inputField: inputField,
-                                              inputValue: dataObject[inputField.id],
-                                              onInputValueChange: (dynamic value) => this.onInputValueChange(inputField.id, value))
+                                              inputValue:
+                                                  dataObject[inputField.id],
+                                              onInputValueChange: (dynamic value) =>
+                                                  this.onInputValueChange(inputField.id, value))
                                           : Container(
                                               child: Text(
                                                   '${inputField.valueType} is not supported'),
