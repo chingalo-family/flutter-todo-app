@@ -70,7 +70,7 @@ class _TodoTaskContainerState extends State<TodoTaskContainer> {
   ) {
     todoTask.isCompleted = isCompleted;
     todoTask.completedOn =
-        isCompleted ? AppUtil.formattedDateTimeIntoString(DateTime.now()) : "";
+        isCompleted ? DateTime.now().toString().split(".")[0] : "";
     todoTask.completedBy = isCompleted && widget.currentUser != null
         ? widget.currentUser.fullName
         : "default";

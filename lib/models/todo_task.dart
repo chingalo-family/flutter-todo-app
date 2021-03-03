@@ -20,7 +20,7 @@ class TodoTask {
   }) {
     this.id = AppUtil.getUid();
     this.isCompleted = this.isCompleted ?? false;
-    this.createdOn = AppUtil.formattedDateTimeIntoString(DateTime.now());
+    this.createdOn = DateTime.now().toString().split(".")[0];
   }
 
   Map toMap(TodoTask todoTask) {
