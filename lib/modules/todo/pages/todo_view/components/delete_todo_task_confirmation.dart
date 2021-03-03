@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/app_state/app_theme_state.dart';
+import 'package:todo_app/app_state/todo_state.dart';
 import 'package:todo_app/core/contants/app_contant.dart';
 import 'package:todo_app/core/services/theme_service.dart';
+import 'package:todo_app/core/utils/app_util.dart';
 import 'package:todo_app/models/todo_task.dart';
 
 class DeleteTodoTaskConfirmation extends StatelessWidget {
@@ -14,7 +17,13 @@ class DeleteTodoTaskConfirmation extends StatelessWidget {
   final TodoTask todoTask;
 
   onDeleteTodo(context) async {
-    print("On deleting");
+    await Provider.of<TodoState>(context, listen: false)
+        .deleteTodoTask(todoTask);
+    AppUtil.showToastMessage(
+      message: "${todoTask.title} has been deleted successfully",
+      position: ToastGravity.SNACKBAR,
+    );
+    Navigator.of(context).pop();
   }
 
   @override
@@ -36,7 +45,7 @@ class DeleteTodoTaskConfirmation extends StatelessWidget {
                     : AppContant.ligthTextColor;
                 return Container(
                   child: Text(
-                    "Are you sure you want to delete '${todoTask.title}'?",
+                    "Are you sure you want to delete '${todoTask.title}' task?",
                     style: TextStyle().copyWith(
                       color: textColor,
                       fontSize: 15.0,
