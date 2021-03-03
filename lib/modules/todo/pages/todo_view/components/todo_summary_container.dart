@@ -32,7 +32,7 @@ class TodoSummaryContainer extends StatelessWidget {
                     children: [
                       Container(
                         margin: EdgeInsets.only(
-                          bottom: 5.0,
+                          bottom: 3.0,
                         ),
                         child: Text(
                           currentTodo.title,
@@ -42,30 +42,50 @@ class TodoSummaryContainer extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsets.only(
-                          bottom: 5.0,
-                        ),
-                        child: Text(
-                          currentTodo.description,
-                          style: TextStyle().copyWith(
-                            color: textColor,
-                            fontSize: 14.0,
+                      Visibility(
+                        visible: currentTodo.description != "",
+                        child: Container(
+                          margin: EdgeInsets.only(
+                            bottom: 3.0,
+                          ),
+                          child: Text(
+                            currentTodo.description,
+                            style: TextStyle().copyWith(
+                              color: textColor,
+                              fontSize: 14.0,
+                            ),
                           ),
                         ),
                       ),
                       Container(
                         margin: EdgeInsets.only(
-                          bottom: 5.0,
+                          bottom: 3.0,
                         ),
-                        child: Text(
-                          'Status : ${currentTodo.isCompleted ? 'Completed' : 'Not completed'}',
-                          style: TextStyle().copyWith(
-                            color: currentTodo.isCompleted
-                                ? Color(0xFF34C759)
-                                : Colors.redAccent,
-                            fontSize: 12.0,
-                          ),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                'Status : ${currentTodo.isCompleted ? 'Completed' : 'Not completed'}',
+                                style: TextStyle().copyWith(
+                                  color: currentTodo.isCompleted
+                                      ? Color(0xFF34C759)
+                                      : Colors.redAccent,
+                                  fontSize: 12.0,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              child: Text(
+                                '${currentTodo.completedTasks}/${currentTodo.tasks.length} tasks',
+                                style: TextStyle().copyWith(
+                                  color: currentTodo.isCompleted
+                                      ? Color(0xFF34C759)
+                                      : Colors.redAccent,
+                                  fontSize: 12.0,
+                                ),
+                              ),
+                            )
+                          ],
                         ),
                       ),
                     ],
