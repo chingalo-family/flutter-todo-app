@@ -11,7 +11,7 @@ class UserGroupProvider extends DbProvider {
 
   addOrUpdateUserGroup(UserGroup userGroup) async {
     var dbClient = await db;
-    await dbClient.insert(tableName, userGroup.toMap(userGroup),
+    await dbClient.insert(tableName, userGroup.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 

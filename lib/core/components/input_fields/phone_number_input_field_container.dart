@@ -21,7 +21,6 @@ class PhoneNumberInputFieldContainer extends StatefulWidget {
 
 class _PhoneNumberInputFieldContainerState
     extends State<PhoneNumberInputFieldContainer> {
-  Color valueColor = Color(0xFF182E35);
   TextEditingController phoneNumberController;
   String _value;
 
@@ -53,7 +52,9 @@ class _PhoneNumberInputFieldContainerState
                   controller: phoneNumberController,
                   keyboardType: TextInputType.phone,
                   onChanged: onValueChange,
-                  style: TextStyle().copyWith(color: valueColor),
+                  style: TextStyle().copyWith(
+                    color: widget.inputField.inputColor,
+                  ),
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                     border: InputBorder.none,

@@ -21,19 +21,19 @@ class User {
     this.id = AppUtil.getUid();
   }
 
-  Map toMap(User user) {
+  Map toMap() {
     var data = Map<String, dynamic>();
-    data['id'] = user.id;
-    data['username'] = user.username;
-    data['fullName'] = user.fullName;
-    data['password'] = user.password;
-    data['emial'] = user.emial;
-    data['phoneNumber'] = user.phoneNumber;
-    data['isLogin'] = user.isLogin ? '1' : '0';
+    data['id'] = this.id;
+    data['username'] = this.username;
+    data['fullName'] = this.fullName;
+    data['password'] = this.password;
+    data['emial'] = this.emial;
+    data['phoneNumber'] = this.phoneNumber;
+    data['isLogin'] = this.isLogin ? '1' : '0';
     return data;
   }
 
-  User.fromMap(Map<String, dynamic> mapData) {
+  User.fromMap(Map mapData) {
     this.id = mapData['id'];
     this.username = mapData['username'];
     this.fullName = mapData['fullName'];

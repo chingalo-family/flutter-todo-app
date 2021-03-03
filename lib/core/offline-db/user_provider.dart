@@ -16,7 +16,7 @@ class UserProvider extends DbProvider {
 
   addOrUpdateUser(User user) async {
     var dbClient = await db;
-    await dbClient.insert(tableName, user.toMap(user),
+    await dbClient.insert(tableName, user.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 

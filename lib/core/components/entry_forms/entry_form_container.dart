@@ -7,17 +7,17 @@ import 'package:todo_app/models/form_section.dart';
 import 'package:todo_app/models/input_field.dart';
 
 class EntryFormContainer extends StatelessWidget {
-  const EntryFormContainer(
-      {Key key,
-      @required this.formSections,
-      @required this.dataObject,
-      @required this.mandatoryFieldObject,
-      this.hiddenFields,
-      this.hiddenSections,
-      this.isEditableMode = true,
-      this.onInputValueChange,
-      this.elevation = 1.0})
-      : super(key: key);
+  const EntryFormContainer({
+    Key key,
+    @required this.formSections,
+    @required this.dataObject,
+    @required this.mandatoryFieldObject,
+    this.hiddenFields,
+    this.hiddenSections,
+    this.isEditableMode = true,
+    this.onInputValueChange,
+    this.elevation = 1.0,
+  }) : super(key: key);
 
   final List<FormSection> formSections;
   final Function onInputValueChange;
@@ -32,117 +32,146 @@ class EntryFormContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: formSections
-          .map((FormSection formSection) => Visibility(
-                visible: hiddenSections == null ||
-                    '${hiddenSections[formSection.id]}'.trim() != 'true',
-                child: Container(
-                  margin: EdgeInsets.only(bottom: 10.0),
-                  child: MaterialCard(
-                      elevation: elevation,
-                      body: Container(
-                        margin: EdgeInsets.symmetric(vertical: 10.0),
-                        decoration: BoxDecoration(
-                            border: Border(
-                              left: BorderSide(
-                                  color: formSection.borderColor, width: 8.0),
-                            ),
-                            color: formSection.backgroundColor),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Visibility(
-                              visible: formSection.name != '',
-                              child: Container(
-                                padding: EdgeInsets.all(10.0),
-                                margin: EdgeInsets.only(left: 5.0),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                        child: Text(
-                                      formSection.name,
-                                      style: TextStyle().copyWith(
-                                          color: formSection.color,
-                                          fontSize: 16.0,
-                                          fontWeight: FontWeight.bold),
-                                    ))
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Visibility(
-                              visible: formSection.description != '',
-                              child: Container(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 15.0, horizontal: 10.0),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        formSection.description,
-                                        style: TextStyle().copyWith(
-                                            color: formSection.color,
-                                            fontSize: 14.0,
-                                            fontStyle: FontStyle.italic,
-                                            fontWeight: FontWeight.normal),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Visibility(
-                              visible: formSection.name != '',
-                              child: Container(
-                                  child: LineSeperator(
-                                      color:
-                                          formSection.color.withOpacity(0.1))),
-                            ),
-                            Container(
-                              margin: EdgeInsets.symmetric(
-                                  vertical: 5.0, horizontal: 10.0),
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 10.0, horizontal: 10.0),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: formSection.inputFields
-                                    .map((InputField inputField) => Visibility(
-                                          visible: hiddenFields == null ||
-                                              '${hiddenFields[inputField.id]}'
-                                                      .trim() !=
-                                                  'true',
-                                          child: Container(
-                                            margin: EdgeInsets.only(top: 10.0),
-                                            child: InputFieldContainer(
-                                              inputField: inputField,
-                                              isEditableMode: isEditableMode,
-                                              mandatoryFieldObject:
-                                                  isEditableMode
-                                                      ? mandatoryFieldObject
-                                                      : Map(),
-                                              dataObject: dataObject,
-                                              onInputValueChange: (String id,
-                                                      dynamic value) =>
-                                                  onInputValueChange(id, value),
-                                            ),
-                                          ),
-                                        ))
-                                    .toList(),
-                              ),
-                            ),
-                            EntrySubFormContainer(
-                              hiddenFields: hiddenFields ?? Map(),
-                              hiddenSections: hiddenSections ?? Map(),
-                              subSections: formSection.subSections,
-                              dataObject: dataObject,
-                              isEditableMode: isEditableMode,
-                              mandatoryFieldObject: mandatoryFieldObject,
-                              onInputValueChange: onInputValueChange,
-                            )
-                          ],
-                        ),
-                      )),
+          .map(
+            (FormSection formSection) => Visibility(
+              visible: hiddenSections == null ||
+                  '${hiddenSections[formSection.id]}'.trim() != 'true',
+              child: Container(
+                margin: EdgeInsets.only(
+                  bottom: 10.0,
                 ),
-              ))
+                child: MaterialCard(
+                  elevation: elevation,
+                  body: Container(
+                    margin: EdgeInsets.symmetric(
+                      vertical: 10.0,
+                    ),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        left: BorderSide(
+                          color: formSection.borderColor,
+                          width: 8.0,
+                        ),
+                      ),
+                      color: formSection.backgroundColor,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Visibility(
+                          visible: formSection.name != '',
+                          child: Container(
+                            padding: EdgeInsets.all(10.0),
+                            margin: EdgeInsets.only(
+                              left: 5.0,
+                            ),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    formSection.name,
+                                    style: TextStyle().copyWith(
+                                      color: formSection.color,
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        Visibility(
+                          visible: formSection.description != '',
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              vertical: 15.0,
+                              horizontal: 10.0,
+                            ),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    formSection.description,
+                                    style: TextStyle().copyWith(
+                                      color: formSection.color,
+                                      fontSize: 14.0,
+                                      fontStyle: FontStyle.italic,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        Visibility(
+                          visible: formSection.name != '',
+                          child: Container(
+                            child: LineSeperator(
+                              color: formSection.color != null
+                                  ? formSection.color.withOpacity(0.1)
+                                  : Colors.black38.withOpacity(0.1),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(
+                            vertical: 5.0,
+                            horizontal: 10.0,
+                          ),
+                          padding: EdgeInsets.symmetric(
+                            vertical: 10.0,
+                            horizontal: 10.0,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: formSection.inputFields
+                                .map(
+                                  (InputField inputField) => Visibility(
+                                    visible: hiddenFields == null ||
+                                        '${hiddenFields[inputField.id]}'
+                                                .trim() !=
+                                            'true',
+                                    child: Container(
+                                      margin: EdgeInsets.only(
+                                        top: 10.0,
+                                      ),
+                                      child: InputFieldContainer(
+                                        inputField: inputField,
+                                        isEditableMode: isEditableMode,
+                                        mandatoryFieldObject: isEditableMode
+                                            ? mandatoryFieldObject
+                                            : Map(),
+                                        dataObject: dataObject,
+                                        onInputValueChange: (
+                                          String id,
+                                          dynamic value,
+                                        ) =>
+                                            onInputValueChange(id, value),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                                .toList(),
+                          ),
+                        ),
+                        EntrySubFormContainer(
+                          hiddenFields: hiddenFields ?? Map(),
+                          hiddenSections: hiddenSections ?? Map(),
+                          subSections: formSection.subSections,
+                          dataObject: dataObject,
+                          isEditableMode: isEditableMode,
+                          mandatoryFieldObject: mandatoryFieldObject,
+                          onInputValueChange: onInputValueChange,
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          )
           .toList(),
     );
   }
