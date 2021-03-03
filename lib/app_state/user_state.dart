@@ -3,11 +3,7 @@ import 'package:todo_app/models/user.dart';
 
 class UserState with ChangeNotifier {
   // initial state
-  User _currentUser = User(
-    username: "chingalo",
-    fullName: "joseph philibert chingalo",
-    emial: "profschingalo@gmail.com",
-  );
+  User _currentUser;
 
   // selectors
   User get currrentUser => _currentUser;

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/app_state/app_theme_state.dart';
-import 'package:todo_app/app_state/todo_form_state.dart';
 import 'package:todo_app/app_state/todo_state.dart';
-import 'package:todo_app/app_state/todo_task_form_state.dart';
 import 'package:todo_app/app_state/user_state.dart';
 import 'package:todo_app/core/components/app_bar_container.dart';
 import 'package:todo_app/core/contants/app_contant.dart';
@@ -33,8 +31,9 @@ class TodoView extends StatelessWidget {
   ) async {
     TodoTask todoTask =
         TodoTask(todoId: currentTodo.id, title: "", isCompleted: false);
-    todoTask.assignedTo = currentUser.id;
-    todoTask.createdBy = currentUser.fullName;
+    todoTask.assignedTo =
+        currentUser != null ? currentUser.id : AppContant.defaultUserId;
+    todoTask.createdBy = currentUser != null ? currentUser.fullName : "";
     TodoTaskFormStateHelper.updateFormState(
         context, todoTask, !todoTask.isCompleted);
     String currentTheme =
