@@ -12,6 +12,7 @@ import 'package:todo_app/models/todo.dart';
 import 'package:todo_app/models/todo_task.dart';
 import 'package:todo_app/modules/todo/helpers/todo_task_form_state_helper.dart';
 import 'package:todo_app/modules/todo/models/todo_task_form.dart';
+import 'package:todo_app/modules/todo/pages/todo_view/components/delete_todo_task_confirmation.dart';
 import 'package:todo_app/modules/todo/pages/todo_view/components/todo_task_card.dart';
 import 'package:todo_app/modules/todo/pages/todo_view/components/todo_task_form_container.dart';
 
@@ -52,8 +53,11 @@ class _TodoTaskContainerState extends State<TodoTaskContainer> {
   onDeleteTodoTask(
     BuildContext context,
     TodoTask todoTask,
-  ) {
-    print("On delete todo task $todoTask");
+  ) async {
+    Widget modal = DeleteTodoTaskConfirmation(
+      todoTask: todoTask,
+    );
+    await AppUtil.showPopUpModal(context, modal, false);
   }
 
   onUpdateTodoTaskStatus(

@@ -45,7 +45,7 @@ class DeleteTodoConfirmation extends StatelessWidget {
                     : AppContant.ligthTextColor;
                 return Container(
                   child: Text(
-                    "Are you sure you want to delete ${currentTodo.title} with ${currentTodo.tasks.length} tasks?",
+                    "Are you sure you want to delete '${currentTodo.title}' with ${currentTodo.tasks.length} tasks?",
                     style: TextStyle().copyWith(
                       color: textColor,
                       fontSize: 15.0,
