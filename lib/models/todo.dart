@@ -15,6 +15,7 @@ class Todo {
   bool isCompleted;
   String assignedTo;
   String groupId;
+  String completedTasks;
 
   List<TodoTask> tasks;
 
@@ -63,7 +64,6 @@ class Todo {
     this.completedBy = mapData['completedBy'] ?? '';
     this.assignedTo = mapData['assignedTo'] ?? '';
     this.groupId = mapData['groupId'] ?? '';
-    this.isCompleted = "${mapData['completedOn']}" != '';
   }
 
   @override

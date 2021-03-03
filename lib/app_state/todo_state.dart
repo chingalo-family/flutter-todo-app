@@ -28,6 +28,13 @@ class TodoState with ChangeNotifier {
       todo.tasks = todoTasks
           .where((TodoTask todoTask) => todoTask.todoId == todoId)
           .toList();
+      List<bool> completenesStatus =
+          todo.tasks.map((TodoTask todoTask) => todoTask.isCompleted).toList();
+      todo.isCompleted = !completenesStatus.contains(false);
+      List<TodoTask> completedTasks = todo.tasks
+          .where((TodoTask todoTask) => todoTask.isCompleted)
+          .toList();
+      todo.completedTasks = "${completedTasks.length}";
       return todo;
     }).toList();
     if (_currentTodo != null && _currentTodo.id.isNotEmpty) {
