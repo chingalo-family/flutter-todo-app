@@ -55,24 +55,50 @@ class TodoList extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Container(
-                              child: Text(
-                                todo.description,
-                                style: TextStyle().copyWith(
-                                  color: textColor,
-                                  fontSize: 14.0,
+                            Visibility(
+                              visible: todo.description != "",
+                              child: Container(
+                                margin: EdgeInsets.only(
+                                  bottom: 3.0,
+                                ),
+                                child: Text(
+                                  todo.description,
+                                  style: TextStyle().copyWith(
+                                    color: textColor,
+                                    fontSize: 14.0,
+                                  ),
                                 ),
                               ),
                             ),
                             Container(
-                              child: Text(
-                                'Status : ${todo.isCompleted ? 'Completed' : 'Not completed'}',
-                                style: TextStyle().copyWith(
-                                  color: todo.isCompleted
-                                      ? Color(0xFF34C759)
-                                      : Colors.redAccent,
-                                  fontSize: 12.0,
-                                ),
+                              margin: EdgeInsets.only(
+                                top: 3.0,
+                              ),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      'Status : ${todo.isCompleted ? 'Completed' : 'Not completed'}',
+                                      style: TextStyle().copyWith(
+                                        color: todo.isCompleted
+                                            ? Color(0xFF34C759)
+                                            : Colors.redAccent,
+                                        fontSize: 12.0,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    child: Text(
+                                      '${todo.completedTasks}/${todo.tasks.length} tasks',
+                                      style: TextStyle().copyWith(
+                                        color: todo.isCompleted
+                                            ? Color(0xFF34C759)
+                                            : Colors.redAccent,
+                                        fontSize: 12.0,
+                                      ),
+                                    ),
+                                  )
+                                ],
                               ),
                             )
                           ],

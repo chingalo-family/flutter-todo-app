@@ -23,8 +23,9 @@ class TodoHome extends StatelessWidget {
     User currentUser,
   ) async {
     Todo todo = new Todo(title: "", description: "");
-    todo.assignedTo = currentUser.id;
-    todo.createdBy = currentUser.fullName;
+    todo.assignedTo =
+        currentUser != null ? currentUser.id : AppContant.defaultUserId;
+    todo.createdBy = currentUser != null ? currentUser.fullName : "";
     TodoFormStateHelper.updateFormState(context, todo, true);
     String currentTheme =
         Provider.of<AppThemeState>(context, listen: false).currentTheme;

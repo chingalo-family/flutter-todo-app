@@ -15,6 +15,7 @@ class Todo {
   bool isCompleted;
   String assignedTo;
   String groupId;
+  String completedTasks;
 
   List<TodoTask> tasks;
 
@@ -34,7 +35,7 @@ class Todo {
     this.assignedTo = this.assignedTo ?? AppContant.defaultUserId;
     this.groupId = this.groupId ?? AppContant.defaultUserGroupId;
     this.tasks = [];
-    this.createdOn = AppUtil.formattedDateTimeIntoString(DateTime.now());
+    this.createdOn = DateTime.now().toString().split(".")[0];
   }
 
   Map toMap() {
@@ -63,7 +64,6 @@ class Todo {
     this.completedBy = mapData['completedBy'] ?? '';
     this.assignedTo = mapData['assignedTo'] ?? '';
     this.groupId = mapData['groupId'] ?? '';
-    this.isCompleted = "${mapData['completedOn']}" != '';
   }
 
   @override

@@ -10,6 +10,7 @@ import 'package:todo_app/core/utils/app_util.dart';
 import 'package:todo_app/models/form_section.dart';
 import 'package:todo_app/models/todo.dart';
 import 'package:todo_app/models/todo_task.dart';
+import 'package:todo_app/models/user.dart';
 import 'package:todo_app/modules/todo/helpers/todo_task_form_state_helper.dart';
 import 'package:todo_app/modules/todo/models/todo_task_form.dart';
 import 'package:todo_app/modules/todo/pages/todo_view/components/delete_todo_task_confirmation.dart';
@@ -21,10 +22,12 @@ class TodoTaskContainer extends StatefulWidget {
     Key key,
     @required this.textColor,
     @required this.currentTodo,
+    @required this.currentUser,
   }) : super(key: key);
 
   final Color textColor;
   final Todo currentTodo;
+  final User currentUser;
 
   @override
   _TodoTaskContainerState createState() => _TodoTaskContainerState();
@@ -66,6 +69,11 @@ class _TodoTaskContainerState extends State<TodoTaskContainer> {
     bool isCompleted,
   ) {
     todoTask.isCompleted = isCompleted;
+    todoTask.completedOn =
+        isCompleted ? DateTime.now().toString().split(".")[0] : "";
+    todoTask.completedBy = isCompleted && widget.currentUser != null
+        ? widget.currentUser.fullName
+        : "default";
     Provider.of<TodoState>(context, listen: false).addTodoTask(todoTask);
   }
 
