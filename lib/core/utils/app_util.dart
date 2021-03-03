@@ -47,6 +47,17 @@ class AppUtil {
     return date.toIso8601String().split('T')[0];
   }
 
+  static getTimeDifferenceInHours(
+    String startDateTime,
+    String endDateTime,
+  ) {
+    DateTime current = DateTime.parse(startDateTime);
+    Duration differenceInTime = current.difference(DateTime.parse(endDateTime));
+    double numberOfHours =
+        differenceInTime.inHours + (differenceInTime.inMinutes / 60);
+    return numberOfHours.toStringAsFixed(2);
+  }
+
   static DateTime getDateIntoDateTimeFormat(String date) {
     return DateTime.parse(date);
   }

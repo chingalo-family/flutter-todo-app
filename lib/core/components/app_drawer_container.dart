@@ -48,7 +48,7 @@ class AppDrawerContainer extends StatelessWidget {
                         ),
                         height: size.height * 0.1,
                         child: Visibility(
-                          visible: currentUser.isLogin,
+                          visible: currentUser != null && currentUser.isLogin,
                           child: Center(
                             child: CircleAvatar(
                               radius: size.height * 0.05,
@@ -66,7 +66,7 @@ class AppDrawerContainer extends StatelessWidget {
                       Container(
                         height: size.height * 0.65,
                         child: Visibility(
-                          visible: currentUser.isLogin,
+                          visible: currentUser != null && currentUser.isLogin,
                           child: Container(
                             child: Text(''),
                           ),
@@ -78,7 +78,9 @@ class AppDrawerContainer extends StatelessWidget {
                             onPressed: () =>
                                 onSignInOrSignOut(context, currentUser),
                             child: Text(
-                              currentUser.isLogin ? 'Sign Out' : 'Sign In',
+                              currentUser != null && currentUser.isLogin
+                                  ? 'Sign Out'
+                                  : 'Sign In',
                               style: TextStyle().copyWith(),
                             ),
                           ),
