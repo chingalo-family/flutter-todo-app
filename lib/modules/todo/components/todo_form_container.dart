@@ -91,7 +91,7 @@ class TodoFormContainer extends StatelessWidget {
                         child: Container(
                           margin: EdgeInsets.symmetric(horizontal: 5.0),
                           child: Center(
-                            child: FlatButton(
+                            child: TextButton(
                               onPressed: () => Navigator.of(context).pop(),
                               child: Text(
                                 'Cancel',
@@ -107,7 +107,7 @@ class TodoFormContainer extends StatelessWidget {
                         child: Container(
                           margin: EdgeInsets.symmetric(horizontal: 5.0),
                           child: Center(
-                            child: FlatButton(
+                            child: TextButton(
                               onPressed: () => onSaveTodoForm(
                                 context,
                                 mandatoryFieldObject,

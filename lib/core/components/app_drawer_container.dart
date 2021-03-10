@@ -74,7 +74,7 @@ class AppDrawerContainer extends StatelessWidget {
                       ),
                       Container(
                         child: Center(
-                          child: FlatButton(
+                          child: TextButton(
                             onPressed: () =>
                                 onSignInOrSignOut(context, currentUser),
                             child: Text(

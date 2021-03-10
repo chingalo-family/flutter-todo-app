@@ -64,7 +64,7 @@ class DeleteTodoTaskConfirmation extends StatelessWidget {
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: 5.0),
                     child: Center(
-                      child: FlatButton(
+                      child: TextButton(
                         onPressed: () => onDeleteTodo(context),
                         child: Text(
                           'Delete',
@@ -80,7 +80,7 @@ class DeleteTodoTaskConfirmation extends StatelessWidget {
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: 5.0),
                     child: Center(
-                      child: FlatButton(
+                      child: TextButton(
                         onPressed: () => Navigator.of(context).pop(false),
                         child: Text(
                           'Cancel',
