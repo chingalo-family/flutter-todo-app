@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/app_state/app_theme_state.dart';
 import 'package:todo_app/app_state/todo_form_state.dart';
 import 'package:todo_app/app_state/todo_state.dart';
 import 'package:todo_app/core/components/entry_forms/entry_form_container.dart';
+import 'package:todo_app/core/contants/app_contant.dart';
+import 'package:todo_app/core/services/theme_service.dart';
 import 'package:todo_app/core/utils/app_util.dart';
 import 'package:todo_app/models/form_section.dart';
 import 'package:todo_app/models/todo.dart';
@@ -64,68 +67,78 @@ class TodoFormContainer extends StatelessWidget {
     mandatoryFieldObject['title'] = true;
     return Consumer<TodoFormState>(
       builder: (context, todoFormState, child) {
-        return Container(
-          width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                child: EntryFormContainer(
-                  elevation: 0.0,
-                  isEditableMode: todoFormState.isEditableMode,
-                  formSections: todoFormSections,
-                  dataObject: todoFormState.formState,
-                  hiddenFields: todoFormState.hiddenFields,
-                  hiddenSections: todoFormState.hiddenSections,
-                  mandatoryFieldObject: mandatoryFieldObject,
-                  onInputValueChange: (id, value) =>
-                      onInputValueChange(context, id, value),
-                ),
-              ),
-              Visibility(
-                visible: todoFormState.isEditableMode,
-                child: Container(
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 5.0),
-                          child: Center(
-                            child: FlatButton(
-                              onPressed: () => Navigator.of(context).pop(),
-                              child: Text(
-                                'Cancel',
-                                style: TextStyle().copyWith(
-                                  color: Colors.redAccent,
+        return Consumer<AppThemeState>(
+          builder: (context, appThemeState, child) {
+            String currentTheme = appThemeState.currentTheme;
+            return Container(
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    child: EntryFormContainer(
+                      elevation: 0.0,
+                      isEditableMode: todoFormState.isEditableMode,
+                      formSections: todoFormSections,
+                      dataObject: todoFormState.formState,
+                      hiddenFields: todoFormState.hiddenFields,
+                      hiddenSections: todoFormState.hiddenSections,
+                      mandatoryFieldObject: mandatoryFieldObject,
+                      onInputValueChange: (id, value) =>
+                          onInputValueChange(context, id, value),
+                    ),
+                  ),
+                  Visibility(
+                    visible: todoFormState.isEditableMode,
+                    child: Container(
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              margin: EdgeInsets.symmetric(horizontal: 5.0),
+                              child: Center(
+                                child: TextButton(
+                                  onPressed: () => Navigator.of(context).pop(),
+                                  child: Text(
+                                    'Cancel',
+                                    style: TextStyle().copyWith(
+                                      color: Colors.redAccent,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 5.0),
-                          child: Center(
-                            child: FlatButton(
-                              onPressed: () => onSaveTodoForm(
-                                context,
-                                mandatoryFieldObject,
-                              ),
-                              child: Text(
-                                'Save',
-                                style: TextStyle().copyWith(),
+                          Expanded(
+                            child: Container(
+                              margin: EdgeInsets.symmetric(horizontal: 5.0),
+                              child: Center(
+                                child: TextButton(
+                                  onPressed: () => onSaveTodoForm(
+                                    context,
+                                    mandatoryFieldObject,
+                                  ),
+                                  child: Text(
+                                    'Save',
+                                    style: TextStyle().copyWith(
+                                      color: currentTheme ==
+                                              ThemeServices.darkTheme
+                                          ? AppContant.darkTextColor
+                                          : AppContant.ligthTextColor,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                      )
-                    ],
+                          )
+                        ],
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
+            );
+          },
         );
       },
     );

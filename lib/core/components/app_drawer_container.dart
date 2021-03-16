@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/app_state/app_theme_state.dart';
 import 'package:todo_app/app_state/user_state.dart';
+import 'package:todo_app/core/components/user_forms/sign_in_sign_up_form_container.dart';
 import 'package:todo_app/core/contants/app_contant.dart';
 import 'package:todo_app/core/services/theme_service.dart';
+import 'package:todo_app/core/utils/app_util.dart';
 import 'package:todo_app/models/user.dart';
 
 class AppDrawerContainer extends StatelessWidget {
@@ -11,9 +13,14 @@ class AppDrawerContainer extends StatelessWidget {
     Key key,
   }) : super(key: key);
 
-  onSignInOrSignOut(BuildContext context, User currentUser) {
-    print(currentUser);
-    Navigator.pop(context);
+  onSignInOrSignOut(BuildContext context, User currentUser) async {
+    if (currentUser != null) {
+      print("sign out the user");
+    } else {
+      Widget modal = SignInSignUpFormContainer();
+      User user = await AppUtil.showPopUpModal(context, modal, false);
+      if (user != null) print(user);
+    }
   }
 
   @override
@@ -37,7 +44,9 @@ class AppDrawerContainer extends StatelessWidget {
                       : AppContant.lightThemeColor,
                 ),
                 child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 20.0),
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 20.0,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -74,14 +83,18 @@ class AppDrawerContainer extends StatelessWidget {
                       ),
                       Container(
                         child: Center(
-                          child: FlatButton(
+                          child: TextButton(
                             onPressed: () =>
                                 onSignInOrSignOut(context, currentUser),
                             child: Text(
                               currentUser != null && currentUser.isLogin
                                   ? 'Sign Out'
                                   : 'Sign In',
-                              style: TextStyle().copyWith(),
+                              style: TextStyle().copyWith(
+                                color: currentTheme == ThemeServices.darkTheme
+                                    ? AppContant.darkTextColor
+                                    : AppContant.ligthLabelTextColor,
+                              ),
                             ),
                           ),
                         ),
