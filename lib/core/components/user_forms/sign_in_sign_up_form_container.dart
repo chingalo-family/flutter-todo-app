@@ -6,16 +6,17 @@ import 'package:todo_app/core/components/user_forms/sign_up_form.dart';
 import 'package:todo_app/core/contants/app_contant.dart';
 import 'package:todo_app/core/services/theme_service.dart';
 
-class SignInSignUpForm extends StatefulWidget {
-  const SignInSignUpForm({
+class SignInSignUpFormContainer extends StatefulWidget {
+  const SignInSignUpFormContainer({
     Key key,
   }) : super(key: key);
 
   @override
-  _SignInSignUpFormState createState() => _SignInSignUpFormState();
+  _SignInSignUpFormContainerState createState() =>
+      _SignInSignUpFormContainerState();
 }
 
-class _SignInSignUpFormState extends State<SignInSignUpForm> {
+class _SignInSignUpFormContainerState extends State<SignInSignUpFormContainer> {
   bool _showSignInForm = true;
 
   void onChangeFormState() {
