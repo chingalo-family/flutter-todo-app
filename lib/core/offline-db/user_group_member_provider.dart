@@ -14,13 +14,13 @@ class UserGroupMemberProvider extends DbProvider {
 
   addOrUpdateTodoTask(UserGroupMember userGroupMember) async {
     var dbClient = await db;
-    await dbClient.insert(tableName, userGroupMember.toMap(),
+    await dbClient!.insert(tableName, userGroupMember.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   deleteTodoTask(String userGroupMemberId) async {
     var dbClient = await db;
-    return await dbClient
+    return await dbClient!
         .delete(tableName, where: '$id = ?', whereArgs: [userGroupMemberId]);
   }
 
@@ -28,7 +28,7 @@ class UserGroupMemberProvider extends DbProvider {
     List<UserGroupMember> userGroupMembers = [];
     try {
       var dbClient = await db;
-      List<Map> maps = await dbClient.query(tableName,
+      List<Map> maps = await dbClient!.query(tableName,
           columns: [
             id,
           ],

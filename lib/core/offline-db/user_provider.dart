@@ -16,13 +16,13 @@ class UserProvider extends DbProvider {
 
   addOrUpdateUser(User user) async {
     var dbClient = await db;
-    await dbClient.insert(tableName, user.toMap(),
+    await dbClient!.insert(tableName, user.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   deleteUser(String userId) async {
     var dbClient = await db;
-    return await dbClient
+    return await dbClient!
         .delete(tableName, where: '$id = ?', whereArgs: [userId]);
   }
 
@@ -30,7 +30,7 @@ class UserProvider extends DbProvider {
     List<User> users = [];
     try {
       var dbClient = await db;
-      List<Map> maps = await dbClient.query(tableName,
+      List<Map> maps = await dbClient!.query(tableName,
           columns: [
             id,
             username,

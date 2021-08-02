@@ -88,11 +88,11 @@ class AppUtil {
   }
 
   static showToastMessage({
-    String message,
+    String? message,
     ToastGravity position = ToastGravity.BOTTOM,
   }) {
     Fluttertoast.showToast(
-      msg: message,
+      msg: message!,
       toastLength: Toast.LENGTH_SHORT,
       gravity: position,
       backgroundColor: Color(0xFF656565),

@@ -6,7 +6,7 @@ class PreferenceProvider {
     await _prefs.setString(preferenceKey, value);
   }
 
-  static Future<String> getPreferenceValue(
+  static Future<String?> getPreferenceValue(
     String preferenceKey,
   ) async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();

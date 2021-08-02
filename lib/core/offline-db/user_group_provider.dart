@@ -11,13 +11,13 @@ class UserGroupProvider extends DbProvider {
 
   addOrUpdateUserGroup(UserGroup userGroup) async {
     var dbClient = await db;
-    await dbClient.insert(tableName, userGroup.toMap(),
+    await dbClient!.insert(tableName, userGroup.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   deleteUserGroup(String userGroupId) async {
     var dbClient = await db;
-    return await dbClient
+    return await dbClient!
         .delete(tableName, where: '$id = ?', whereArgs: [userGroupId]);
   }
 
@@ -25,7 +25,7 @@ class UserGroupProvider extends DbProvider {
     List<UserGroup> userGroups = [];
     try {
       var dbClient = await db;
-      List<Map> maps = await dbClient.query(tableName,
+      List<Map> maps = await dbClient!.query(tableName,
           columns: [
             id,
             name,
