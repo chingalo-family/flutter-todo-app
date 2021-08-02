@@ -8,7 +8,7 @@ import 'todo_list.dart';
 
 class TodoListContainer extends StatelessWidget {
   const TodoListContainer({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   onSelectTodo(BuildContext context, Todo todo) {

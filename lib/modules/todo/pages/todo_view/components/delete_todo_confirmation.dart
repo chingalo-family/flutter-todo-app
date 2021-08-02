@@ -10,8 +10,8 @@ import 'package:todo_app/models/todo.dart';
 
 class DeleteTodoConfirmation extends StatelessWidget {
   const DeleteTodoConfirmation({
-    Key key,
-    @required this.currentTodo,
+    Key? key,
+    required this.currentTodo,
   }) : super(key: key);
 
   final Todo currentTodo;

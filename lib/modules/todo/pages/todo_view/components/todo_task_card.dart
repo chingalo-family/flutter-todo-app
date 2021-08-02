@@ -6,9 +6,9 @@ import 'package:todo_app/models/todo_task.dart';
 
 class TodoTaskCard extends StatefulWidget {
   const TodoTaskCard({
-    Key key,
-    @required this.textColor,
-    @required this.todoTask,
+    Key? key,
+    required this.textColor,
+    required this.todoTask,
     this.onDelete,
     this.onEdit,
     this.onUpdateTodoTaskStatus,
@@ -17,9 +17,9 @@ class TodoTaskCard extends StatefulWidget {
   final Color textColor;
   final TodoTask todoTask;
 
-  final VoidCallback onDelete;
-  final VoidCallback onEdit;
-  final Function onUpdateTodoTaskStatus;
+  final VoidCallback? onDelete;
+  final VoidCallback? onEdit;
+  final Function? onUpdateTodoTaskStatus;
 
   @override
   _TodoTaskCardState createState() => _TodoTaskCardState();
@@ -43,7 +43,7 @@ class _TodoTaskCardState extends State<TodoTaskCard> {
 
   onUpdateTodoTaskStatus(bool isCompleted) {
     _isCompleted = isCompleted;
-    widget.onUpdateTodoTaskStatus(isCompleted);
+    widget.onUpdateTodoTaskStatus!(isCompleted);
     setState(() {});
   }
 

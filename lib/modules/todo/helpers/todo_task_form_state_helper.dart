@@ -13,23 +13,21 @@ class TodoTaskFormStateHelper {
     Provider.of<TodoTaskFormState>(context, listen: false).resetFormState();
     Provider.of<TodoTaskFormState>(context, listen: false)
         .updateFormEditabilityState(isEditableMode: isEditableMode);
-    if (todoTask != null) {
-      Provider.of<TodoTaskFormState>(context, listen: false)
-          .setFormFieldState('id', todoTask.id);
-      Provider.of<TodoTaskFormState>(context, listen: false)
-          .setFormFieldState('todoId', todoTask.todoId);
-      Provider.of<TodoTaskFormState>(context, listen: false)
-          .setFormFieldState('title', todoTask.title);
-      Provider.of<TodoTaskFormState>(context, listen: false)
-          .setFormFieldState('isCompleted', todoTask.isCompleted);
-      Provider.of<TodoTaskFormState>(context, listen: false)
-          .setFormFieldState('createdOn', todoTask.createdOn);
-      Provider.of<TodoTaskFormState>(context, listen: false)
-          .setFormFieldState('createdBy', todoTask.createdBy);
-      Provider.of<TodoTaskFormState>(context, listen: false)
-          .setFormFieldState('assignedTo', todoTask.assignedTo);
-      Provider.of<TodoTaskFormState>(context, listen: false)
-          .setFormFieldState('dueDate', todoTask.dueDate);
-    }
+    Provider.of<TodoTaskFormState>(context, listen: false)
+        .setFormFieldState('id', todoTask.id);
+    Provider.of<TodoTaskFormState>(context, listen: false)
+        .setFormFieldState('todoId', todoTask.todoId);
+    Provider.of<TodoTaskFormState>(context, listen: false)
+        .setFormFieldState('title', todoTask.title);
+    Provider.of<TodoTaskFormState>(context, listen: false)
+        .setFormFieldState('isCompleted', todoTask.isCompleted);
+    Provider.of<TodoTaskFormState>(context, listen: false)
+        .setFormFieldState('createdOn', todoTask.createdOn);
+    Provider.of<TodoTaskFormState>(context, listen: false)
+        .setFormFieldState('createdBy', todoTask.createdBy);
+    Provider.of<TodoTaskFormState>(context, listen: false)
+        .setFormFieldState('assignedTo', todoTask.assignedTo);
+    Provider.of<TodoTaskFormState>(context, listen: false)
+        .setFormFieldState('dueDate', todoTask.dueDate);
   }
 }

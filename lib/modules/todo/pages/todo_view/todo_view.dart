@@ -22,7 +22,7 @@ import 'package:todo_app/modules/todo/pages/todo_view/components/todo_task_form_
 import 'components/todo_view_container.dart';
 
 class TodoView extends StatelessWidget {
-  const TodoView({Key key}) : super(key: key);
+  const TodoView({Key? key}) : super(key: key);
 
   onAddTodoTask(
     BuildContext context,
@@ -94,7 +94,7 @@ class TodoView extends StatelessWidget {
       builder: (context, userState, child) {
         return Consumer<TodoState>(
           builder: (context, todoState, child) {
-            Todo currentTodo = todoState.currentTodo;
+            Todo currentTodo = todoState.currentTodo!;
             return SafeArea(
               child: Scaffold(
                 appBar: PreferredSize(

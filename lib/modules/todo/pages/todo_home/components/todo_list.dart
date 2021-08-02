@@ -8,13 +8,13 @@ import 'package:todo_app/models/todo.dart';
 
 class TodoList extends StatelessWidget {
   const TodoList({
-    Key key,
-    @required this.todo,
+    Key? key,
+    required this.todo,
     this.onSelectTodo,
   }) : super(key: key);
 
   final Todo todo;
-  final VoidCallback onSelectTodo;
+  final VoidCallback? onSelectTodo;
 
   @override
   Widget build(BuildContext context) {

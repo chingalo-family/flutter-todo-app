@@ -8,7 +8,7 @@ import 'package:todo_app/core/services/theme_service.dart';
 
 class TodoListFilter extends StatelessWidget {
   const TodoListFilter({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

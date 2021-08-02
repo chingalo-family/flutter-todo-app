@@ -6,15 +6,15 @@ import 'package:todo_app/models/todo.dart';
 
 class TodoSummaryContainer extends StatelessWidget {
   const TodoSummaryContainer({
-    Key key,
-    @required this.textColor,
-    @required this.currentTodo,
+    Key? key,
+    required this.textColor,
+    required this.currentTodo,
     this.onTapCurrentTodo,
   }) : super(key: key);
 
   final Color textColor;
   final Todo currentTodo;
-  final VoidCallback onTapCurrentTodo;
+  final VoidCallback? onTapCurrentTodo;
 
   @override
   Widget build(BuildContext context) {

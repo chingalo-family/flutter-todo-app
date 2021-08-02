@@ -10,8 +10,8 @@ import 'package:todo_app/models/todo_task.dart';
 
 class DeleteTodoTaskConfirmation extends StatelessWidget {
   const DeleteTodoTaskConfirmation({
-    Key key,
-    @required this.todoTask,
+    Key? key,
+    required this.todoTask,
   }) : super(key: key);
 
   final TodoTask todoTask;

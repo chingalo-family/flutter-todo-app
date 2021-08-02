@@ -20,7 +20,7 @@ import 'components/todo_list_container.dart';
 class TodoHome extends StatelessWidget {
   onAddTodo(
     BuildContext context,
-    User currentUser,
+    User? currentUser,
   ) async {
     Todo todo = new Todo(title: "", description: "");
     todo.assignedTo =

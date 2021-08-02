@@ -10,8 +10,8 @@ import 'package:todo_app/models/todo_task.dart';
 
 class TodoTaskFormContainer extends StatelessWidget {
   const TodoTaskFormContainer({
-    Key key,
-    @required this.todoTaskFormSections,
+    Key? key,
+    required this.todoTaskFormSections,
   }) : super(key: key);
 
   final List<FormSection> todoTaskFormSections;

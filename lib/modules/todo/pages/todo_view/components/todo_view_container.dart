@@ -11,13 +11,13 @@ import 'todo_task_container.dart';
 
 class TodoViewContainer extends StatelessWidget {
   const TodoViewContainer({
-    Key key,
-    @required this.currentTodo,
+    Key? key,
+    required this.currentTodo,
     this.onTapCurrentTodo,
   }) : super(key: key);
 
   final Todo currentTodo;
-  final VoidCallback onTapCurrentTodo;
+  final VoidCallback? onTapCurrentTodo;
 
   @override
   Widget build(BuildContext context) {

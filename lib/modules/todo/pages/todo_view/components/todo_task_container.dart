@@ -19,10 +19,10 @@ import 'package:todo_app/modules/todo/pages/todo_view/components/todo_task_form_
 
 class TodoTaskContainer extends StatefulWidget {
   const TodoTaskContainer({
-    Key key,
-    @required this.textColor,
-    @required this.currentTodo,
-    @required this.currentUser,
+    Key? key,
+    required this.textColor,
+    required this.currentTodo,
+    required this.currentUser,
   }) : super(key: key);
 
   final Color textColor;

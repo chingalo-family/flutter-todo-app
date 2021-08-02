@@ -13,23 +13,21 @@ class TodoFormStateHelper {
     Provider.of<TodoFormState>(context, listen: false).resetFormState();
     Provider.of<TodoFormState>(context, listen: false)
         .updateFormEditabilityState(isEditableMode: isEditableMode);
-    if (todo != null) {
-      Provider.of<TodoFormState>(context, listen: false)
-          .setFormFieldState('id', todo.id);
-      Provider.of<TodoFormState>(context, listen: false)
-          .setFormFieldState('title', todo.title);
-      Provider.of<TodoFormState>(context, listen: false)
-          .setFormFieldState('description', todo.description);
-      Provider.of<TodoFormState>(context, listen: false)
-          .setFormFieldState("assignedTo", todo.assignedTo);
-      Provider.of<TodoFormState>(context, listen: false)
-          .setFormFieldState("createdBy", todo.createdBy);
-      Provider.of<TodoFormState>(context, listen: false)
-          .setFormFieldState("createdOn", todo.createdOn);
-      Provider.of<TodoFormState>(context, listen: false)
-          .setFormFieldState("dueDate", todo.dueDate);
-      Provider.of<TodoFormState>(context, listen: false)
-          .setFormFieldState("groupId", todo.groupId);
-    }
+    Provider.of<TodoFormState>(context, listen: false)
+        .setFormFieldState('id', todo.id);
+    Provider.of<TodoFormState>(context, listen: false)
+        .setFormFieldState('title', todo.title);
+    Provider.of<TodoFormState>(context, listen: false)
+        .setFormFieldState('description', todo.description);
+    Provider.of<TodoFormState>(context, listen: false)
+        .setFormFieldState("assignedTo", todo.assignedTo);
+    Provider.of<TodoFormState>(context, listen: false)
+        .setFormFieldState("createdBy", todo.createdBy);
+    Provider.of<TodoFormState>(context, listen: false)
+        .setFormFieldState("createdOn", todo.createdOn);
+    Provider.of<TodoFormState>(context, listen: false)
+        .setFormFieldState("dueDate", todo.dueDate);
+    Provider.of<TodoFormState>(context, listen: false)
+        .setFormFieldState("groupId", todo.groupId);
   }
 }
