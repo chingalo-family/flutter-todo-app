@@ -5,7 +5,7 @@ class AppPopUpMenuItem {
   String name;
   IconData icon;
 
-  AppPopUpMenuItem({this.id, this.name, this.icon});
+  AppPopUpMenuItem({required this.id, required this.name, required this.icon});
 
   @override
   String toString() {

@@ -1,20 +1,19 @@
-import 'package:flutter/material.dart';
 import 'package:todo_app/core/utils/app_util.dart';
 
 class UserGroup {
-  String id;
-  String name;
-  String description;
+  late String id;
+  late String name;
+  late String description;
 
   UserGroup({
-    @required this.name,
-    this.description,
+    required this.name,
+    this.description = "",
   }) {
     this.id = AppUtil.getUid();
-    this.description = this.description ?? '';
+    this.description = this.description != "" ? this.description : '';
   }
 
-  Map toMap() {
+  Map<String, dynamic> toMap() {
     var data = Map<String, dynamic>();
     data['id'] = this.id;
     data['name'] = this.name;

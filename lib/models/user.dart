@@ -1,27 +1,26 @@
-import 'package:flutter/material.dart';
 import 'package:todo_app/core/utils/app_util.dart';
 
 class User {
-  String id;
-  String username;
-  String fullName;
-  String password;
-  String emial;
-  String phoneNumber;
-  bool isLogin;
+  late String id;
+  late String username;
+  late String fullName;
+  late String? password;
+  late String? emial;
+  late String? phoneNumber;
+  late bool isLogin;
 
   User({
-    @required this.username,
+    required this.username,
     this.emial,
-    @required this.fullName,
+    required this.fullName,
     this.password,
     this.phoneNumber,
-    this.isLogin = true,
+    this.isLogin = false,
   }) {
     this.id = AppUtil.getUid();
   }
 
-  Map toMap() {
+  Map<String, dynamic> toMap() {
     var data = Map<String, dynamic>();
     data['id'] = this.id;
     data['username'] = this.username;

@@ -10,14 +10,14 @@ class TodoState with ChangeNotifier {
   final TodoTaskProvider todoTaskProvider = new TodoTaskProvider();
 
   List<Todo> _todoList = [];
-  Todo _currentTodo;
+  Todo? _currentTodo;
 
   // selector for state
   List<Todo> get todoList => _todoList.toList();
 
   int get todoCount => _todoList.toList().length;
 
-  Todo get currentTodo => _currentTodo ?? new Todo(title: '', description: '');
+  Todo? get currentTodo => _currentTodo;
 
   // actions on reducers
   void initiateTodoList() async {
@@ -37,9 +37,9 @@ class TodoState with ChangeNotifier {
       todo.completedTasks = "${completedTasks.length}";
       return todo;
     }).toList();
-    if (_currentTodo != null && _currentTodo.id.isNotEmpty) {
+    if (_currentTodo != null && _currentTodo!.id.isNotEmpty) {
       int index =
-          _todoList.indexWhere((Todo todo) => todo.id == _currentTodo.id);
+          _todoList.indexWhere((Todo todo) => todo.id == _currentTodo!.id);
       _currentTodo = _todoList[index];
     }
     notifyListeners();

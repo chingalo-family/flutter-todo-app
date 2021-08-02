@@ -14,36 +14,25 @@ class InputField {
   bool allowFuturePeriod;
   List<InputFieldOption> options;
   bool hasSubInputField;
-  InputField subInputField;
+  InputField? subInputField;
   List<int> allowedSelectedLevels;
 
   InputField({
-    @required this.id,
-    @required this.name,
-    @required this.valueType,
-    this.hasSubInputField,
-    this.description,
-    this.inputColor,
-    this.labelColor,
-    this.background,
-    this.renderAsRadio,
-    this.isReadObly,
-    this.options,
+    required this.id,
+    required this.name,
+    required this.valueType,
+    this.hasSubInputField = false,
+    this.description = "",
+    this.inputColor = Colors.blueGrey,
+    this.labelColor = Colors.blueGrey,
+    this.background = Colors.transparent,
+    this.renderAsRadio = false,
+    this.isReadObly = false,
+    this.options = const [],
     this.subInputField,
-    this.allowedSelectedLevels,
-    this.allowFuturePeriod,
-  }) {
-    this.allowedSelectedLevels = this.allowedSelectedLevels ?? [];
-    this.allowFuturePeriod = this.allowFuturePeriod ?? false;
-    this.isReadObly = this.isReadObly ?? false;
-    this.description = this.description ?? '';
-    this.hasSubInputField = this.hasSubInputField ?? false;
-    this.renderAsRadio = this.renderAsRadio ?? false;
-    this.options = this.options ?? [];
-    this.inputColor = this.inputColor ?? null;
-    this.labelColor = this.labelColor ?? null;
-    this.background = this.background ?? Colors.transparent;
-  }
+    this.allowedSelectedLevels = const [],
+    this.allowFuturePeriod = false,
+  });
 
   @override
   String toString() {

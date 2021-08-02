@@ -1,40 +1,44 @@
-import 'package:flutter/material.dart';
 import 'package:todo_app/core/utils/app_util.dart';
 
 class TodoTask {
-  String id;
-  String todoId;
-  String title;
-  bool isCompleted;
-  String createdOn;
-  String createdBy;
-  String completedOn;
-  String completedBy;
-  String assignedTo;
-  String dueDate;
+  late String id;
+  late String todoId;
+  late String title;
+  late bool isCompleted;
+  late String createdOn;
+  late String createdBy;
+  late String completedOn;
+  late String completedBy;
+  late String assignedTo;
+  late String dueDate;
 
   TodoTask({
-    @required this.todoId,
-    @required this.title,
-    @required this.isCompleted,
+    required this.todoId,
+    required this.title,
+    required this.isCompleted,
   }) {
     this.id = AppUtil.getUid();
-    this.isCompleted = this.isCompleted ?? false;
     this.createdOn = DateTime.now().toString().split(".")[0];
+    this.createdBy = "";
+    this.dueDate = "";
+    this.assignedTo = "";
+    this.completedBy = "";
+    this.completedOn = "";
   }
 
-  Map toMap(TodoTask todoTask) {
+  Map<String, dynamic> toMap(TodoTask todoTask) {
     var data = Map<String, dynamic>();
     data['id'] = todoTask.id;
     data['todoId'] = todoTask.todoId;
     data['title'] = todoTask.title;
     data['isCompleted'] = todoTask.isCompleted ? 1 : 0;
-    data['createdOn'] = todoTask.createdOn ?? '';
-    data['assignedTo'] = todoTask.assignedTo ?? '';
-    data['completedBy'] = todoTask.completedBy ?? '';
-    data['assignedTo'] = todoTask.assignedTo ?? '';
-    data['dueDate'] = todoTask.dueDate ?? '';
-    data['completedOn'] = todoTask.completedOn ?? '';
+    data['createdBy'] = todoTask.createdBy;
+    data['createdOn'] = todoTask.createdOn;
+    data['assignedTo'] = todoTask.assignedTo;
+    data['completedBy'] = todoTask.completedBy;
+    data['assignedTo'] = todoTask.assignedTo;
+    data['dueDate'] = todoTask.dueDate;
+    data['completedOn'] = todoTask.completedOn;
     return data;
   }
 

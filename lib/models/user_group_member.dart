@@ -1,20 +1,20 @@
 import 'package:todo_app/core/utils/app_util.dart';
 
 class UserGroupMember {
-  String id;
-  String groupId;
-  String userId;
-  String username;
-  String fullName;
+  late String id;
+  late String groupId;
+  late String userId;
+  late String username;
+  late String fullName;
 
   UserGroupMember({
-    this.groupId,
-    this.userId,
+    required this.groupId,
+    required this.userId,
   }) {
     this.id = AppUtil.getUid();
   }
 
-  Map toMap() {
+  Map<String, dynamic> toMap() {
     var data = Map<String, dynamic>();
     data['id'] = this.id;
     data['groupId'] = this.groupId;

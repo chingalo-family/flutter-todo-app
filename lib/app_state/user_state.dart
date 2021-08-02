@@ -3,15 +3,15 @@ import 'package:todo_app/models/user.dart';
 
 class UserState with ChangeNotifier {
   // initial state
-  User _currentUser;
+  User? _currentUser;
 
   // selectors
-  User get currrentUser => _currentUser;
+  User get currrentUser => _currentUser ?? User(fullName: "", username: "");
 
-  String get usernameIcon => _currentUser != null && _currentUser.isLogin
-      ? _currentUser.fullName
+  String get usernameIcon => _currentUser != null && _currentUser!.isLogin
+      ? _currentUser!.fullName
           .split(" ")
-          .map((name) => "$name"[0] ?? "")
+          .map((name) => "$name"[0])
           .toList()
           .join("")
           .toUpperCase()
