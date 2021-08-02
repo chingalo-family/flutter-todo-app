@@ -3,27 +3,27 @@ description: A new Flutter project.
 
 publish_to: "none"
 
-version: 1.1.0+6
+version: 0.1.0+6
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0-0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   provider: ^5.0.0
-  geolocator: ^7.0.1
-  cupertino_icons: ^1.0.2
-  shared_preferences: ^2.0.3
-  flutter_svg: ^0.19.3
-  google_fonts: ^2.0.0
-  http: ^0.13.0
-  random_color: ^1.0.5
-  get_version: ^0.2.2
-  fluttertoast: ^7.0.4
-  charts_flutter:
-  sqflite:
-  path:
+  geolocator: ^7.3.1
+  cupertino_icons: ^1.0.3
+  shared_preferences: ^2.0.6
+  flutter_svg: ^0.22.0
+  google_fonts: ^2.1.0
+  http: ^0.13.3
+  random_color: ^1.0.6-nullsafety
+  fluttertoast: ^8.0.7
+  charts_flutter: ^0.11.0
+  sqflite: ^2.0.0+3
+  path: ^1.8.0
+  new_version: ^0.2.2
 
 dev_dependencies:
   flutter_test:
