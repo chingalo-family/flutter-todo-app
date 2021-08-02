@@ -10,16 +10,16 @@ import 'package:todo_app/models/user.dart';
 
 class AppDrawerContainer extends StatelessWidget {
   const AppDrawerContainer({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   onSignInOrSignOut(BuildContext context, User currentUser) async {
-    if (currentUser != null) {
+    if (currentUser.isLogin) {
       print("sign out the user");
     } else {
       Widget modal = SignInSignUpFormContainer();
       User user = await AppUtil.showPopUpModal(context, modal, false);
-      if (user != null) print(user);
+      print(user);
     }
   }
 
@@ -57,7 +57,7 @@ class AppDrawerContainer extends StatelessWidget {
                         ),
                         height: size.height * 0.1,
                         child: Visibility(
-                          visible: currentUser != null && currentUser.isLogin,
+                          visible: currentUser.isLogin,
                           child: Center(
                             child: CircleAvatar(
                               radius: size.height * 0.05,
@@ -75,7 +75,7 @@ class AppDrawerContainer extends StatelessWidget {
                       Container(
                         height: size.height * 0.65,
                         child: Visibility(
-                          visible: currentUser != null && currentUser.isLogin,
+                          visible: currentUser.isLogin,
                           child: Container(
                             child: Text(''),
                           ),
@@ -87,9 +87,7 @@ class AppDrawerContainer extends StatelessWidget {
                             onPressed: () =>
                                 onSignInOrSignOut(context, currentUser),
                             child: Text(
-                              currentUser != null && currentUser.isLogin
-                                  ? 'Sign Out'
-                                  : 'Sign In',
+                              currentUser.isLogin ? 'Sign Out' : 'Sign In',
                               style: TextStyle().copyWith(
                                 color: currentTheme == ThemeServices.darkTheme
                                     ? AppContant.darkTextColor

@@ -14,19 +14,19 @@ import 'package:todo_app/models/input_field.dart';
 
 class InputFieldContainer extends StatelessWidget {
   const InputFieldContainer({
-    Key key,
-    @required this.inputField,
+    Key? key,
+    required this.inputField,
     this.onInputValueChange,
     this.dataObject,
     this.mandatoryFieldObject,
-    this.isEditableMode,
+    this.isEditableMode = false,
   }) : super(key: key);
 
   final InputField inputField;
   final bool isEditableMode;
-  final Function onInputValueChange;
-  final Map dataObject;
-  final Map mandatoryFieldObject;
+  final Function? onInputValueChange;
+  final Map? dataObject;
+  final Map? mandatoryFieldObject;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +62,7 @@ class InputFieldContainer extends StatelessWidget {
                         children: [
                           TextSpan(
                             text: mandatoryFieldObject != null &&
-                                    mandatoryFieldObject[inputField.id] == true
+                                    mandatoryFieldObject![inputField.id] == true
                                 ? ' *'
                                 : '',
                             style: TextStyle(
@@ -121,16 +121,17 @@ class InputFieldContainer extends StatelessWidget {
                         children: [
                           Container(
                             child: Text(inputField.subInputField != null
-                                ? inputField.subInputField.name
+                                ? inputField.subInputField!.name
                                 : ''),
                           ),
-                          Container(
-                            child: isEditableMode
-                                ? _getInputField(inputField.subInputField)
-                                : _getInputFieldLabel(
-                                    inputField.subInputField,
-                                  ),
-                          ),
+                          //@TODO habdling subIbput fields
+                          // Container(
+                          //   child: isEditableMode
+                          //       ? _getInputField(inputField.subInputField)
+                          //       : _getInputFieldLabel(
+                          //           inputField.subInputField!,
+                          //         ),
+                          // ),
                         ],
                       ),
                     ),
@@ -147,7 +148,7 @@ class InputFieldContainer extends StatelessWidget {
               ),
             ),
             LineSeperator(
-              color: inputField.inputColor != null
+              color: inputField.inputColor != Colors.blueGrey
                   ? inputField.inputColor.withOpacity(0.3)
                   : Colors.transparent,
             ),
@@ -158,27 +159,24 @@ class InputFieldContainer extends StatelessWidget {
   }
 
   Widget _getInputFieldLabel(InputField inputField) {
-    dynamic value =
-        inputField != null && '${dataObject[inputField.id]}' != 'null'
-            ? '${dataObject[inputField.id]}'
-            : '   ';
-    if (inputField != null) {
-      if (inputField.valueType == "BOOLEAN") {
-        value = value == 'true'
-            ? 'Yes'
-            : value == 'false'
-                ? 'No'
-                : value;
-      } else if (inputField.valueType == 'TRUE_ONLY') {
-        value = value == 'true' ? 'Yes' : value;
-      }
+    dynamic value = '${dataObject![inputField.id]}' != 'null'
+        ? '${dataObject![inputField.id]}'
+        : '   ';
+    if (inputField.valueType == "BOOLEAN") {
+      value = value == 'true'
+          ? 'Yes'
+          : value == 'false'
+              ? 'No'
+              : value;
+    } else if (inputField.valueType == 'TRUE_ONLY') {
+      value = value == 'true' ? 'Yes' : value;
     }
     return Container(
-      child: inputField != null && inputField.valueType == 'CHECK_BOX'
+      child: inputField.valueType == 'CHECK_BOX'
           ? CheckBoxListInputField(
               inputField: inputField,
               isReadOnly: true, //this.onInputValueChange,
-              dataObject: dataObject,
+              dataObject: dataObject ?? Map(),
             )
           : Row(
               children: [
@@ -190,7 +188,7 @@ class InputFieldContainer extends StatelessWidget {
                   child: Text(
                     value.toString(),
                     style: TextStyle().copyWith(
-                      color: inputField != null && inputField.inputColor != null
+                      color: inputField.inputColor != Colors.blueGrey
                           ? inputField.inputColor
                           : null,
                       fontWeight: FontWeight.w500,
@@ -205,84 +203,93 @@ class InputFieldContainer extends StatelessWidget {
 
   Widget _getInputField(InputField inputField) {
     return Container(
-      child: inputField != null
-          ? inputField.valueType == 'CHECK_BOX'
-              ? CheckBoxListInputField(
-                  inputField: inputField,
-                  onInputValueChange: (id, value) {
-                    this.onInputValueChange(id, value);
-                  },
-                  dataObject: dataObject,
-                )
-              : inputField.options.length > 0
-                  ? SelectInputField(
-                      color: inputField.inputColor,
-                      isReadOnly: inputField.isReadObly,
-                      renderAsRadio: inputField.renderAsRadio,
-                      onInputValueChange: (dynamic value) =>
-                          this.onInputValueChange(inputField.id, value),
-                      options: inputField.options,
-                      selectedOption: dataObject[inputField.id],
-                    )
-                  : inputField.valueType == 'TEXT' ||
-                          inputField.valueType == 'LONG_TEXT'
-                      ? TextInputFieldContainer(
-                          inputField: inputField,
-                          inputValue: dataObject[inputField.id],
-                          onInputValueChange: (dynamic value) =>
-                              this.onInputValueChange(inputField.id, value),
-                        )
-                      : inputField.valueType == 'PASSWORD'
-                          ? PasswordInputFieldContainer(
-                              inputField: inputField,
-                              inputValue: dataObject[inputField.id],
-                              onInputValueChange: (dynamic value) =>
-                                  this.onInputValueChange(inputField.id, value),
-                            )
-                          : inputField.valueType == 'USERNAME'
-                              ? UsernameInputFieldContainer(
-                                  inputField: inputField,
-                                  inputValue: dataObject[inputField.id],
-                                  onInputValueChange: (dynamic value) => this
-                                      .onInputValueChange(inputField.id, value),
-                                )
-                              : inputField.valueType == 'INTEGER_ZERO_OR_POSITIVE' ||
-                                      inputField.valueType == 'NUMBER'
-                                  ? NumericalInputFieldContainer(
-                                      inputField: inputField,
-                                      inputValue: dataObject[inputField.id],
-                                      onInputValueChange: (dynamic value) =>
-                                          this.onInputValueChange(
-                                              inputField.id, value))
-                                  : inputField.valueType == 'PHONE_NUMBER'
-                                      ? PhoneNumberInputFieldContainer(
-                                          inputField: inputField,
-                                          inputValue: dataObject[inputField.id],
-                                          onInputValueChange: (dynamic value) =>
-                                              this.onInputValueChange(
-                                                  inputField.id, value))
-                                      : inputField.valueType == 'BOOLEAN'
-                                          ? BooleanInputFieldContainer(
-                                              inputField: inputField,
-                                              inputValue:
-                                                  dataObject[inputField.id],
-                                              onInputValueChange: (dynamic value) =>
-                                                  this.onInputValueChange(
-                                                      inputField.id, value))
-                                          : inputField.valueType == 'TRUE_ONLY'
-                                              ? TrueOnlyInputFieldContainer(
-                                                  inputField: inputField,
-                                                  inputValue:
-                                                      dataObject[inputField.id],
-                                                  onInputValueChange: (dynamic value) =>
-                                                      this.onInputValueChange(inputField.id, value))
-                                              : inputField.valueType == 'DATE'
-                                                  ? DateInputFieldContainer(inputField: inputField, inputValue: dataObject[inputField.id], onInputValueChange: (dynamic value) => this.onInputValueChange(inputField.id, value))
-                                                  : Container(
-                                                      child: Text(
-                                                          '${inputField.valueType} is not supported'),
-                                                    )
-          : Text(''),
+      child: Container(
+        child: inputField.valueType == 'CHECK_BOX'
+            ? CheckBoxListInputField(
+                inputField: inputField,
+                onInputValueChange: (id, value) {
+                  this.onInputValueChange!(id, value);
+                },
+                dataObject: dataObject ?? Map(),
+              )
+            : inputField.options.length > 0
+                ? SelectInputField(
+                    color: inputField.inputColor,
+                    isReadOnly: inputField.isReadObly,
+                    renderAsRadio: inputField.renderAsRadio,
+                    onInputValueChange: (dynamic value) =>
+                        this.onInputValueChange!(inputField.id, value),
+                    options: inputField.options,
+                    selectedOption: dataObject![inputField.id],
+                  )
+                : inputField.valueType == 'TEXT' ||
+                        inputField.valueType == 'LONG_TEXT'
+                    ? TextInputFieldContainer(
+                        inputField: inputField,
+                        inputValue: dataObject![inputField.id],
+                        onInputValueChange: (dynamic value) =>
+                            this.onInputValueChange!(inputField.id, value),
+                      )
+                    : inputField.valueType == 'PASSWORD'
+                        ? PasswordInputFieldContainer(
+                            inputField: inputField,
+                            inputValue: dataObject![inputField.id],
+                            onInputValueChange: (dynamic value) =>
+                                this.onInputValueChange!(inputField.id, value),
+                          )
+                        : inputField.valueType == 'USERNAME'
+                            ? UsernameInputFieldContainer(
+                                inputField: inputField,
+                                inputValue: dataObject![inputField.id],
+                                onInputValueChange: (dynamic value) => this
+                                    .onInputValueChange!(inputField.id, value),
+                              )
+                            : inputField.valueType == 'INTEGER_ZERO_OR_POSITIVE' ||
+                                    inputField.valueType == 'NUMBER'
+                                ? NumericalInputFieldContainer(
+                                    inputField: inputField,
+                                    inputValue: dataObject![inputField.id],
+                                    onInputValueChange: (dynamic value) =>
+                                        this.onInputValueChange!(
+                                            inputField.id, value))
+                                : inputField.valueType == 'PHONE_NUMBER'
+                                    ? PhoneNumberInputFieldContainer(
+                                        inputField: inputField,
+                                        inputValue: dataObject![inputField.id],
+                                        onInputValueChange: (dynamic value) =>
+                                            this.onInputValueChange!(
+                                                inputField.id, value))
+                                    : inputField.valueType == 'BOOLEAN'
+                                        ? BooleanInputFieldContainer(
+                                            inputField: inputField,
+                                            inputValue:
+                                                dataObject![inputField.id],
+                                            onInputValueChange: (dynamic value) =>
+                                                this.onInputValueChange!(
+                                                    inputField.id, value))
+                                        : inputField.valueType == 'TRUE_ONLY'
+                                            ? TrueOnlyInputFieldContainer(
+                                                inputField: inputField,
+                                                inputValue:
+                                                    dataObject![inputField.id],
+                                                onInputValueChange: (dynamic value) =>
+                                                    this.onInputValueChange!(inputField.id, value))
+                                            : inputField.valueType == 'DATE'
+                                                ? DateInputFieldContainer(
+                                                    inputField: inputField,
+                                                    inputValue: dataObject![
+                                                        inputField.id],
+                                                    onInputValueChange: (dynamic
+                                                            value) =>
+                                                        this.onInputValueChange!(
+                                                            inputField.id,
+                                                            value),
+                                                  )
+                                                : Container(
+                                                    child: Text(
+                                                        '${inputField.valueType} is not supported'),
+                                                  ),
+      ),
     );
   }
 }

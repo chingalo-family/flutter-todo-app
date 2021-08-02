@@ -6,21 +6,21 @@ import 'package:todo_app/models/input_field_option.dart';
 
 class SelectInputField extends StatefulWidget {
   const SelectInputField({
-    Key key,
+    Key? key,
     this.color,
-    @required this.options,
-    @required this.selectedOption,
-    @required this.onInputValueChange,
-    @required this.isReadOnly,
+    required this.options,
+    required this.selectedOption,
+    required this.onInputValueChange,
+    required this.isReadOnly,
     this.renderAsRadio,
   }) : super(key: key);
 
-  final Color color;
+  final Color? color;
   final bool isReadOnly;
   final List<InputFieldOption> options;
   final dynamic selectedOption;
-  final Function onInputValueChange;
-  final bool renderAsRadio;
+  final Function? onInputValueChange;
+  final bool? renderAsRadio;
 
   @override
   _SelectInputFieldState createState() => _SelectInputFieldState();
@@ -49,20 +49,22 @@ class _SelectInputFieldState extends State<SelectInputField> {
   }
 
   void onValueChange(dynamic value) {
-    widget.onInputValueChange(value);
+    widget.onInputValueChange!(value);
     updateInputValueState(value);
   }
 
   @override
   Widget build(BuildContext context) {
-    return widget.renderAsRadio
+    return widget.renderAsRadio != true
         ? Container(
             child: RadioInputFieldContainer(
-                options: widget.options,
-                isReadOnly: widget.isReadOnly,
-                currentValue: _selectedOption,
-                activeColor: widget.color,
-                onInputValueChange: widget.onInputValueChange))
+              options: widget.options,
+              isReadOnly: widget.isReadOnly,
+              currentValue: _selectedOption,
+              activeColor: widget.color,
+              onInputValueChange: widget.onInputValueChange,
+            ),
+          )
         : Row(
             children: [
               Expanded(
@@ -77,7 +79,9 @@ class _SelectInputFieldState extends State<SelectInputField> {
                   ),
                 ),
                 elevation: 16,
-                style: TextStyle(color: widget.color ?? Colors.black),
+                style: TextStyle(
+                  color: widget.color ?? Colors.black,
+                ),
                 underline: Container(
                   height: 0,
                   color: Colors.transparent,

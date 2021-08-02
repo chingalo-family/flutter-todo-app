@@ -5,16 +5,16 @@ import 'package:todo_app/models/input_field_option.dart';
 
 class CheckBoxListInputField extends StatefulWidget {
   const CheckBoxListInputField(
-      {Key key,
-      @required this.inputField,
-      @required this.dataObject,
+      {Key? key,
+      required this.inputField,
+      required this.dataObject,
       this.isReadOnly = false,
       this.onInputValueChange})
       : super(key: key);
 
   final InputField inputField;
   final Map dataObject;
-  final Function onInputValueChange;
+  final Function? onInputValueChange;
   final bool isReadOnly;
 
   @override
@@ -55,7 +55,7 @@ class _CheckBoxListInputFieldState extends State<CheckBoxListInputField> {
                   value: widget.dataObject[option.code],
                   color: widget.inputField.inputColor,
                   onInputValueChange: (dynamic value) =>
-                      widget.onInputValueChange(option.code, '$value'),
+                      widget.onInputValueChange!(option.code, '$value'),
                 ))
             .toList(),
       ),

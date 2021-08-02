@@ -5,14 +5,14 @@ import 'package:todo_app/models/input_field.dart';
 
 class DateInputFieldContainer extends StatefulWidget {
   const DateInputFieldContainer({
-    Key key,
-    @required this.inputField,
-    @required this.onInputValueChange,
+    Key? key,
+    required this.inputField,
+    required this.onInputValueChange,
     this.inputValue,
   }) : super(key: key);
   final InputField inputField;
-  final Function onInputValueChange;
-  final String inputValue;
+  final Function? onInputValueChange;
+  final String? inputValue;
 
   @override
   _DateInputFieldContainerState createState() =>
@@ -20,8 +20,8 @@ class DateInputFieldContainer extends StatefulWidget {
 }
 
 class _DateInputFieldContainerState extends State<DateInputFieldContainer> {
-  TextEditingController dateController;
-  String _date;
+  TextEditingController? dateController;
+  String? _date;
 
   @override
   void initState() {
@@ -34,10 +34,10 @@ class _DateInputFieldContainerState extends State<DateInputFieldContainer> {
 
   void onOpenDateSelection(BuildContext context) async {
     _date = _date ?? AppUtil.formattedDateTimeIntoString(DateTime.now());
-    DateTime date = await showDatePicker(
+    DateTime? date = await showDatePicker(
       context: context,
       fieldLabelText: '${widget.inputField.name}',
-      initialDate: AppUtil.getDateIntoDateTimeFormat(_date),
+      initialDate: AppUtil.getDateIntoDateTimeFormat(_date!),
       firstDate: DateTime(1900),
       confirmText: 'Ok',
       cancelText: 'Cancel',
@@ -52,7 +52,7 @@ class _DateInputFieldContainerState extends State<DateInputFieldContainer> {
       setState(() {
         _date = AppUtil.formattedDateTimeIntoString(date);
         dateController = TextEditingController(text: _date);
-        widget.onInputValueChange(_date);
+        widget.onInputValueChange!(_date);
       });
   }
 

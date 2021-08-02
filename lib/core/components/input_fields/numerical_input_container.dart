@@ -3,16 +3,16 @@ import 'package:todo_app/core/components/input_fields/input_checked_icon.dart';
 import 'package:todo_app/models/input_field.dart';
 
 class NumericalInputFieldContainer extends StatefulWidget {
-  const NumericalInputFieldContainer(
-      {Key key,
-      @required this.inputField,
-      @required this.onInputValueChange,
-      this.inputValue})
-      : super(key: key);
+  const NumericalInputFieldContainer({
+    Key? key,
+    required this.inputField,
+    required this.onInputValueChange,
+    this.inputValue,
+  }) : super(key: key);
 
   final InputField inputField;
-  final Function onInputValueChange;
-  final String inputValue;
+  final Function? onInputValueChange;
+  final String? inputValue;
 
   @override
   _NumericalInputFieldContainerState createState() =>
@@ -21,8 +21,8 @@ class NumericalInputFieldContainer extends StatefulWidget {
 
 class _NumericalInputFieldContainerState
     extends State<NumericalInputFieldContainer> {
-  TextEditingController numericalController;
-  String _value;
+  TextEditingController? numericalController;
+  String? _value;
 
   @override
   void initState() {
@@ -39,7 +39,7 @@ class _NumericalInputFieldContainerState
       _value = value;
     });
 
-    widget.onInputValueChange(value.trim());
+    widget.onInputValueChange!(value.trim());
   }
 
   @override
@@ -48,23 +48,27 @@ class _NumericalInputFieldContainerState
       child: Row(
         children: [
           Expanded(
-              child: TextFormField(
-                  readOnly: widget.inputField.isReadObly,
-                  controller: widget.inputField.isReadObly
-                      ? TextEditingController(text: widget.inputValue)
-                      : numericalController,
-                  keyboardType: TextInputType.number,
-                  onChanged: onValueChange,
-                  style: TextStyle().copyWith(
-                    color: widget.inputField.inputColor,
-                  ),
-                  textInputAction: TextInputAction.next,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    errorText: null,
-                  ))),
+            child: TextFormField(
+              readOnly: widget.inputField.isReadObly,
+              controller: widget.inputField.isReadObly
+                  ? TextEditingController(
+                      text: widget.inputValue,
+                    )
+                  : numericalController,
+              keyboardType: TextInputType.number,
+              onChanged: onValueChange,
+              style: TextStyle().copyWith(
+                color: widget.inputField.inputColor,
+              ),
+              textInputAction: TextInputAction.next,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                errorText: null,
+              ),
+            ),
+          ),
           InputCheckedIcon(
-            showTickedIcon: _value != null && '$_value'.trim() != '',
+            showTickedIcon: '$_value'.trim() != '',
             color: widget.inputField.inputColor,
           )
         ],

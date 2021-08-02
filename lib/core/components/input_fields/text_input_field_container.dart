@@ -4,15 +4,15 @@ import 'package:todo_app/models/input_field.dart';
 
 class TextInputFieldContainer extends StatefulWidget {
   const TextInputFieldContainer({
-    Key key,
-    @required this.inputField,
+    Key? key,
+    required this.inputField,
     this.onInputValueChange,
     this.inputValue,
   }) : super(key: key);
 
   final InputField inputField;
-  final Function onInputValueChange;
-  final String inputValue;
+  final Function? onInputValueChange;
+  final String? inputValue;
 
   @override
   _TextInputFieldContainerState createState() =>
@@ -20,8 +20,8 @@ class TextInputFieldContainer extends StatefulWidget {
 }
 
 class _TextInputFieldContainerState extends State<TextInputFieldContainer> {
-  TextEditingController textController;
-  String _value;
+  TextEditingController? textController;
+  String? _value;
 
   @override
   void initState() {
@@ -36,7 +36,7 @@ class _TextInputFieldContainerState extends State<TextInputFieldContainer> {
     setState(() {
       _value = value;
     });
-    widget.onInputValueChange(value.trim());
+    widget.onInputValueChange!(value.trim());
   }
 
   @override
@@ -48,7 +48,9 @@ class _TextInputFieldContainerState extends State<TextInputFieldContainer> {
             child: TextFormField(
               readOnly: widget.inputField.isReadObly,
               controller: widget.inputField.isReadObly
-                  ? TextEditingController(text: widget.inputValue)
+                  ? TextEditingController(
+                      text: widget.inputValue,
+                    )
                   : textController,
               onChanged: onValueChange,
               maxLines: widget.inputField.valueType == 'LONG_TEXT' ? null : 1,

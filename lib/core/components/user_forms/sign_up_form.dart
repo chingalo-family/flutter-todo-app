@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({
-    Key key,
-    @required this.currentTheme,
+    Key? key,
+    required this.currentTheme,
   }) : super(key: key);
 
   final String currentTheme;

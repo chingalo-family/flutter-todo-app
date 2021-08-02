@@ -8,10 +8,10 @@ import 'package:todo_app/models/input_field.dart';
 
 class EntryFormContainer extends StatelessWidget {
   const EntryFormContainer({
-    Key key,
-    @required this.formSections,
-    @required this.dataObject,
-    @required this.mandatoryFieldObject,
+    Key? key,
+    required this.formSections,
+    required this.dataObject,
+    required this.mandatoryFieldObject,
     this.hiddenFields,
     this.hiddenSections,
     this.isEditableMode = true,
@@ -20,10 +20,10 @@ class EntryFormContainer extends StatelessWidget {
   }) : super(key: key);
 
   final List<FormSection> formSections;
-  final Function onInputValueChange;
+  final Function? onInputValueChange;
   final Map dataObject;
-  final Map hiddenFields;
-  final Map hiddenSections;
+  final Map? hiddenFields;
+  final Map? hiddenSections;
   final Map mandatoryFieldObject;
   final bool isEditableMode;
   final double elevation;
@@ -35,7 +35,7 @@ class EntryFormContainer extends StatelessWidget {
           .map(
             (FormSection formSection) => Visibility(
               visible: hiddenSections == null ||
-                  '${hiddenSections[formSection.id]}'.trim() != 'true',
+                  '${hiddenSections![formSection.id]}'.trim() != 'true',
               child: Container(
                 margin: EdgeInsets.only(
                   bottom: 10.0,
@@ -49,7 +49,7 @@ class EntryFormContainer extends StatelessWidget {
                     decoration: BoxDecoration(
                       border: Border(
                         left: BorderSide(
-                          color: formSection.borderColor,
+                          color: formSection.borderColor!,
                           width: 8.0,
                         ),
                       ),
@@ -92,7 +92,7 @@ class EntryFormContainer extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: Text(
-                                    formSection.description,
+                                    formSection.description!,
                                     style: TextStyle().copyWith(
                                       color: formSection.color,
                                       fontSize: 14.0,
@@ -109,7 +109,7 @@ class EntryFormContainer extends StatelessWidget {
                           visible: formSection.name != '',
                           child: Container(
                             child: LineSeperator(
-                              color: formSection.color != null
+                              color: formSection.color != Colors.blueGrey
                                   ? formSection.color.withOpacity(0.1)
                                   : Colors.black38.withOpacity(0.1),
                             ),
@@ -126,11 +126,11 @@ class EntryFormContainer extends StatelessWidget {
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
-                            children: formSection.inputFields
+                            children: formSection.inputFields!
                                 .map(
                                   (InputField inputField) => Visibility(
                                     visible: hiddenFields == null ||
-                                        '${hiddenFields[inputField.id]}'
+                                        '${hiddenFields![inputField.id]}'
                                                 .trim() !=
                                             'true',
                                     child: Container(
@@ -148,7 +148,7 @@ class EntryFormContainer extends StatelessWidget {
                                           String id,
                                           dynamic value,
                                         ) =>
-                                            onInputValueChange(id, value),
+                                            onInputValueChange!(id, value),
                                       ),
                                     ),
                                   ),
@@ -159,7 +159,7 @@ class EntryFormContainer extends StatelessWidget {
                         EntrySubFormContainer(
                           hiddenFields: hiddenFields ?? Map(),
                           hiddenSections: hiddenSections ?? Map(),
-                          subSections: formSection.subSections,
+                          subSections: formSection.subSections!,
                           dataObject: dataObject,
                           isEditableMode: isEditableMode,
                           mandatoryFieldObject: mandatoryFieldObject,

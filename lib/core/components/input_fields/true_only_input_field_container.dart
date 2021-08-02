@@ -6,14 +6,14 @@ import 'package:todo_app/models/input_field.dart';
 
 class TrueOnlyInputFieldContainer extends StatefulWidget {
   const TrueOnlyInputFieldContainer({
-    Key key,
-    @required this.inputField,
+    Key? key,
+    required this.inputField,
     this.onInputValueChange,
     this.inputValue,
   }) : super(key: key);
 
   final InputField inputField;
-  final Function onInputValueChange;
+  final Function? onInputValueChange;
   final dynamic inputValue;
 
   @override
@@ -23,7 +23,7 @@ class TrueOnlyInputFieldContainer extends StatefulWidget {
 
 class _TrueOnlyInputFieldContainerState
     extends State<TrueOnlyInputFieldContainer> {
-  bool _value;
+  bool? _value;
   Color inActiveColor = Color(0xFF737373);
 
   @override
@@ -60,10 +60,10 @@ class _TrueOnlyInputFieldContainerState
           child: CupertinoSwitch(
             activeColor: widget.inputField.inputColor,
             trackColor: inActiveColor,
-            value: _value,
+            value: _value ?? false,
             onChanged: (bool value) {
               onSetValue(value);
-              widget.onInputValueChange(value ? value : '');
+              widget.onInputValueChange!(value ? value : '');
             },
           ),
         ),

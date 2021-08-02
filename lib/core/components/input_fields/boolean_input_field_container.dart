@@ -5,14 +5,14 @@ import 'package:todo_app/models/input_field_option.dart';
 
 class BooleanInputFieldContainer extends StatefulWidget {
   const BooleanInputFieldContainer(
-      {Key key,
-      @required this.inputField,
-      @required this.onInputValueChange,
+      {Key? key,
+      required this.inputField,
+      required this.onInputValueChange,
       this.inputValue})
       : super(key: key);
 
   final InputField inputField;
-  final Function onInputValueChange;
+  final Function? onInputValueChange;
   final dynamic inputValue;
 
   @override
@@ -26,7 +26,7 @@ class _BooleanInputFieldContainerState
     InputFieldOption(name: 'Yes', code: true),
     InputFieldOption(name: 'No', code: false),
   ];
-  bool _inputValue;
+  bool? _inputValue;
 
   @override
   void initState() {
@@ -37,11 +37,11 @@ class _BooleanInputFieldContainerState
   updateInputFieldState() {
     setState(() {
       _inputValue =
-          widget.inputValue != null && '${widget.inputValue}' == 'true'
+          (widget.inputValue != null && '${widget.inputValue}' == 'true'
               ? true
               : widget.inputValue != null && '${widget.inputValue}' == 'false'
                   ? false
-                  : null;
+                  : null)!;
     });
   }
 

@@ -4,15 +4,15 @@ import 'package:todo_app/models/input_field.dart';
 
 class PasswordInputFieldContainer extends StatefulWidget {
   const PasswordInputFieldContainer({
-    Key key,
-    @required this.inputField,
+    Key? key,
+    required this.inputField,
     this.onInputValueChange,
     this.inputValue,
   }) : super(key: key);
 
   final InputField inputField;
-  final Function onInputValueChange;
-  final String inputValue;
+  final Function? onInputValueChange;
+  final String? inputValue;
 
   @override
   _PasswordInputFieldContainerState createState() =>
@@ -21,8 +21,8 @@ class PasswordInputFieldContainer extends StatefulWidget {
 
 class _PasswordInputFieldContainerState
     extends State<PasswordInputFieldContainer> {
-  TextEditingController passwordController;
-  String _value;
+  TextEditingController? passwordController;
+  String? _value;
 
   @override
   void initState() {
@@ -37,7 +37,7 @@ class _PasswordInputFieldContainerState
     setState(() {
       _value = value;
     });
-    widget.onInputValueChange(value.trim());
+    widget.onInputValueChange!(value.trim());
   }
 
   @override
@@ -49,7 +49,9 @@ class _PasswordInputFieldContainerState
             child: TextFormField(
               readOnly: widget.inputField.isReadObly,
               controller: widget.inputField.isReadObly
-                  ? TextEditingController(text: widget.inputValue)
+                  ? TextEditingController(
+                      text: widget.inputValue,
+                    )
                   : passwordController,
               onChanged: onValueChange,
               obscureText: true,
@@ -65,7 +67,7 @@ class _PasswordInputFieldContainerState
             ),
           ),
           InputCheckedIcon(
-            showTickedIcon: _value != null && '$_value'.trim() != '',
+            showTickedIcon: '$_value'.trim() != '',
             color: widget.inputField.inputColor,
           )
         ],

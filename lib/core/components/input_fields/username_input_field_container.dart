@@ -4,15 +4,15 @@ import 'package:todo_app/models/input_field.dart';
 
 class UsernameInputFieldContainer extends StatefulWidget {
   const UsernameInputFieldContainer({
-    Key key,
-    @required this.inputField,
+    Key? key,
+    required this.inputField,
     this.onInputValueChange,
     this.inputValue,
   }) : super(key: key);
 
   final InputField inputField;
-  final Function onInputValueChange;
-  final String inputValue;
+  final Function? onInputValueChange;
+  final String? inputValue;
 
   @override
   _UsernameInputFieldContainerState createState() =>
@@ -21,8 +21,8 @@ class UsernameInputFieldContainer extends StatefulWidget {
 
 class _UsernameInputFieldContainerState
     extends State<UsernameInputFieldContainer> {
-  TextEditingController usernameController;
-  String _value;
+  TextEditingController? usernameController;
+  String? _value;
 
   @override
   void initState() {
@@ -37,7 +37,7 @@ class _UsernameInputFieldContainerState
     setState(() {
       _value = value;
     });
-    widget.onInputValueChange(value.trim());
+    widget.onInputValueChange!(value.trim());
   }
 
   @override
@@ -49,7 +49,9 @@ class _UsernameInputFieldContainerState
             child: TextFormField(
               readOnly: widget.inputField.isReadObly,
               controller: widget.inputField.isReadObly
-                  ? TextEditingController(text: widget.inputValue)
+                  ? TextEditingController(
+                      text: widget.inputValue,
+                    )
                   : usernameController,
               onChanged: onValueChange,
               keyboardType: TextInputType.text,
@@ -64,7 +66,7 @@ class _UsernameInputFieldContainerState
             ),
           ),
           InputCheckedIcon(
-            showTickedIcon: _value != null && '$_value'.trim() != '',
+            showTickedIcon: '$_value'.trim() != '',
             color: widget.inputField.inputColor,
           )
         ],

@@ -9,7 +9,7 @@ import 'package:todo_app/modules/about/about.dart';
 class AppPopUpMenu extends StatelessWidget {
   final String currentPage;
 
-  const AppPopUpMenu({Key key, this.currentPage = ''}) : super(key: key);
+  const AppPopUpMenu({Key? key, this.currentPage = ''}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

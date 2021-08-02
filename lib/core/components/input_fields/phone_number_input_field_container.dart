@@ -3,16 +3,16 @@ import 'package:todo_app/core/components/input_fields/input_checked_icon.dart';
 import 'package:todo_app/models/input_field.dart';
 
 class PhoneNumberInputFieldContainer extends StatefulWidget {
-  const PhoneNumberInputFieldContainer(
-      {Key key,
-      @required this.inputField,
-      @required this.onInputValueChange,
-      this.inputValue})
-      : super(key: key);
+  const PhoneNumberInputFieldContainer({
+    Key? key,
+    required this.inputField,
+    required this.onInputValueChange,
+    this.inputValue,
+  }) : super(key: key);
 
   final InputField inputField;
-  final Function onInputValueChange;
-  final String inputValue;
+  final Function? onInputValueChange;
+  final String? inputValue;
 
   @override
   _PhoneNumberInputFieldContainerState createState() =>
@@ -21,8 +21,8 @@ class PhoneNumberInputFieldContainer extends StatefulWidget {
 
 class _PhoneNumberInputFieldContainerState
     extends State<PhoneNumberInputFieldContainer> {
-  TextEditingController phoneNumberController;
-  String _value;
+  TextEditingController? phoneNumberController;
+  String? _value;
 
   @override
   void initState() {
@@ -38,7 +38,7 @@ class _PhoneNumberInputFieldContainerState
     setState(() {
       _value = value;
     });
-    widget.onInputValueChange(value.trim());
+    widget.onInputValueChange!(value.trim());
   }
 
   @override

@@ -3,12 +3,12 @@ import 'package:todo_app/core/components/app_pop_up_menu.dart';
 
 class AppBarContainer extends StatelessWidget {
   const AppBarContainer({
-    Key key,
+    Key? key,
     this.isAboutPage,
     this.isViewChartVisible,
     this.isAddVisible,
     this.elevation = 0.0,
-    @required this.title,
+    required this.title,
     this.onAdd,
     this.onOpenChart,
     this.isEditVisible = false,
@@ -18,17 +18,17 @@ class AppBarContainer extends StatelessWidget {
   }) : super(key: key);
 
   final String title;
-  final bool isAboutPage;
-  final bool isViewChartVisible;
-  final bool isAddVisible;
+  final bool? isAboutPage;
+  final bool? isViewChartVisible;
+  final bool? isAddVisible;
   final bool isEditVisible;
   final bool isDeleteVisible;
   final double elevation;
 
-  final VoidCallback onOpenChart;
-  final VoidCallback onAdd;
-  final VoidCallback onEdit;
-  final VoidCallback onDelete;
+  final VoidCallback? onOpenChart;
+  final VoidCallback? onAdd;
+  final VoidCallback? onEdit;
+  final VoidCallback? onDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class AppBarContainer extends StatelessWidget {
       ),
       actions: [
         Visibility(
-          visible: isViewChartVisible,
+          visible: isViewChartVisible ?? false,
           child: IconButton(
             icon: Icon(
               Icons.bar_chart,
@@ -51,7 +51,7 @@ class AppBarContainer extends StatelessWidget {
           ),
         ),
         Visibility(
-          visible: isAddVisible,
+          visible: isAddVisible ?? false,
           child: IconButton(
             icon: Icon(
               Icons.add,
@@ -79,7 +79,7 @@ class AppBarContainer extends StatelessWidget {
         ),
         Container(
           child: AppPopUpMenu(
-            currentPage: isAboutPage ? 'about' : '',
+            currentPage: isAboutPage == true ? 'about' : '',
           ),
         ),
       ],

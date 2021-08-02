@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class CheckBoxInputField extends StatefulWidget {
   const CheckBoxInputField({
-    Key key,
-    @required this.onInputValueChange,
-    @required this.label,
-    @required this.value,
-    @required this.color,
-    @required this.isReadOnly,
+    Key? key,
+    required this.onInputValueChange,
+    required this.label,
+    required this.value,
+    required this.color,
+    required this.isReadOnly,
   }) : super(key: key);
 
   final Function onInputValueChange;
@@ -21,7 +21,7 @@ class CheckBoxInputField extends StatefulWidget {
 }
 
 class _CheckBoxInputFieldState extends State<CheckBoxInputField> {
-  bool _inputValue;
+  bool _inputValue = false;
 
   @override
   void initState() {
@@ -41,9 +41,11 @@ class _CheckBoxInputFieldState extends State<CheckBoxInputField> {
     if (oldWidget.value != widget.value) updateInputValueState();
   }
 
-  void onInputValueChange(bool value) {
-    updateInputValueState();
-    widget.onInputValueChange(value);
+  void onInputValueChange(bool? value) {
+    if (value != null) {
+      updateInputValueState();
+      widget.onInputValueChange(value);
+    }
   }
 
   @override
