@@ -48,7 +48,7 @@ class TodoTask {
     this.title = mapData['title'];
     this.createdOn = mapData['createdOn'] ?? '';
     this.assignedTo = mapData['assignedTo'] ?? '';
-    this.completedBy = mapData['completedBy'] ?? '';
+    this.createdBy = mapData['createdBy'] ?? '';
     this.completedOn = mapData['completedOn'] ?? '';
     this.completedBy = mapData['completedBy'] ?? '';
     this.assignedTo = mapData['assignedTo'] ?? '';
